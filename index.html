@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bruno Ferreira — Lead Product Designer</title>
-<meta name="description" content="Bruno Ferreira, Lead Product Designer especialista em UX/UI, Research, Design Systems e AI-Driven Design. 17 anos criando produtos digitais para Porto Seguro, Bradesco, Santander, Americanas e Volkswagen.">
+<meta name="description" content="Bruno Ferreira, Lead Product Designer specializing in UX/UI, Research, Design Systems and AI-Driven Design. 17 years building digital products for Porto Seguro, Bradesco, Santander, Americanas and Volkswagen.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -140,6 +140,22 @@
   .icon-btn:hover{ color:var(--accent); border-color:var(--accent-line); background:var(--accent-soft); transform:translateY(-2px); }
   .icon-btn svg{ width:17px; height:17px; }
 
+  /* ---------- language switcher ---------- */
+  .lang-switch{ display:flex; align-items:center; gap:6px; margin-right:4px; position:relative; z-index:5; }
+  .flag-btn{
+    width:36px; height:30px; border-radius:8px; overflow:hidden;
+    border:1px solid var(--border); padding:0; cursor:pointer; background:var(--surface);
+    display:flex; align-items:center; justify-content:center; flex:none;
+    transition:border-color .25s var(--ease), transform .25s var(--ease), box-shadow .25s var(--ease);
+  }
+  .flag-btn svg{ width:100%; height:100%; display:block; }
+  .flag-btn:hover{ transform:translateY(-2px); border-color:var(--accent-line); }
+  .flag-btn.active{ border-color:var(--accent); box-shadow:0 0 0 2px var(--accent-soft); }
+  @media (max-width:860px){
+    .flag-btn{ width:30px; height:25px; }
+    .lang-switch{ gap:5px; }
+  }
+
   .menu-toggle{
     display:none; width:38px; height:38px; border-radius:9px; border:1px solid var(--border);
     background:transparent; color:var(--text-1); align-items:center; justify-content:center; cursor:pointer;
@@ -263,11 +279,6 @@
   @media (max-width:900px){ .about-grid{ grid-template-columns:1fr; gap:40px; } }
   .about-grid p{ color:var(--text-2); font-size:16.5px; margin-bottom:16px; }
   .about-grid p strong{ color:var(--text-1); font-weight:600; }
-  .credential{
-    margin-top:26px; padding:16px 18px; border-left:2px solid var(--accent);
-    background:var(--surface); border-radius:0 var(--radius-sm) var(--radius-sm) 0; font-size:14.5px; color:var(--text-2);
-  }
-  .credential strong{ color:var(--text-1); }
 
   .skills-label{ font-size:12.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--text-3); margin-bottom:14px; font-weight:600; }
   .tag-cloud{ display:flex; flex-wrap:wrap; gap:9px; }
@@ -319,7 +330,6 @@
     display:flex; align-items:center; justify-content:center; color:var(--accent);
   }
   .project-motif svg{ width:22px; height:22px; }
-  .project-period{ font-size:12px; color:var(--text-3); text-align:right; line-height:1.4; }
 
   .project-card h3{ font-size:19.5px; margin-top:2px; }
   .project-role{ font-size:13px; color:var(--accent); font-weight:600; margin-top:4px; }
@@ -349,13 +359,6 @@
     align-items:flex-start; justify-content:center;
   }
   .project-card.featured .project-motif{ background:var(--accent-soft); border-color:var(--accent-line); }
-
-  .repo-note{
-    margin-top:34px; font-size:13.5px; color:var(--text-3); display:flex; align-items:center; gap:8px;
-  }
-  .repo-note svg{ width:14px; height:14px; flex:none; }
-  .repo-note a{ color:var(--text-2); font-weight:600; border-bottom:1px solid var(--border-strong); transition:color .2s, border-color .2s; }
-  .repo-note a:hover{ color:var(--accent); border-color:var(--accent-line); }
 
   /* ---------- experiencia ---------- */
   .timeline{ position:relative; padding-left:32px; }
@@ -404,20 +407,47 @@
   <div class="wrap">
     <a href="#top" class="brand"><span class="mark">BF</span> Bruno Ferreira</a>
     <ul class="nav-links" id="navLinks">
-      <li><a href="#sobre" data-nav>Sobre</a></li>
-      <li><a href="#formacao" data-nav>Formação</a></li>
-      <li><a href="#projetos" data-nav>Projetos</a></li>
-      <li><a href="#experiencia" data-nav>Experiência</a></li>
-      <li><a href="#contato" data-nav>Contato</a></li>
+      <li><a href="#sobre" data-nav data-i18n="nav.about">About</a></li>
+      <li><a href="#formacao" data-nav data-i18n="nav.education">Education</a></li>
+      <li><a href="#projetos" data-nav data-i18n="nav.projects">Projects</a></li>
+      <li><a href="#experiencia" data-nav data-i18n="nav.experience">Experience</a></li>
+      <li><a href="#contato" data-nav data-i18n="nav.contact">Contact</a></li>
     </ul>
     <div class="nav-actions">
+      <div class="lang-switch" role="group" aria-label="Language selector">
+        <button class="flag-btn active" data-lang="en" aria-label="English" title="English">
+          <svg viewBox="0 0 24 16" preserveAspectRatio="none" aria-hidden="true">
+            <rect width="24" height="16" fill="#fff"/>
+            <g fill="#b22234">
+              <rect y="0" width="24" height="1.23"/><rect y="2.46" width="24" height="1.23"/>
+              <rect y="4.92" width="24" height="1.23"/><rect y="7.38" width="24" height="1.23"/>
+              <rect y="9.85" width="24" height="1.23"/><rect y="12.31" width="24" height="1.23"/>
+              <rect y="14.77" width="24" height="1.23"/>
+            </g>
+            <rect width="10" height="8.6" fill="#3c3b6e"/>
+          </svg>
+        </button>
+        <button class="flag-btn" data-lang="pt" aria-label="Português" title="Português">
+          <svg viewBox="0 0 24 16" preserveAspectRatio="none" aria-hidden="true">
+            <rect width="24" height="16" fill="#009c3b"/>
+            <polygon points="12,2 22,8 12,14 2,8" fill="#ffdf00"/>
+            <circle cx="12" cy="8" r="4" fill="#002776"/>
+          </svg>
+        </button>
+        <button class="flag-btn" data-lang="es" aria-label="Español" title="Español">
+          <svg viewBox="0 0 24 16" preserveAspectRatio="none" aria-hidden="true">
+            <rect width="24" height="16" fill="#c60b1e"/>
+            <rect y="4" width="24" height="8" fill="#ffc400"/>
+          </svg>
+        </button>
+      </div>
       <a class="icon-btn" href="https://www.linkedin.com/in/brunoferreira-ux/" target="_blank" rel="noopener" aria-label="LinkedIn">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V23h-4V8zM8.5 8h3.83v2.05h.05c.53-1 1.84-2.05 3.79-2.05 4.05 0 4.8 2.67 4.8 6.14V23h-4v-7.5c0-1.79-.03-4.09-2.5-4.09-2.5 0-2.88 1.95-2.88 3.96V23h-4V8z"/></svg>
       </a>
       <a class="icon-btn" href="https://www.behance.net/brunoferreira15" target="_blank" rel="noopener" aria-label="Behance">
         <svg viewBox="0 0 24 24" fill="none"><text x="12" y="16.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="13" letter-spacing="-0.5" fill="currentColor">Be</text></svg>
       </a>
-      <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">
+      <button class="icon-btn menu-toggle" id="menuToggle" data-i18n-attr="aria-label:nav.menuLabel" aria-label="Open menu" aria-expanded="false">
         <svg id="menuIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path id="menuPath" d="M4 7h16M4 12h16M4 17h16"/></svg>
       </button>
     </div>
@@ -431,13 +461,13 @@
     <span class="hero-watermark" aria-hidden="true">17</span>
     <div class="wrap">
       <div class="hero-copy">
-        <span class="status-chip"><span class="dot"></span> Disponível para posições remotas</span>
+        <span class="status-chip"><span class="dot"></span> <span data-i18n="hero.chip">Available for remote positions</span></span>
         <h1>Bruno Ferreira</h1>
-        <p class="role">Lead Product Designer — UX/UI, Research &amp; Design Systems</p>
-        <p class="summary">17 anos conectando pesquisa, estratégia e interface em produtos digitais para marcas como Porto Seguro, Bradesco, Santander, Americanas e Volkswagen. Hoje lidero times de design e Design Ops, aplicando IA para acelerar da descoberta à entrega de alta fidelidade.</p>
+        <p class="role" data-i18n="hero.role">Lead Product Designer — UX/UI, Research &amp; Design Systems</p>
+        <p class="summary" data-i18n="hero.summary">17 years connecting research, strategy and interface in digital products for brands like Porto Seguro, Bradesco, Santander, Americanas and Volkswagen. Today I lead design and Design Ops teams, applying AI to accelerate from discovery to high-fidelity delivery.</p>
         <div class="hero-cta">
           <a href="#projetos" class="btn btn-primary">
-            Ver Projetos
+            <span data-i18n="hero.ctaProjects">View Projects</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
           <a href="https://www.linkedin.com/in/brunoferreira-ux/" target="_blank" rel="noopener" class="btn btn-ghost">
@@ -450,9 +480,9 @@
           </a>
         </div>
         <div class="hero-meta">
-          <div><strong>17 anos</strong><span>De experiência</span></div>
-          <div><strong>+35%</strong><span>Eficiência operacional</span></div>
-          <div><strong>+300%</strong><span>Avaliações de app</span></div>
+          <div><strong data-i18n="hero.years">17 years</strong><span data-i18n="hero.yearsLabel">Years of experience</span></div>
+          <div><strong>+35%</strong><span data-i18n="hero.effLabel">Operational efficiency</span></div>
+          <div><strong>+300%</strong><span data-i18n="hero.appLabel">App ratings</span></div>
         </div>
       </div>
 
@@ -492,17 +522,17 @@
   <section id="sobre">
     <div class="wrap">
       <div class="section-head reveal">
-        <span class="eyebrow">Sobre mim</span>
-        <h2>Design orientado a negócio, pesquisa e sistemas</h2>
+        <span class="eyebrow" data-i18n="about.eyebrow">About Me</span>
+        <h2 data-i18n="about.title">Business-driven design, research and systems</h2>
       </div>
       <div class="about-grid">
         <div class="reveal">
-          <p>Sou <strong>UI/UX Product Designer com 17 anos de experiência</strong> em Design, UX/UI, Produtos Digitais e Estratégia Digital, atuando na criação de soluções centradas no usuário para empresas como <strong>Porto Seguro, Bradesco, Santander, Americanas e Volkswagen</strong>.</p>
-          <p>Tenho vivência em todo o ciclo de design — da pesquisa com usuários à entrega de interfaces de alta fidelidade — com atuação forte em <strong>Design Ops, Design Systems</strong> e metodologias ágeis (Scrum e Kanban), colaborando lado a lado com Product Managers, desenvolvedores e times multidisciplinares.</p>
-          <p>Também atuo em ambientes regulados (projetos para a SUSEP) e em produtos de saúde, sempre equilibrando usabilidade, eficiência e as exigências do negócio. Mais recentemente, venho aplicando <strong>Inteligência Artificial</strong> para acelerar processos de design e aumentar a produtividade dos times.</p>
+          <p data-i18n="about.p1">I'm a <strong>UI/UX Product Designer with 17 years of experience</strong> in Design, UX/UI, Digital Products and Digital Strategy, creating user-centered solutions for companies like <strong>Porto Seguro, Bradesco, Santander, Americanas and Volkswagen</strong>.</p>
+          <p data-i18n="about.p2">I have experience across the full design cycle — from user research to high-fidelity interface delivery — with strong focus on <strong>Design Ops, Design Systems</strong> and agile methodologies (Scrum and Kanban), collaborating closely with Product Managers, developers and cross-functional teams.</p>
+          <p data-i18n="about.p3">I also work in regulated environments (projects for SUSEP) and healthcare products, always balancing usability, efficiency and business requirements. More recently, I've been applying <strong>Artificial Intelligence</strong> to accelerate design processes and boost team productivity.</p>
         </div>
         <div class="reveal">
-          <p class="skills-label">Ferramentas &amp; Métodos</p>
+          <p class="skills-label" data-i18n="about.toolsLabel">Tools &amp; Methods</p>
           <div class="tag-cloud">
             <span class="tag">Figma</span>
             <span class="tag">FigJam</span>
@@ -511,9 +541,9 @@
             <span class="tag">Miro</span>
             <span class="tag">Design System</span>
             <span class="tag">Design Ops</span>
-            <span class="tag">Pesquisa com Usuários</span>
-            <span class="tag">Testes A/B</span>
-            <span class="tag">Arquitetura da Informação</span>
+            <span class="tag" data-i18n="about.tag.userResearch">User Research</span>
+            <span class="tag" data-i18n="about.tag.abTesting">A/B Testing</span>
+            <span class="tag" data-i18n="about.tag.ia">Information Architecture</span>
             <span class="tag">UX Writing</span>
             <span class="tag">Scrum / Kanban</span>
             <span class="tag">VTEX</span>
@@ -522,7 +552,7 @@
             <span class="tag">CSS</span>
             <span class="tag">JavaScript</span>
           </div>
-          <p class="skills-label" style="margin-top:26px;">AI-Driven Design</p>
+          <p class="skills-label" style="margin-top:26px;" data-i18n="about.aiLabel">AI-Driven Design</p>
           <div class="tag-cloud">
             <span class="tag">ChatGPT / Claude</span>
             <span class="tag">Midjourney</span>
@@ -540,57 +570,57 @@
   <section id="formacao">
     <div class="wrap">
       <div class="section-head reveal">
-        <span class="eyebrow">Formação &amp; Estudos</span>
-        <h2>Base acadêmica construída ao longo da carreira</h2>
+        <span class="eyebrow" data-i18n="edu.eyebrow">Education &amp; Studies</span>
+        <h2 data-i18n="edu.title">Academic foundation built throughout my career</h2>
       </div>
 
       <div class="edu-grid reveal-stagger">
         <div class="edu-card">
           <div class="edu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 2.5 3 6 3s6-1.5 6-3v-5"/></svg></div>
           <div>
-            <h3>Graduado em Design</h3>
+            <h3 data-i18n="edu.item1">Design Degree</h3>
             <p class="edu-meta">UNIP · 2008</p>
           </div>
         </div>
         <div class="edu-card">
           <div class="edu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 2.5 3 6 3s6-1.5 6-3v-5"/></svg></div>
           <div>
-            <h3>Pós em Criação Publicitária</h3>
+            <h3 data-i18n="edu.item2">Postgraduate in Advertising Creation</h3>
             <p class="edu-meta">UAM · 2011</p>
           </div>
         </div>
         <div class="edu-card">
           <div class="edu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 2.5 3 6 3s6-1.5 6-3v-5"/></svg></div>
           <div>
-            <h3>Pós em Planejamento de Mídia</h3>
+            <h3 data-i18n="edu.item3">Postgraduate in Media Planning</h3>
             <p class="edu-meta">SENAI · 2009</p>
           </div>
         </div>
         <div class="edu-card">
           <div class="edu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 2.5 3 6 3s6-1.5 6-3v-5"/></svg></div>
           <div>
-            <h3>MBA em UX Design e Learning Experience</h3>
+            <h3 data-i18n="edu.item4">MBA in UX Design &amp; Learning Experience</h3>
             <p class="edu-meta">IED · 2020</p>
           </div>
         </div>
         <div class="edu-card">
           <div class="edu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 2.5 3 6 3s6-1.5 6-3v-5"/></svg></div>
           <div>
-            <h3>Graduado em Engenharia de Produção</h3>
+            <h3 data-i18n="edu.item5">Production Engineering Degree</h3>
             <p class="edu-meta">UNINOVE · 2015</p>
           </div>
         </div>
         <div class="edu-card">
           <div class="edu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 2.5 3 6 3s6-1.5 6-3v-5"/></svg></div>
           <div>
-            <h3>UX pela USP</h3>
+            <h3 data-i18n="edu.item6">UX — USP</h3>
             <p class="edu-meta">USP · 2021</p>
           </div>
         </div>
         <div class="edu-card">
           <div class="edu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 2.5 3 6 3s6-1.5 6-3v-5"/></svg></div>
           <div>
-            <h3>Fundamentos de UX Design Google</h3>
+            <h3 data-i18n="edu.item7">Google UX Design Fundamentals</h3>
             <p class="edu-meta">Google · 2021–2023</p>
           </div>
         </div>
@@ -602,9 +632,9 @@
   <section id="projetos">
     <div class="wrap">
       <div class="section-head reveal">
-        <span class="eyebrow">Projetos &amp; Cases</span>
-        <h2>Produtos que passaram pela minha mesa</h2>
-        <p class="sub">Uma seleção de estudos de caso da carreira — de UX/UI e acessibilidade digital a Design Ops e produtos mobile de logística.</p>
+        <span class="eyebrow" data-i18n="proj.eyebrow">Projects &amp; Case Studies</span>
+        <h2 data-i18n="proj.title">Products that have crossed my desk</h2>
+        <p class="sub" data-i18n="proj.sub">A selection of career case studies — from UX/UI and digital accessibility to Design Ops and mobile logistics products.</p>
       </div>
 
       <div class="project-grid reveal-stagger">
@@ -619,16 +649,16 @@
             <h3>UX/UI Design — Enerzee</h3>
             <p class="project-role">AVANTTI — UX Lead</p>
           </div>
-          <p class="desc">Liderança do desenho de experiência e interface da plataforma Enerzee, da pesquisa aos fluxos de alta fidelidade, dentro da squad multi-cliente da AVANTTI.</p>
-          <p class="project-result"><strong>+35%</strong> de eficiência operacional e <strong>−40%</strong> de retrabalho entre as squads da AVANTTI.</p>
+          <p class="desc" data-i18n="proj.c1.desc">Led the experience and interface design for the Enerzee platform, from research to high-fidelity flows, within AVANTTI's multi-client squad.</p>
+          <p class="project-result" data-i18n="proj.c1.result"><strong>+35%</strong> operational efficiency and <strong>−40%</strong> rework across AVANTTI's squads.</p>
           <div class="stack-row">
             <span class="stack-badge">UX/UI Design</span>
             <span class="stack-badge">Design System</span>
             <span class="stack-badge">Figma</span>
-            <span class="stack-badge">Liderança</span>
+            <span class="stack-badge" data-i18n="badge.leadership">Leadership</span>
           </div>
           <a class="project-link" href="https://www.behance.net/gallery/245684245/UX-UI-DESIGN-ENERZEE" target="_blank" rel="noopener">
-            Ver estudo de caso
+            <span data-i18n="proj.viewCase">View case study</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
           </a>
         </article>
@@ -640,19 +670,19 @@
             </div>
           </div>
           <div>
-            <h3>Estudo de Acessibilidade — CencoSud</h3>
+            <h3 data-i18n="proj.c2.title">Accessibility Study — CencoSud</h3>
             <p class="project-role">Stefanini — UX Lead</p>
           </div>
-          <p class="desc">Pesquisa e aplicação de diretrizes de acessibilidade visual, incluindo daltonismo, na interface do aplicativo CencoSud, elevando inclusão e qualidade de experiência.</p>
-          <p class="project-result"><strong>+300%</strong> nas avaliações do aplicativo após as melhorias de acessibilidade e usabilidade.</p>
+          <p class="desc" data-i18n="proj.c2.desc">Research and application of visual accessibility guidelines, including color blindness, on the CencoSud app interface, improving inclusion and experience quality.</p>
+          <p class="project-result" data-i18n="proj.c2.result"><strong>+300%</strong> in app ratings after accessibility and usability improvements.</p>
           <div class="stack-row">
-            <span class="stack-badge">Acessibilidade</span>
+            <span class="stack-badge" data-i18n="badge.accessibility">Accessibility</span>
             <span class="stack-badge">UX Research</span>
-            <span class="stack-badge">Testes A/B</span>
+            <span class="stack-badge" data-i18n="badge.abTesting">A/B Testing</span>
             <span class="stack-badge">Figma</span>
           </div>
           <a class="project-link" href="https://www.behance.net/gallery/202492623/UX-Dautonismo" target="_blank" rel="noopener">
-            Ver estudo de caso
+            <span data-i18n="proj.viewCase">View case study</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
           </a>
         </article>
@@ -667,16 +697,16 @@
             <h3>Design Ops — Porto Seguro</h3>
             <p class="project-role">Staff Product Design Ops</p>
           </div>
-          <p class="desc">Estruturação de processos de Design Ops, padronização de componentes e rituais ágeis para escalar o time de design da Porto Seguro entre squads.</p>
-          <p class="project-result">Maior <strong>consistência</strong> entre squads e mais previsibilidade nas entregas de design.</p>
+          <p class="desc" data-i18n="proj.c3.desc">Structured Design Ops processes, standardized components and agile rituals to scale Porto Seguro's design team across squads.</p>
+          <p class="project-result" data-i18n="proj.c3.result">Greater <strong>consistency</strong> across squads and more predictable design delivery.</p>
           <div class="stack-row">
             <span class="stack-badge">Design Ops</span>
             <span class="stack-badge">Design System</span>
             <span class="stack-badge">Scrum/Kanban</span>
-            <span class="stack-badge">Liderança</span>
+            <span class="stack-badge" data-i18n="badge.leadership">Leadership</span>
           </div>
           <a class="project-link" href="https://www.behance.net/gallery/188021045/Design-OPS-Porto" target="_blank" rel="noopener">
-            Ver estudo de caso
+            <span data-i18n="proj.viewCase">View case study</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
           </a>
         </article>
@@ -691,16 +721,16 @@
             <h3>ICS Mobile — Total Express</h3>
             <p class="project-role">Softtek — UX Lead</p>
           </div>
-          <p class="desc">Desenho da experiência mobile do ICS — sistema de controle e rastreamento operacional — para a Total Express, do fluxo de campo à visão do gestor.</p>
-          <p class="project-result">Fluxos mobile mais <strong>simples</strong> e maior eficiência das equipes de campo.</p>
+          <p class="desc" data-i18n="proj.c4.desc">Designed the mobile experience for ICS — an operational tracking and control system — for Total Express, from field flow to manager view.</p>
+          <p class="project-result" data-i18n="proj.c4.result"><strong>Simpler</strong> mobile flows and greater efficiency for field teams.</p>
           <div class="stack-row">
             <span class="stack-badge">Mobile UX</span>
-            <span class="stack-badge">Arquitetura da Informação</span>
-            <span class="stack-badge">Prototipação</span>
+            <span class="stack-badge" data-i18n="about.tag.ia">Information Architecture</span>
+            <span class="stack-badge" data-i18n="badge.prototyping">Prototyping</span>
             <span class="stack-badge">Figma</span>
           </div>
           <a class="project-link" href="https://www.behance.net/gallery/155528257/Esdudo-de-UXUI-ICS-Mobile-Total-Express" target="_blank" rel="noopener">
-            Ver estudo de caso
+            <span data-i18n="proj.viewCase">View case study</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
           </a>
         </article>
@@ -709,10 +739,10 @@
           <div class="project-motif">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 12h8M12 8v8"/></svg>
           </div>
-          <h3>Todos os estudos de caso completos</h3>
-          <p class="desc">Wireframes, protótipos, telas de alta fidelidade e documentação de Design System de cada projeto estão organizados no meu portfólio visual.</p>
+          <h3 data-i18n="proj.featured.title">All complete case studies</h3>
+          <p class="desc" data-i18n="proj.featured.desc">Wireframes, prototypes, high-fidelity screens and Design System documentation for each project are organized in my visual portfolio.</p>
           <a class="project-link" href="https://www.behance.net/brunoferreira15" target="_blank" rel="noopener">
-            Ver portfólio completo no Behance
+            <span data-i18n="proj.viewPortfolio">View full portfolio on Behance</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
           </a>
         </article>
@@ -725,45 +755,45 @@
   <section id="experiencia">
     <div class="wrap">
       <div class="section-head reveal">
-        <span class="eyebrow">Experiência Profissional</span>
-        <h2>Uma trajetória de 17 anos em design</h2>
+        <span class="eyebrow" data-i18n="exp.eyebrow">Professional Experience</span>
+        <h2 data-i18n="exp.title">A 17-year journey in design</h2>
       </div>
 
       <div class="timeline reveal">
         <div class="tl-item">
-          <div class="tl-head"><h3>Staff Product Designer / Especialista</h3><span class="tl-period">Dez 2025 — Jul 2026</span></div>
-          <p class="tl-company">AVANTTI — Clientes: FGV, Ciclic, Susep, Enerzee</p>
-          <p class="tl-desc">Liderança de squad de 4 a 7 designers, estruturação de Design Ops e Design System, com implementação de rituais ágeis e testes A/B como prática sistemática.</p>
+          <div class="tl-head"><h3 data-i18n="exp.i1.title">Staff Product Designer / Specialist</h3><span class="tl-period" data-i18n="exp.i1.period">Dec 2025 — Jul 2026</span></div>
+          <p class="tl-company" data-i18n="exp.i1.company">AVANTTI — Clients: FGV, Ciclic, Susep, Enerzee</p>
+          <p class="tl-desc" data-i18n="exp.i1.desc">Led a squad of 4 to 7 designers, structuring Design Ops and Design System, implementing agile rituals and A/B testing as a systematic practice.</p>
         </div>
         <div class="tl-item">
-          <div class="tl-head"><h3>UI/UX Designer Sênior / Especialista</h3><span class="tl-period">Mai 2025 — Dez 2025</span></div>
+          <div class="tl-head"><h3 data-i18n="exp.i2.title">Senior / Specialist UI/UX Designer</h3><span class="tl-period" data-i18n="exp.i2.period">May 2025 — Dec 2025</span></div>
           <p class="tl-company">OPAH — Grupo Mirassol</p>
-          <p class="tl-desc">Discovery, mapeamento de jornadas e criação de Design System no Figma para plataformas desktop e mobile de logística.</p>
+          <p class="tl-desc" data-i18n="exp.i2.desc">Discovery, journey mapping and Design System creation in Figma for desktop and mobile logistics platforms.</p>
         </div>
         <div class="tl-item">
-          <div class="tl-head"><h3>Product Designer Especialista</h3><span class="tl-period">Jun 2023 — Mai 2024</span></div>
-          <p class="tl-company">Môre — Cliente Porto Seguro</p>
-          <p class="tl-desc">Liderança de equipe UX/UI em e-commerce de grande escala na plataforma VTEX para marcas nacionais e internacionais.</p>
+          <div class="tl-head"><h3 data-i18n="exp.i3.title">Specialist Product Designer</h3><span class="tl-period" data-i18n="exp.i3.period">Jun 2023 — May 2024</span></div>
+          <p class="tl-company" data-i18n="exp.i3.company">Môre — Porto Seguro Client</p>
+          <p class="tl-desc" data-i18n="exp.i3.desc">Led the UX/UI team on a large-scale e-commerce project on the VTEX platform for national and international brands.</p>
         </div>
         <div class="tl-item">
-          <div class="tl-head"><h3>UI/UX Designer Sênior / Líder de UX</h3><span class="tl-period">Jun 2021 — Jun 2023</span></div>
+          <div class="tl-head"><h3 data-i18n="exp.i4.title">Senior UI/UX Designer / UX Lead</h3><span class="tl-period">Jun 2021 — Jun 2023</span></div>
           <p class="tl-company">K2 Partnering Solutions — Americanas, Softtek, Estácio, Sara, Dr.Tis</p>
-          <p class="tl-desc">Arquitetura da informação, prototipação de alta fidelidade em VTEX e desenvolvimento do time de design.</p>
+          <p class="tl-desc" data-i18n="exp.i4.desc">Information architecture, high-fidelity prototyping on VTEX and design team development.</p>
         </div>
         <div class="tl-item">
-          <div class="tl-head"><h3>UI/UX Designer Sênior</h3><span class="tl-period">Dez 2019 — Jun 2021</span></div>
+          <div class="tl-head"><h3 data-i18n="exp.i5.title">Senior UI/UX Designer</h3><span class="tl-period" data-i18n="exp.i5.period">Dec 2019 — Jun 2021</span></div>
           <p class="tl-company">SIS Soluções Integradas — Bradesco, GoApp, Salux</p>
-          <p class="tl-desc">Coordenação de atividades UX/UI, liderança de Design Ops e engenharia de produtos, com foco em Design Atômico.</p>
+          <p class="tl-desc" data-i18n="exp.i5.desc">Coordinated UX/UI activities, led Design Ops and product engineering, focusing on Atomic Design.</p>
         </div>
         <div class="tl-item">
           <div class="tl-head"><h3>UI/UX Lead</h3><span class="tl-period">Nov 2018 — Nov 2019</span></div>
           <p class="tl-company">Vector ITC — Volkswagen, Total Express, Banco Safra, Santander</p>
-          <p class="tl-desc">Coordenação da equipe de criação, pesquisas com usuários, testes A/B e desenvolvimento de Design System e Style Guide.</p>
+          <p class="tl-desc" data-i18n="exp.i6.desc">Coordinated the creative team, user research, A/B testing and Design System and Style Guide development.</p>
         </div>
         <div class="tl-item">
-          <div class="tl-head"><h3>Product Designer Sênior</h3><span class="tl-period">Abr 2017 — Nov 2018</span></div>
+          <div class="tl-head"><h3 data-i18n="exp.i7.title">Senior Product Designer</h3><span class="tl-period" data-i18n="exp.i7.period">Apr 2017 — Nov 2018</span></div>
           <p class="tl-company">Trocadilho Design — Nimage Group, Tagim</p>
-          <p class="tl-desc">Criação de interfaces, conceitos criativos e prototipação (Adobe XD, Sketch, Figma), com foco em redução de lead-time.</p>
+          <p class="tl-desc" data-i18n="exp.i7.desc">Interface creation, creative concepts and prototyping (Adobe XD, Sketch, Figma), focused on lead-time reduction.</p>
         </div>
       </div>
     </div>
@@ -773,16 +803,16 @@
   <section id="contato" class="contact">
     <div class="wrap">
       <div class="contact-card reveal">
-        <h2>Vamos conversar, me chama aqui</h2>
-        <p>Estou disponível para oportunidades remotas como UX/UI | Product Designer | Projetos de Inovação. Se meu perfil combina com o que você procura, entre em contato.</p>
+        <h2 data-i18n="contact.title">Let's talk, reach out here</h2>
+        <p data-i18n="contact.p">I'm available for remote opportunities as UX/UI | Product Designer | Innovation Projects. If my profile matches what you're looking for, get in touch.</p>
         <div class="contact-links">
-          <a class="btn btn-primary" href="https://wa.me/5511972846617?text=Ol%C3%A1%20Bruno%2C%20vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar%20sobre%20uma%20oportunidade%20remota." target="_blank" rel="noopener">
+          <a class="btn btn-primary" data-i18n-attr="href:contact.waHref" href="https://wa.me/5511972846617?text=Hi%20Bruno%2C%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20talk%20about%20a%20remote%20opportunity." target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.02 2C6.5 2 2.02 6.48 2.02 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.96 9.96 0 0 0 12.02 22C17.55 22 22 17.52 22 12S17.55 2 12.02 2zm0 18.12c-1.6 0-3.1-.45-4.38-1.23l-.31-.19-3 .79.8-2.92-.2-.3a8.14 8.14 0 0 1-1.27-4.37c0-4.5 3.66-8.16 8.16-8.16 4.5 0 8.15 3.66 8.15 8.16 0 4.5-3.65 8.22-8.15 8.22zm4.47-6.12c-.24-.12-1.44-.71-1.66-.79-.22-.08-.39-.12-.55.12-.16.24-.63.79-.78.95-.14.16-.28.18-.53.06-.24-.12-1.02-.38-1.95-1.2-.72-.64-1.2-1.44-1.35-1.68-.14-.24-.02-.37.11-.49.11-.11.24-.28.37-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.32-.75-1.8-.2-.48-.4-.4-.55-.41-.14-.01-.3-.01-.46-.01-.16 0-.42.06-.64.3-.22.24-.85.83-.85 2.03 0 1.2.87 2.35.99 2.51.12.16 1.71 2.61 4.14 3.66.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.44-.59 1.64-1.16.2-.57.2-1.05.14-1.16-.06-.1-.22-.16-.46-.28z"/></svg>
             WhatsApp
           </a>
           <a class="btn btn-ghost" href="mailto:bruno.trocadilho@gmail.com">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
-            E-mail
+            <span data-i18n="contact.email">Email</span>
           </a>
           <a class="btn btn-ghost" href="https://www.linkedin.com/in/brunoferreira-ux/" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V23h-4V8zM8.5 8h3.83v2.05h.05c.53-1 1.84-2.05 3.79-2.05 4.05 0 4.8 2.67 4.8 6.14V23h-4v-7.5c0-1.79-.03-4.09-2.5-4.09-2.5 0-2.88 1.95-2.88 3.96V23h-4V8z"/></svg>
@@ -807,7 +837,7 @@
         Bruno Ferreira — Lead Product Designer
       </div>
       <div class="footer-icons">
-        <a class="icon-btn" href="https://wa.me/5511972846617?text=Ol%C3%A1%20Bruno%2C%20vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar%20sobre%20uma%20oportunidade%20remota." target="_blank" rel="noopener" aria-label="WhatsApp">
+        <a class="icon-btn" data-i18n-attr="href:contact.waHref" href="https://wa.me/5511972846617?text=Hi%20Bruno%2C%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20talk%20about%20a%20remote%20opportunity." target="_blank" rel="noopener" aria-label="WhatsApp">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.02 2C6.5 2 2.02 6.48 2.02 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.96 9.96 0 0 0 12.02 22C17.55 22 22 17.52 22 12S17.55 2 12.02 2zm0 18.12c-1.6 0-3.1-.45-4.38-1.23l-.31-.19-3 .79.8-2.92-.2-.3a8.14 8.14 0 0 1-1.27-4.37c0-4.5 3.66-8.16 8.16-8.16 4.5 0 8.15 3.66 8.15 8.16 0 4.5-3.65 8.22-8.15 8.22zm4.47-6.12c-.24-.12-1.44-.71-1.66-.79-.22-.08-.39-.12-.55.12-.16.24-.63.79-.78.95-.14.16-.28.18-.53.06-.24-.12-1.02-.38-1.95-1.2-.72-.64-1.2-1.44-1.35-1.68-.14-.24-.02-.37.11-.49.11-.11.24-.28.37-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.32-.75-1.8-.2-.48-.4-.4-.55-.41-.14-.01-.3-.01-.46-.01-.16 0-.42.06-.64.3-.22.24-.85.83-.85 2.03 0 1.2.87 2.35.99 2.51.12.16 1.71 2.61 4.14 3.66.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.44-.59 1.64-1.16.2-.57.2-1.05.14-1.16-.06-.1-.22-.16-.46-.28z"/></svg>
         </a>
         <a class="icon-btn" href="mailto:bruno.trocadilho@gmail.com" aria-label="E-mail">
@@ -821,13 +851,223 @@
         </a>
       </div>
     </div>
-    <p class="footer-note">© 2026 Bruno Ferreira. Feito com atenção aos detalhes — como todo bom produto deveria ser.</p>
+    <p class="footer-note" data-i18n="footer.note">© 2026 Bruno Ferreira. Made with attention to detail — the way every good product should be.</p>
   </div>
 </footer>
 
 <script>
 (function(){
   "use strict";
+
+  // ---------- i18n ----------
+  var I18N = {
+    en: {
+      "nav.about":"About","nav.education":"Education","nav.projects":"Projects","nav.experience":"Experience","nav.contact":"Contact",
+      "nav.menuLabel":"Open menu",
+      "hero.chip":"Available for remote positions",
+      "hero.role":"Lead Product Designer — UX/UI, Research &amp; Design Systems",
+      "hero.summary":"17 years connecting research, strategy and interface in digital products for brands like Porto Seguro, Bradesco, Santander, Americanas and Volkswagen. Today I lead design and Design Ops teams, applying AI to accelerate from discovery to high-fidelity delivery.",
+      "hero.ctaProjects":"View Projects",
+      "hero.years":"17 years","hero.yearsLabel":"Years of experience","hero.effLabel":"Operational efficiency","hero.appLabel":"App ratings",
+      "about.eyebrow":"About Me",
+      "about.title":"Business-driven design, research and systems",
+      "about.p1":"I'm a <strong>UI/UX Product Designer with 17 years of experience</strong> in Design, UX/UI, Digital Products and Digital Strategy, creating user-centered solutions for companies like <strong>Porto Seguro, Bradesco, Santander, Americanas and Volkswagen</strong>.",
+      "about.p2":"I have experience across the full design cycle — from user research to high-fidelity interface delivery — with strong focus on <strong>Design Ops, Design Systems</strong> and agile methodologies (Scrum and Kanban), collaborating closely with Product Managers, developers and cross-functional teams.",
+      "about.p3":"I also work in regulated environments (projects for SUSEP) and healthcare products, always balancing usability, efficiency and business requirements. More recently, I've been applying <strong>Artificial Intelligence</strong> to accelerate design processes and boost team productivity.",
+      "about.toolsLabel":"Tools &amp; Methods",
+      "about.tag.userResearch":"User Research","about.tag.abTesting":"A/B Testing","about.tag.ia":"Information Architecture",
+      "about.aiLabel":"AI-Driven Design",
+      "edu.eyebrow":"Education &amp; Studies",
+      "edu.title":"Academic foundation built throughout my career",
+      "edu.item1":"Design Degree","edu.item2":"Postgraduate in Advertising Creation","edu.item3":"Postgraduate in Media Planning",
+      "edu.item4":"MBA in UX Design &amp; Learning Experience","edu.item5":"Production Engineering Degree","edu.item6":"UX — USP","edu.item7":"Google UX Design Fundamentals",
+      "proj.eyebrow":"Projects &amp; Case Studies",
+      "proj.title":"Products that have crossed my desk",
+      "proj.sub":"A selection of career case studies — from UX/UI and digital accessibility to Design Ops and mobile logistics products.",
+      "proj.c1.desc":"Led the experience and interface design for the Enerzee platform, from research to high-fidelity flows, within AVANTTI's multi-client squad.",
+      "proj.c1.result":"<strong>+35%</strong> operational efficiency and <strong>−40%</strong> rework across AVANTTI's squads.",
+      "proj.c2.title":"Accessibility Study — CencoSud",
+      "proj.c2.desc":"Research and application of visual accessibility guidelines, including color blindness, on the CencoSud app interface, improving inclusion and experience quality.",
+      "proj.c2.result":"<strong>+300%</strong> in app ratings after accessibility and usability improvements.",
+      "proj.c3.desc":"Structured Design Ops processes, standardized components and agile rituals to scale Porto Seguro's design team across squads.",
+      "proj.c3.result":"Greater <strong>consistency</strong> across squads and more predictable design delivery.",
+      "proj.c4.desc":"Designed the mobile experience for ICS — an operational tracking and control system — for Total Express, from field flow to manager view.",
+      "proj.c4.result":"<strong>Simpler</strong> mobile flows and greater efficiency for field teams.",
+      "badge.leadership":"Leadership","badge.accessibility":"Accessibility","badge.abTesting":"A/B Testing","badge.prototyping":"Prototyping",
+      "proj.viewCase":"View case study",
+      "proj.featured.title":"All complete case studies",
+      "proj.featured.desc":"Wireframes, prototypes, high-fidelity screens and Design System documentation for each project are organized in my visual portfolio.",
+      "proj.viewPortfolio":"View full portfolio on Behance",
+      "exp.eyebrow":"Professional Experience",
+      "exp.title":"A 17-year journey in design",
+      "exp.i1.title":"Staff Product Designer / Specialist","exp.i1.period":"Dec 2025 — Jul 2026","exp.i1.company":"AVANTTI — Clients: FGV, Ciclic, Susep, Enerzee",
+      "exp.i1.desc":"Led a squad of 4 to 7 designers, structuring Design Ops and Design System, implementing agile rituals and A/B testing as a systematic practice.",
+      "exp.i2.title":"Senior / Specialist UI/UX Designer","exp.i2.period":"May 2025 — Dec 2025",
+      "exp.i2.desc":"Discovery, journey mapping and Design System creation in Figma for desktop and mobile logistics platforms.",
+      "exp.i3.title":"Specialist Product Designer","exp.i3.period":"Jun 2023 — May 2024","exp.i3.company":"Môre — Porto Seguro Client",
+      "exp.i3.desc":"Led the UX/UI team on a large-scale e-commerce project on the VTEX platform for national and international brands.",
+      "exp.i4.title":"Senior UI/UX Designer / UX Lead",
+      "exp.i4.desc":"Information architecture, high-fidelity prototyping on VTEX and design team development.",
+      "exp.i5.title":"Senior UI/UX Designer","exp.i5.period":"Dec 2019 — Jun 2021",
+      "exp.i5.desc":"Coordinated UX/UI activities, led Design Ops and product engineering, focusing on Atomic Design.",
+      "exp.i6.desc":"Coordinated the creative team, user research, A/B testing and Design System and Style Guide development.",
+      "exp.i7.title":"Senior Product Designer","exp.i7.period":"Apr 2017 — Nov 2018",
+      "exp.i7.desc":"Interface creation, creative concepts and prototyping (Adobe XD, Sketch, Figma), focused on lead-time reduction.",
+      "contact.title":"Let's talk, reach out here",
+      "contact.p":"I'm available for remote opportunities as UX/UI | Product Designer | Innovation Projects. If my profile matches what you're looking for, get in touch.",
+      "contact.email":"Email",
+      "contact.waHref":"https://wa.me/5511972846617?text=Hi%20Bruno%2C%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20talk%20about%20a%20remote%20opportunity.",
+      "footer.note":"© 2026 Bruno Ferreira. Made with attention to detail — the way every good product should be."
+    },
+    pt: {
+      "nav.about":"Sobre","nav.education":"Formação","nav.projects":"Projetos","nav.experience":"Experiência","nav.contact":"Contato",
+      "nav.menuLabel":"Abrir menu",
+      "hero.chip":"Disponível para posições remotas",
+      "hero.role":"Lead Product Designer — UX/UI, Pesquisa &amp; Design Systems",
+      "hero.summary":"17 anos conectando pesquisa, estratégia e interface em produtos digitais para marcas como Porto Seguro, Bradesco, Santander, Americanas e Volkswagen. Hoje lidero times de design e Design Ops, aplicando IA para acelerar da descoberta à entrega de alta fidelidade.",
+      "hero.ctaProjects":"Ver Projetos",
+      "hero.years":"17 anos","hero.yearsLabel":"De experiência","hero.effLabel":"Eficiência operacional","hero.appLabel":"Avaliações de app",
+      "about.eyebrow":"Sobre mim",
+      "about.title":"Design orientado a negócio, pesquisa e sistemas",
+      "about.p1":"Sou <strong>UI/UX Product Designer com 17 anos de experiência</strong> em Design, UX/UI, Produtos Digitais e Estratégia Digital, atuando na criação de soluções centradas no usuário para empresas como <strong>Porto Seguro, Bradesco, Santander, Americanas e Volkswagen</strong>.",
+      "about.p2":"Tenho vivência em todo o ciclo de design — da pesquisa com usuários à entrega de interfaces de alta fidelidade — com atuação forte em <strong>Design Ops, Design Systems</strong> e metodologias ágeis (Scrum e Kanban), colaborando lado a lado com Product Managers, desenvolvedores e times multidisciplinares.",
+      "about.p3":"Também atuo em ambientes regulados (projetos para a SUSEP) e em produtos de saúde, sempre equilibrando usabilidade, eficiência e as exigências do negócio. Mais recentemente, venho aplicando <strong>Inteligência Artificial</strong> para acelerar processos de design e aumentar a produtividade dos times.",
+      "about.toolsLabel":"Ferramentas &amp; Métodos",
+      "about.tag.userResearch":"Pesquisa com Usuários","about.tag.abTesting":"Testes A/B","about.tag.ia":"Arquitetura da Informação",
+      "about.aiLabel":"Design Orientado por IA",
+      "edu.eyebrow":"Formação &amp; Estudos",
+      "edu.title":"Base acadêmica construída ao longo da carreira",
+      "edu.item1":"Graduado em Design","edu.item2":"Pós em Criação Publicitária","edu.item3":"Pós em Planejamento de Mídia",
+      "edu.item4":"MBA em UX Design e Learning Experience","edu.item5":"Graduado em Engenharia de Produção","edu.item6":"UX pela USP","edu.item7":"Fundamentos de UX Design Google",
+      "proj.eyebrow":"Projetos &amp; Cases",
+      "proj.title":"Produtos que passaram pela minha mesa",
+      "proj.sub":"Uma seleção de estudos de caso da carreira — de UX/UI e acessibilidade digital a Design Ops e produtos mobile de logística.",
+      "proj.c1.desc":"Liderança do desenho de experiência e interface da plataforma Enerzee, da pesquisa aos fluxos de alta fidelidade, dentro da squad multi-cliente da AVANTTI.",
+      "proj.c1.result":"<strong>+35%</strong> de eficiência operacional e <strong>−40%</strong> de retrabalho entre as squads da AVANTTI.",
+      "proj.c2.title":"Estudo de Acessibilidade — CencoSud",
+      "proj.c2.desc":"Pesquisa e aplicação de diretrizes de acessibilidade visual, incluindo daltonismo, na interface do aplicativo CencoSud, elevando inclusão e qualidade de experiência.",
+      "proj.c2.result":"<strong>+300%</strong> nas avaliações do aplicativo após as melhorias de acessibilidade e usabilidade.",
+      "proj.c3.desc":"Estruturação de processos de Design Ops, padronização de componentes e rituais ágeis para escalar o time de design da Porto Seguro entre squads.",
+      "proj.c3.result":"Maior <strong>consistência</strong> entre squads e mais previsibilidade nas entregas de design.",
+      "proj.c4.desc":"Desenho da experiência mobile do ICS — sistema de controle e rastreamento operacional — para a Total Express, do fluxo de campo à visão do gestor.",
+      "proj.c4.result":"Fluxos mobile mais <strong>simples</strong> e maior eficiência das equipes de campo.",
+      "badge.leadership":"Liderança","badge.accessibility":"Acessibilidade","badge.abTesting":"Testes A/B","badge.prototyping":"Prototipação",
+      "proj.viewCase":"Ver estudo de caso",
+      "proj.featured.title":"Todos os estudos de caso completos",
+      "proj.featured.desc":"Wireframes, protótipos, telas de alta fidelidade e documentação de Design System de cada projeto estão organizados no meu portfólio visual.",
+      "proj.viewPortfolio":"Ver portfólio completo no Behance",
+      "exp.eyebrow":"Experiência Profissional",
+      "exp.title":"Uma trajetória de 17 anos em design",
+      "exp.i1.title":"Staff Product Designer / Especialista","exp.i1.period":"Dez 2025 — Jul 2026","exp.i1.company":"AVANTTI — Clientes: FGV, Ciclic, Susep, Enerzee",
+      "exp.i1.desc":"Liderança de squad de 4 a 7 designers, estruturação de Design Ops e Design System, com implementação de rituais ágeis e testes A/B como prática sistemática.",
+      "exp.i2.title":"UI/UX Designer Sênior / Especialista","exp.i2.period":"Mai 2025 — Dez 2025",
+      "exp.i2.desc":"Discovery, mapeamento de jornadas e criação de Design System no Figma para plataformas desktop e mobile de logística.",
+      "exp.i3.title":"Product Designer Especialista","exp.i3.period":"Jun 2023 — Mai 2024","exp.i3.company":"Môre — Cliente Porto Seguro",
+      "exp.i3.desc":"Liderança de equipe UX/UI em e-commerce de grande escala na plataforma VTEX para marcas nacionais e internacionais.",
+      "exp.i4.title":"UI/UX Designer Sênior / Líder de UX",
+      "exp.i4.desc":"Arquitetura da informação, prototipação de alta fidelidade em VTEX e desenvolvimento do time de design.",
+      "exp.i5.title":"UI/UX Designer Sênior","exp.i5.period":"Dez 2019 — Jun 2021",
+      "exp.i5.desc":"Coordenação de atividades UX/UI, liderança de Design Ops e engenharia de produtos, com foco em Design Atômico.",
+      "exp.i6.desc":"Coordenação da equipe de criação, pesquisas com usuários, testes A/B e desenvolvimento de Design System e Style Guide.",
+      "exp.i7.title":"Product Designer Sênior","exp.i7.period":"Abr 2017 — Nov 2018",
+      "exp.i7.desc":"Criação de interfaces, conceitos criativos e prototipação (Adobe XD, Sketch, Figma), com foco em redução de lead-time.",
+      "contact.title":"Vamos conversar, me chama aqui",
+      "contact.p":"Estou disponível para oportunidades remotas como UX/UI | Product Designer | Projetos de Inovação. Se meu perfil combina com o que você procura, entre em contato.",
+      "contact.email":"E-mail",
+      "contact.waHref":"https://wa.me/5511972846617?text=Ol%C3%A1%20Bruno%2C%20vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar%20sobre%20uma%20oportunidade%20remota.",
+      "footer.note":"© 2026 Bruno Ferreira. Feito com atenção aos detalhes — como todo bom produto deveria ser."
+    },
+    es: {
+      "nav.about":"Sobre mí","nav.education":"Formación","nav.projects":"Proyectos","nav.experience":"Experiencia","nav.contact":"Contacto",
+      "nav.menuLabel":"Abrir menú",
+      "hero.chip":"Disponible para posiciones remotas",
+      "hero.role":"Lead Product Designer — UX/UI, Investigación y Design Systems",
+      "hero.summary":"17 años conectando investigación, estrategia e interfaz en productos digitales para marcas como Porto Seguro, Bradesco, Santander, Americanas y Volkswagen. Hoy lidero equipos de diseño y Design Ops, aplicando IA para acelerar desde el descubrimiento hasta la entrega de alta fidelidad.",
+      "hero.ctaProjects":"Ver Proyectos",
+      "hero.years":"17 años","hero.yearsLabel":"De experiencia","hero.effLabel":"Eficiencia operativa","hero.appLabel":"Valoraciones de app",
+      "about.eyebrow":"Sobre Mí",
+      "about.title":"Diseño orientado a negocio, investigación y sistemas",
+      "about.p1":"Soy <strong>UI/UX Product Designer con 17 años de experiencia</strong> en Diseño, UX/UI, Productos Digitales y Estrategia Digital, creando soluciones centradas en el usuario para empresas como <strong>Porto Seguro, Bradesco, Santander, Americanas y Volkswagen</strong>.",
+      "about.p2":"Tengo experiencia en todo el ciclo de diseño — desde la investigación con usuarios hasta la entrega de interfaces de alta fidelidad — con fuerte actuación en <strong>Design Ops, Design Systems</strong> y metodologías ágiles (Scrum y Kanban), colaborando codo a codo con Product Managers, desarrolladores y equipos multidisciplinarios.",
+      "about.p3":"También trabajo en entornos regulados (proyectos para la SUSEP) y en productos de salud, siempre equilibrando usabilidad, eficiencia y las exigencias del negocio. Más recientemente, vengo aplicando <strong>Inteligencia Artificial</strong> para acelerar procesos de diseño y aumentar la productividad de los equipos.",
+      "about.toolsLabel":"Herramientas y Métodos",
+      "about.tag.userResearch":"Investigación con Usuarios","about.tag.abTesting":"Pruebas A/B","about.tag.ia":"Arquitectura de la Información",
+      "about.aiLabel":"Diseño Impulsado por IA",
+      "edu.eyebrow":"Formación y Estudios",
+      "edu.title":"Base académica construida a lo largo de mi carrera",
+      "edu.item1":"Graduado en Diseño","edu.item2":"Posgrado en Creación Publicitaria","edu.item3":"Posgrado en Planificación de Medios",
+      "edu.item4":"MBA en UX Design y Learning Experience","edu.item5":"Graduado en Ingeniería de Producción","edu.item6":"UX por la USP","edu.item7":"Fundamentos de UX Design de Google",
+      "proj.eyebrow":"Proyectos y Casos",
+      "proj.title":"Productos que han pasado por mi escritorio",
+      "proj.sub":"Una selección de casos de estudio de mi carrera — desde UX/UI y accesibilidad digital hasta Design Ops y productos móviles de logística.",
+      "proj.c1.desc":"Liderazgo del diseño de experiencia e interfaz de la plataforma Enerzee, desde la investigación hasta los flujos de alta fidelidad, dentro del squad multi-cliente de AVANTTI.",
+      "proj.c1.result":"<strong>+35%</strong> de eficiencia operativa y <strong>−40%</strong> de retrabajo entre los squads de AVANTTI.",
+      "proj.c2.title":"Estudio de Accesibilidad — CencoSud",
+      "proj.c2.desc":"Investigación y aplicación de pautas de accesibilidad visual, incluyendo daltonismo, en la interfaz de la app CencoSud, elevando la inclusión y la calidad de la experiencia.",
+      "proj.c2.result":"<strong>+300%</strong> en las valoraciones de la app tras las mejoras de accesibilidad y usabilidad.",
+      "proj.c3.desc":"Estructuración de procesos de Design Ops, estandarización de componentes y rituales ágiles para escalar el equipo de diseño de Porto Seguro entre squads.",
+      "proj.c3.result":"Mayor <strong>consistencia</strong> entre squads y mayor previsibilidad en las entregas de diseño.",
+      "proj.c4.desc":"Diseño de la experiencia móvil de ICS — sistema de control y rastreo operativo — para Total Express, desde el flujo de campo hasta la visión del gestor.",
+      "proj.c4.result":"Flujos móviles más <strong>simples</strong> y mayor eficiencia de los equipos de campo.",
+      "badge.leadership":"Liderazgo","badge.accessibility":"Accesibilidad","badge.abTesting":"Pruebas A/B","badge.prototyping":"Prototipado",
+      "proj.viewCase":"Ver caso de estudio",
+      "proj.featured.title":"Todos los casos de estudio completos",
+      "proj.featured.desc":"Wireframes, prototipos, pantallas de alta fidelidad y documentación de Design System de cada proyecto están organizados en mi portafolio visual.",
+      "proj.viewPortfolio":"Ver portafolio completo en Behance",
+      "exp.eyebrow":"Experiencia Profesional",
+      "exp.title":"Una trayectoria de 17 años en diseño",
+      "exp.i1.title":"Staff Product Designer / Especialista","exp.i1.period":"Dic 2025 — Jul 2026","exp.i1.company":"AVANTTI — Clientes: FGV, Ciclic, Susep, Enerzee",
+      "exp.i1.desc":"Liderazgo de un squad de 4 a 7 diseñadores, estructuración de Design Ops y Design System, implementando rituales ágiles y pruebas A/B como práctica sistemática.",
+      "exp.i2.title":"UI/UX Designer Senior / Especialista","exp.i2.period":"May 2025 — Dic 2025",
+      "exp.i2.desc":"Discovery, mapeo de journeys y creación de Design System en Figma para plataformas de logística desktop y mobile.",
+      "exp.i3.title":"Product Designer Especialista","exp.i3.period":"Jun 2023 — May 2024","exp.i3.company":"Môre — Cliente Porto Seguro",
+      "exp.i3.desc":"Liderazgo del equipo UX/UI en e-commerce de gran escala en la plataforma VTEX para marcas nacionales e internacionales.",
+      "exp.i4.title":"UI/UX Designer Senior / Líder de UX",
+      "exp.i4.desc":"Arquitectura de la información, prototipado de alta fidelidad en VTEX y desarrollo del equipo de diseño.",
+      "exp.i5.title":"UI/UX Designer Senior","exp.i5.period":"Dic 2019 — Jun 2021",
+      "exp.i5.desc":"Coordinación de actividades UX/UI, liderazgo de Design Ops e ingeniería de producto, con foco en Atomic Design.",
+      "exp.i6.desc":"Coordinación del equipo creativo, investigación con usuarios, pruebas A/B y desarrollo de Design System y Style Guide.",
+      "exp.i7.title":"Product Designer Senior","exp.i7.period":"Abr 2017 — Nov 2018",
+      "exp.i7.desc":"Creación de interfaces, conceptos creativos y prototipado (Adobe XD, Sketch, Figma), con foco en la reducción de lead-time.",
+      "contact.title":"Hablemos, contáctame aquí",
+      "contact.p":"Estoy disponible para oportunidades remotas como UX/UI | Product Designer | Proyectos de Innovación. Si mi perfil combina con lo que buscas, ponte en contacto.",
+      "contact.email":"Correo",
+      "contact.waHref":"https://wa.me/5511972846617?text=Hola%20Bruno%2C%20vi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20hablar%20sobre%20una%20oportunidad%20remota.",
+      "footer.note":"© 2026 Bruno Ferreira. Hecho con atención al detalle — como todo buen producto debería ser."
+    }
+  };
+
+  var HTML_LANG = { en:"en", pt:"pt-BR", es:"es" };
+
+  function applyLang(lang){
+    var dict = I18N[lang];
+    if(!dict) return;
+    document.documentElement.setAttribute('lang', HTML_LANG[lang] || lang);
+
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var key = el.getAttribute('data-i18n');
+      if(dict[key] !== undefined){ el.innerHTML = dict[key]; }
+    });
+
+    document.querySelectorAll('[data-i18n-attr]').forEach(function(el){
+      var spec = el.getAttribute('data-i18n-attr');
+      spec.split(';').forEach(function(pair){
+        var parts = pair.split(':');
+        var attr = parts[0], key = parts[1];
+        if(dict[key] !== undefined){ el.setAttribute(attr, dict[key]); }
+      });
+    });
+
+    document.querySelectorAll('.flag-btn').forEach(function(btn){
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+    });
+  }
+
+  document.querySelectorAll('.flag-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      applyLang(btn.getAttribute('data-lang'));
+    });
+  });
 
   // Navbar blur on scroll
   var nav = document.getElementById('nav');
@@ -893,6 +1133,9 @@
   } else {
     revealEls.forEach(function(el){ el.classList.add('is-visible'); });
   }
+
+  // Initialize default language (English)
+  applyLang('en');
 })();
 </script>
 
