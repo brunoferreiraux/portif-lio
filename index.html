@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bruno Ferreira — Lead Product Designer</title>
+<meta name="description" content="Bruno Ferreira, Lead Product Designer especialista em UX/UI, Research, Design Systems e AI-Driven Design. 17 anos criando produtos digitais para Porto Seguro, Bradesco, Santander, Americanas e Volkswagen.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0a0f;
+    --bg-soft:#0d0e14;
+    --surface:#131420;
+    --surface-2:#171927;
+    --border:rgba(255,255,255,0.08);
+    --border-strong:rgba(255,255,255,0.14);
+    --text-1:#f3f4f7;
+    --text-2:#aab0c0;
+    --text-3:#6d7386;
+    --accent:#2dd4bf;
+    --accent-soft:rgba(45,212,191,0.12);
+    --accent-line:rgba(45,212,191,0.35);
+    --accent-glow:rgba(45,212,191,0.22);
+    --font-head:'Outfit', sans-serif;
+    --font-body:'Source Sans 3', sans-serif;
+    --maxw:1160px;
+    --radius-lg:20px;
+    --radius-md:14px;
+    --radius-sm:9px;
+    --ease:cubic-bezier(.16,.84,.44,1);
+  }
+
+  *,*::before,*::after{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  @media (prefers-reduced-motion:reduce){
+    html{ scroll-behavior:auto; }
+    *,*::before,*::after{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important; }
+  }
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text-1);
+    font-family:var(--font-body);
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+  }
+
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:0;
+    background:
+      radial-gradient(880px 480px at 82% -8%, rgba(45,212,191,0.09), transparent 60%),
+      radial-gradient(600px 420px at -10% 18%, rgba(45,212,191,0.05), transparent 55%);
+  }
+
+  h1,h2,h3,h4{ font-family:var(--font-head); font-weight:600; margin:0; color:var(--text-1); letter-spacing:-0.01em; }
+  p{ margin:0; }
+  a{ color:inherit; text-decoration:none; }
+  ul{ list-style:none; margin:0; padding:0; }
+  img,svg{ display:block; max-width:100%; }
+  button{ font-family:inherit; }
+
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 32px; }
+  @media (max-width:640px){ .wrap{ padding:0 20px; } }
+
+  .visually-hidden{
+    position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+    overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+  }
+
+  /* ---------- reveal-on-scroll ---------- */
+  .reveal{ opacity:0; transform:translateY(22px); transition:opacity .8s var(--ease), transform .8s var(--ease); }
+  .reveal.is-visible{ opacity:1; transform:translateY(0); }
+  .reveal-stagger > *{ opacity:0; transform:translateY(18px); transition:opacity .7s var(--ease), transform .7s var(--ease); }
+  .reveal-stagger.is-visible > *{ opacity:1; transform:translateY(0); }
+  .reveal-stagger.is-visible > *:nth-child(1){ transition-delay:.05s; }
+  .reveal-stagger.is-visible > *:nth-child(2){ transition-delay:.12s; }
+  .reveal-stagger.is-visible > *:nth-child(3){ transition-delay:.19s; }
+  .reveal-stagger.is-visible > *:nth-child(4){ transition-delay:.26s; }
+  .reveal-stagger.is-visible > *:nth-child(5){ transition-delay:.33s; }
+  .reveal-stagger.is-visible > *:nth-child(6){ transition-delay:.4s; }
+  .reveal-stagger.is-visible > *:nth-child(7){ transition-delay:.47s; }
+
+  /* ---------- navbar ---------- */
+  .nav{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    padding:18px 0;
+    border-bottom:1px solid transparent;
+    transition:background .4s var(--ease), border-color .4s var(--ease), padding .3s var(--ease), backdrop-filter .4s var(--ease);
+  }
+  .nav.scrolled{
+    background:rgba(10,10,15,0.72);
+    backdrop-filter:blur(14px) saturate(140%);
+    -webkit-backdrop-filter:blur(14px) saturate(140%);
+    border-bottom-color:var(--border);
+    padding:13px 0;
+  }
+  .nav .wrap{ display:flex; align-items:center; justify-content:space-between; gap:24px; }
+  .brand{ display:flex; align-items:center; gap:10px; font-family:var(--font-head); font-weight:700; font-size:17px; color:var(--text-1); }
+  .brand .mark{
+    width:30px; height:30px; border-radius:8px;
+    background:linear-gradient(155deg, var(--surface-2), var(--surface));
+    border:1px solid var(--border-strong);
+    display:flex; align-items:center; justify-content:center;
+    font-size:12.5px; color:var(--accent); font-weight:700;
+    position:relative;
+  }
+  .brand .mark::after{
+    content:""; position:absolute; inset:-1px; border-radius:9px;
+    border:1px solid var(--accent-line); opacity:.5;
+  }
+
+  .nav-links{ display:flex; align-items:center; gap:34px; }
+  .nav-links a{
+    font-size:14.5px; color:var(--text-2); font-weight:500;
+    position:relative; padding:4px 0; transition:color .25s var(--ease);
+  }
+  .nav-links a::after{
+    content:""; position:absolute; left:0; bottom:-2px; width:0; height:1px;
+    background:var(--accent); transition:width .3s var(--ease);
+  }
+  .nav-links a:hover{ color:var(--text-1); }
+  .nav-links a:hover::after{ width:100%; }
+
+  .nav-actions{ display:flex; align-items:center; gap:10px; }
+  .icon-btn{
+    width:36px; height:36px; border-radius:9px;
+    border:1px solid var(--border); display:flex; align-items:center; justify-content:center;
+    color:var(--text-2); transition:border-color .25s var(--ease), color .25s var(--ease), transform .25s var(--ease), background .25s var(--ease);
+  }
+  .icon-btn:hover{ color:var(--accent); border-color:var(--accent-line); background:var(--accent-soft); transform:translateY(-2px); }
+  .icon-btn svg{ width:17px; height:17px; }
+
+  .menu-toggle{
+    display:none; width:38px; height:38px; border-radius:9px; border:1px solid var(--border);
+    background:transparent; color:var(--text-1); align-items:center; justify-content:center; cursor:pointer;
+  }
+  .menu-toggle svg{ width:18px; height:18px; }
+
+  @media (max-width:860px){
+    .nav-links{
+      position:fixed; top:0; right:0; height:100vh; width:min(78vw,320px);
+      background:var(--bg-soft); border-left:1px solid var(--border);
+      flex-direction:column; align-items:flex-start; justify-content:center; gap:26px;
+      padding:32px; transform:translateX(100%); transition:transform .45s var(--ease);
+      z-index:120;
+    }
+    .nav-links.open{ transform:translateX(0); }
+    .nav-links a{ font-size:19px; }
+    .menu-toggle{ display:flex; z-index:130; }
+    .nav-actions .icon-btn:not(.menu-toggle){ display:none; }
+  }
+  .nav-scrim{
+    position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:110;
+    opacity:0; pointer-events:none; transition:opacity .35s var(--ease);
+  }
+  .nav-scrim.open{ opacity:1; pointer-events:auto; }
+
+  /* ---------- section shell ---------- */
+  section{ position:relative; padding:130px 0; }
+  @media (max-width:860px){ section{ padding:90px 0; } }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:12.5px; font-weight:600; letter-spacing:.09em; text-transform:uppercase;
+    color:var(--accent); margin-bottom:18px;
+  }
+  .eyebrow::before{ content:""; width:16px; height:1px; background:var(--accent); }
+  .section-head{ max-width:640px; margin-bottom:56px; }
+  .section-head h2{ font-size:clamp(28px,3.6vw,38px); }
+  .section-head .sub{ color:var(--text-2); font-size:17px; margin-top:14px; }
+
+  /* ---------- hero ---------- */
+  .hero{ padding:190px 0 130px; position:relative; }
+  @media (max-width:860px){ .hero{ padding:145px 0 80px; } }
+  .hero .wrap{ display:grid; grid-template-columns:1.05fr .95fr; gap:56px; align-items:center; }
+  @media (max-width:980px){ .hero .wrap{ grid-template-columns:1fr; } }
+
+  .hero-watermark{
+    position:absolute; top:60px; right:0; font-family:var(--font-head); font-weight:800;
+    font-size:min(30vw,340px); line-height:1; color:transparent;
+    -webkit-text-stroke:1px rgba(255,255,255,0.05);
+    z-index:0; pointer-events:none; user-select:none;
+  }
+
+  .hero-copy{ position:relative; z-index:1; }
+  .status-chip{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:7px 14px 7px 10px; border-radius:99px; border:1px solid var(--border);
+    background:var(--surface); font-size:13px; color:var(--text-2); margin-bottom:26px;
+  }
+  .status-chip .dot{ width:7px; height:7px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 3px var(--accent-soft); }
+
+  .hero-copy h1{ font-size:clamp(38px,5.4vw,62px); line-height:1.05; }
+  .hero-copy .role{
+    font-family:var(--font-head); font-weight:500; font-size:clamp(16px,1.9vw,20px);
+    color:var(--accent); margin-top:16px;
+  }
+  .hero-copy .summary{ font-size:17.5px; color:var(--text-2); margin-top:22px; max-width:520px; }
+
+  .hero-cta{ display:flex; flex-wrap:wrap; gap:14px; margin-top:38px; }
+  .btn{
+    display:inline-flex; align-items:center; gap:9px; padding:13px 22px; border-radius:11px;
+    font-size:14.5px; font-weight:600; font-family:var(--font-body);
+    border:1px solid transparent; cursor:pointer; transition:transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s var(--ease), background .3s var(--ease), color .3s var(--ease);
+  }
+  .btn svg{ width:15px; height:15px; }
+  .btn-primary{ background:var(--accent); color:#04201c; }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 14px 28px -12px var(--accent-glow); }
+  .btn-ghost{ background:var(--surface); color:var(--text-1); border-color:var(--border); }
+  .btn-ghost:hover{ border-color:var(--accent-line); color:var(--accent); transform:translateY(-2px); }
+
+  .hero-meta{ display:flex; gap:36px; margin-top:56px; flex-wrap:wrap; }
+  .hero-meta div strong{ display:block; font-family:var(--font-head); font-size:22px; color:var(--text-1); }
+  .hero-meta div span{ font-size:12.5px; color:var(--text-3); text-transform:uppercase; letter-spacing:.06em; }
+
+  /* hero visual: layered card composition, pure CSS */
+  .hero-visual{ position:relative; height:420px; z-index:1; }
+  @media (max-width:980px){ .hero-visual{ height:300px; margin-top:10px; } }
+  .stack-card{
+    position:absolute; border-radius:var(--radius-lg); border:1px solid var(--border);
+    background:linear-gradient(160deg, var(--surface-2), var(--surface));
+    box-shadow:0 30px 60px -30px rgba(0,0,0,0.6);
+  }
+  .card-a{ width:78%; height:70%; top:6%; left:2%; transform:rotate(-6deg); }
+  .card-b{ width:70%; height:62%; bottom:4%; right:0; transform:rotate(5deg); border-color:var(--accent-line); }
+  .card-c{
+    width:52%; height:46%; top:26%; left:24%;
+    background:var(--bg-soft); z-index:2; padding:18px;
+    display:flex; flex-direction:column; gap:10px; justify-content:space-between;
+  }
+  .card-c .row{ display:flex; gap:8px; }
+  .card-c .bar{ height:8px; border-radius:5px; background:var(--surface-2); }
+  .card-c .bar.w1{ width:60%; } .card-c .bar.w2{ width:88%; } .card-c .bar.w3{ width:40%; }
+  .card-c .chip-row{ display:flex; gap:6px; }
+  .card-c .chip{ width:34px; height:20px; border-radius:5px; border:1px solid var(--border-strong); }
+  .card-c .chip.on{ background:var(--accent-soft); border-color:var(--accent-line); }
+  .card-c .dial{ width:38px; height:38px; border-radius:50%; border:3px solid var(--surface-2); border-top-color:var(--accent); align-self:flex-end; }
+
+  .float-badge{
+    position:absolute; display:flex; align-items:center; gap:8px;
+    padding:9px 13px; border-radius:11px; background:var(--surface);
+    border:1px solid var(--border); font-size:12.5px; font-weight:600; color:var(--text-1);
+    box-shadow:0 16px 32px -16px rgba(0,0,0,0.7); z-index:3;
+    animation:float 6s ease-in-out infinite;
+  }
+  .float-badge svg{ width:14px; height:14px; color:var(--accent); }
+  .badge-1{ top:2%; right:8%; animation-delay:0s; }
+  .badge-2{ bottom:6%; left:0%; animation-delay:1.4s; }
+  @keyframes float{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-9px);} }
+  @media (max-width:980px){ .float-badge{ display:none; } }
+
+  /* ---------- sobre ---------- */
+  .about-grid{ display:grid; grid-template-columns:1fr 1fr; gap:64px; }
+  @media (max-width:900px){ .about-grid{ grid-template-columns:1fr; gap:40px; } }
+  .about-grid p{ color:var(--text-2); font-size:16.5px; margin-bottom:16px; }
+  .about-grid p strong{ color:var(--text-1); font-weight:600; }
+  .credential{
+    margin-top:26px; padding:16px 18px; border-left:2px solid var(--accent);
+    background:var(--surface); border-radius:0 var(--radius-sm) var(--radius-sm) 0; font-size:14.5px; color:var(--text-2);
+  }
+  .credential strong{ color:var(--text-1); }
+
+  .skills-label{ font-size:12.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--text-3); margin-bottom:14px; font-weight:600; }
+  .tag-cloud{ display:flex; flex-wrap:wrap; gap:9px; }
+
+  /* ---------- formacao ---------- */
+  .edu-grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(240px,1fr)); gap:16px; }
+  .edu-card{
+    display:flex; gap:14px; align-items:flex-start; padding:20px;
+    border-radius:var(--radius-md); border:1px solid var(--border); background:var(--surface);
+    transition:border-color .3s var(--ease), transform .3s var(--ease), background .3s var(--ease);
+  }
+  .edu-card:hover{ border-color:var(--accent-line); transform:translateY(-3px); background:var(--surface-2); }
+  .edu-icon{
+    width:38px; height:38px; border-radius:10px; flex:none;
+    background:var(--surface-2); border:1px solid var(--border-strong);
+    display:flex; align-items:center; justify-content:center; color:var(--accent);
+  }
+  .edu-icon svg{ width:18px; height:18px; }
+  .edu-card h3{ font-size:15px; line-height:1.35; font-family:var(--font-body); font-weight:600; color:var(--text-1); }
+  .edu-meta{ font-size:12.5px; color:var(--text-3); margin-top:5px; }
+  .tag{
+    padding:8px 14px; border-radius:99px; border:1px solid var(--border); background:var(--surface);
+    font-size:13.5px; color:var(--text-2); transition:border-color .25s var(--ease), color .25s var(--ease), background .25s var(--ease), transform .25s var(--ease);
+  }
+  .tag:hover{ border-color:var(--accent-line); color:var(--accent); background:var(--accent-soft); transform:translateY(-2px); }
+
+  /* ---------- projetos ---------- */
+  .project-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:22px; }
+  @media (max-width:760px){ .project-grid{ grid-template-columns:1fr; } }
+
+  .project-card{
+    position:relative; border-radius:var(--radius-lg); border:1px solid var(--border);
+    background:var(--surface); padding:30px; display:flex; flex-direction:column; gap:18px;
+    transition:transform .4s var(--ease), border-color .4s var(--ease), box-shadow .4s var(--ease);
+    overflow:hidden;
+  }
+  .project-card::before{
+    content:""; position:absolute; inset:0; opacity:0; transition:opacity .4s var(--ease);
+    background:radial-gradient(340px 160px at 90% -10%, var(--accent-glow), transparent 70%);
+    pointer-events:none;
+  }
+  .project-card:hover{ transform:translateY(-6px); border-color:var(--accent-line); box-shadow:0 26px 50px -28px rgba(0,0,0,0.7); }
+  .project-card:hover::before{ opacity:1; }
+
+  .project-top{ display:flex; align-items:flex-start; justify-content:space-between; gap:14px; }
+  .project-motif{
+    width:46px; height:46px; border-radius:12px; flex:none;
+    background:var(--surface-2); border:1px solid var(--border-strong);
+    display:flex; align-items:center; justify-content:center; color:var(--accent);
+  }
+  .project-motif svg{ width:22px; height:22px; }
+  .project-period{ font-size:12px; color:var(--text-3); text-align:right; line-height:1.4; }
+
+  .project-card h3{ font-size:19.5px; margin-top:2px; }
+  .project-role{ font-size:13px; color:var(--accent); font-weight:600; margin-top:4px; }
+  .project-card .desc{ font-size:14.5px; color:var(--text-2); }
+  .project-result{
+    font-size:13.5px; color:var(--text-2); background:var(--bg-soft); border:1px solid var(--border);
+    border-radius:var(--radius-sm); padding:11px 13px;
+  }
+  .project-result strong{ color:var(--accent); }
+
+  .stack-row{ display:flex; flex-wrap:wrap; gap:7px; margin-top:auto; }
+  .stack-badge{
+    font-size:11.5px; font-weight:600; padding:5px 10px; border-radius:6px;
+    background:var(--surface-2); border:1px solid var(--border-strong); color:var(--text-2);
+  }
+
+  .project-link{
+    margin-top:6px; display:inline-flex; align-items:center; gap:6px; font-size:13.5px;
+    font-weight:600; color:var(--text-1); transition:gap .25s var(--ease), color .25s var(--ease);
+  }
+  .project-link svg{ width:13px; height:13px; transition:transform .25s var(--ease); }
+  .project-card:hover .project-link{ color:var(--accent); }
+  .project-card:hover .project-link svg{ transform:translate(2px,-2px); }
+
+  .project-card.featured{
+    background:linear-gradient(155deg, var(--surface-2), var(--surface));
+    align-items:flex-start; justify-content:center;
+  }
+  .project-card.featured .project-motif{ background:var(--accent-soft); border-color:var(--accent-line); }
+
+  .repo-note{
+    margin-top:34px; font-size:13.5px; color:var(--text-3); display:flex; align-items:center; gap:8px;
+  }
+  .repo-note svg{ width:14px; height:14px; flex:none; }
+  .repo-note a{ color:var(--text-2); font-weight:600; border-bottom:1px solid var(--border-strong); transition:color .2s, border-color .2s; }
+  .repo-note a:hover{ color:var(--accent); border-color:var(--accent-line); }
+
+  /* ---------- experiencia ---------- */
+  .timeline{ position:relative; padding-left:32px; }
+  .timeline::before{ content:""; position:absolute; left:5px; top:6px; bottom:6px; width:1px; background:var(--border-strong); }
+  .tl-item{ position:relative; padding-bottom:40px; }
+  .tl-item:last-child{ padding-bottom:0; }
+  .tl-item::before{
+    content:""; position:absolute; left:-32px; top:4px; width:11px; height:11px; border-radius:50%;
+    background:var(--bg); border:2px solid var(--accent);
+  }
+  .tl-head{ display:flex; flex-wrap:wrap; align-items:baseline; gap:10px 16px; margin-bottom:8px; }
+  .tl-head h3{ font-size:18px; }
+  .tl-period{ font-size:12.5px; color:var(--accent); font-weight:600; letter-spacing:.03em; }
+  .tl-company{ font-size:14px; color:var(--text-2); margin-bottom:8px; font-weight:600; }
+  .tl-desc{ font-size:14.5px; color:var(--text-2); max-width:680px; }
+
+  /* ---------- contato / footer ---------- */
+  .contact{ text-align:center; }
+  .contact .section-head{ margin:0 auto 40px; }
+  .contact-card{
+    max-width:640px; margin:0 auto; padding:52px 40px; border-radius:var(--radius-lg);
+    border:1px solid var(--border); background:linear-gradient(160deg, var(--surface-2), var(--surface));
+    position:relative; overflow:hidden;
+  }
+  .contact-card::before{
+    content:""; position:absolute; inset:0;
+    background:radial-gradient(500px 220px at 50% -20%, var(--accent-glow), transparent 70%);
+    pointer-events:none;
+  }
+  .contact-card h2{ font-size:clamp(24px,3vw,32px); position:relative; }
+  .contact-card p{ color:var(--text-2); margin-top:14px; font-size:15.5px; position:relative; max-width:460px; margin-left:auto; margin-right:auto; }
+  .contact-links{ display:flex; flex-wrap:wrap; justify-content:center; gap:14px; margin-top:32px; position:relative; }
+
+  footer{ padding:60px 0 40px; border-top:1px solid var(--border); margin-top:40px; }
+  .footer-row{ display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:18px; }
+  .footer-brand{ display:flex; align-items:center; gap:10px; color:var(--text-2); font-size:13.5px; }
+  .footer-icons{ display:flex; gap:10px; }
+  .footer-note{ font-size:12.5px; color:var(--text-3); margin-top:22px; text-align:center; }
+</style>
+</head>
+<body>
+
+<div class="nav-scrim" id="scrim"></div>
+
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <a href="#top" class="brand"><span class="mark">BF</span> Bruno Ferreira</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#sobre" data-nav>Sobre</a></li>
+      <li><a href="#formacao" data-nav>Formação</a></li>
+      <li><a href="#projetos" data-nav>Projetos</a></li>
+      <li><a href="#experiencia" data-nav>Experiência</a></li>
+      <li><a href="#contato" data-nav>Contato</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a class="icon-btn" href="https://www.linkedin.com/in/brunoferreira-ux/" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V23h-4V8zM8.5 8h3.83v2.05h.05c.53-1 1.84-2.05 3.79-2.05 4.05 0 4.8 2.67 4.8 6.14V23h-4v-7.5c0-1.79-.03-4.09-2.5-4.09-2.5 0-2.88 1.95-2.88 3.96V23h-4V8z"/></svg>
+      </a>
+      <a class="icon-btn" href="https://www.behance.net/brunoferreira15" target="_blank" rel="noopener" aria-label="Behance">
+        <svg viewBox="0 0 24 24" fill="none"><text x="12" y="16.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="13" letter-spacing="-0.5" fill="currentColor">Be</text></svg>
+      </a>
+      <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">
+        <svg id="menuIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path id="menuPath" d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<main id="top">
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <span class="hero-watermark" aria-hidden="true">17</span>
+    <div class="wrap">
+      <div class="hero-copy">
+        <span class="status-chip"><span class="dot"></span> Disponível para posições remotas</span>
+        <h1>Bruno Ferreira</h1>
+        <p class="role">Lead Product Designer — UX/UI, Research &amp; Design Systems</p>
+        <p class="summary">17 anos conectando pesquisa, estratégia e interface em produtos digitais para marcas como Porto Seguro, Bradesco, Santander, Americanas e Volkswagen. Hoje lidero times de design e Design Ops, aplicando IA para acelerar da descoberta à entrega de alta fidelidade.</p>
+        <div class="hero-cta">
+          <a href="#projetos" class="btn btn-primary">
+            Ver Projetos
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/brunoferreira-ux/" target="_blank" rel="noopener" class="btn btn-ghost">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V23h-4V8zM8.5 8h3.83v2.05h.05c.53-1 1.84-2.05 3.79-2.05 4.05 0 4.8 2.67 4.8 6.14V23h-4v-7.5c0-1.79-.03-4.09-2.5-4.09-2.5 0-2.88 1.95-2.88 3.96V23h-4V8z"/></svg>
+            LinkedIn
+          </a>
+          <a href="https://www.behance.net/brunoferreira15" target="_blank" rel="noopener" class="btn btn-ghost">
+            <svg viewBox="0 0 24 24" fill="none"><text x="12" y="16.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="13" letter-spacing="-0.5" fill="currentColor">Be</text></svg>
+            Behance
+          </a>
+        </div>
+        <div class="hero-meta">
+          <div><strong>17 anos</strong><span>De experiência</span></div>
+          <div><strong>+35%</strong><span>Eficiência operacional</span></div>
+          <div><strong>+300%</strong><span>Avaliações de app</span></div>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="stack-card card-a"></div>
+        <div class="stack-card card-b"></div>
+        <div class="stack-card card-c">
+          <div class="row">
+            <div class="bar w1"></div>
+          </div>
+          <div class="row">
+            <div class="bar w2"></div>
+          </div>
+          <div class="row">
+            <div class="bar w3"></div>
+          </div>
+          <div class="chip-row">
+            <div class="chip on"></div>
+            <div class="chip"></div>
+            <div class="chip"></div>
+          </div>
+          <div class="dial"></div>
+        </div>
+        <div class="float-badge badge-1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+          Design System
+        </div>
+        <div class="float-badge badge-2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          Design Ops
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SOBRE ===== -->
+  <section id="sobre">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Sobre mim</span>
+        <h2>Design orientado a negócio, pesquisa e sistemas</h2>
+      </div>
+      <div class="about-grid">
+        <div class="reveal">
+          <p>Sou <strong>UI/UX Product Designer com 17 anos de experiência</strong> em Design, UX/UI, Produtos Digitais e Estratégia Digital, atuando na criação de soluções centradas no usuário para empresas como <strong>Porto Seguro, Bradesco, Santander, Americanas e Volkswagen</strong>.</p>
+          <p>Tenho vivência em todo o ciclo de design — da pesquisa com usuários à entrega de interfaces de alta fidelidade — com atuação forte em <strong>Design Ops, Design Systems</strong> e metodologias ágeis (Scrum e Kanban), colaborando lado a lado com Product Managers, desenvolvedores e times multidisciplinares.</p>
+          <p>Também atuo em ambientes regulados (projetos para a SUSEP) e em produtos de saúde, sempre equilibrando usabilidade, eficiência e as exigências do negócio. Mais recentemente, venho aplicando <strong>Inteligência Artificial</strong> para acelerar processos de design e aumentar a produtividade dos times.</p>
+        </div>
+        <div class="reveal">
+          <p class="skills-label">Ferramentas &amp; Métodos</p>
+          <div class="tag-cloud">
+            <span class="tag">Figma</span>
+            <span class="tag">FigJam</span>
+            <span class="tag">Sketch</span>
+            <span class="tag">Adobe XD</span>
+            <span class="tag">Miro</span>
+            <span class="tag">Design System</span>
+            <span class="tag">Design Ops</span>
+            <span class="tag">Pesquisa com Usuários</span>
+            <span class="tag">Testes A/B</span>
+            <span class="tag">Arquitetura da Informação</span>
+            <span class="tag">UX Writing</span>
+            <span class="tag">Scrum / Kanban</span>
+            <span class="tag">VTEX</span>
+            <span class="tag">Power BI</span>
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript</span>
+          </div>
+          <p class="skills-label" style="margin-top:26px;">AI-Driven Design</p>
+          <div class="tag-cloud">
+            <span class="tag">ChatGPT / Claude</span>
+            <span class="tag">Midjourney</span>
+            <span class="tag">Galileo AI</span>
+            <span class="tag">Uizard</span>
+            <span class="tag">Framer AI</span>
+            <span class="tag">Magician (Figma)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FORMACAO ===== -->
+  <section id="formacao">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Formação &amp; Estudos</span>
+        <h2>Base acadêmica construída ao longo da carreira</h2>
+      </div>
+
+      <div class="edu-grid reveal-stagger">
+        <div class="edu-card">
+          <div class="edu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 2.5 3 6 3s6-1.5 6-3v-5"/></svg></div>
+          <div>
+            <h3>Graduado em Design</h3>
+            <p class="edu-meta">UNIP · 2008</p>
+          </div>
+        </div>
+        <div class="edu-card">
+          <div class="edu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 2.5 3 6 3s6-1.5 6-3v-5"/></svg></div>
+          <div>
+            <h3>Pós em Criação Publicitária</h3>
+            <p class="edu-meta">UAM · 2011</p>
+          </div>
+        </div>
+        <div class="edu-card">
+          <div class="edu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 2.5 3 6 3s6-1.5 6-3v-5"/></svg></div>
+          <div>
+            <h3>Pós em Planejamento de Mídia</h3>
+            <p class="edu-meta">SENAI · 2009</p>
+          </div>
+        </div>
+        <div class="edu-card">
+          <div class="edu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 2.5 3 6 3s6-1.5 6-3v-5"/></svg></div>
+          <div>
+            <h3>MBA em UX Design e Learning Experience</h3>
+            <p class="edu-meta">IED · 2020</p>
+          </div>
+        </div>
+        <div class="edu-card">
+          <div class="edu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 2.5 3 6 3s6-1.5 6-3v-5"/></svg></div>
+          <div>
+            <h3>Graduado em Engenharia de Produção</h3>
+            <p class="edu-meta">UNINOVE · 2015</p>
+          </div>
+        </div>
+        <div class="edu-card">
+          <div class="edu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 2.5 3 6 3s6-1.5 6-3v-5"/></svg></div>
+          <div>
+            <h3>UX pela USP</h3>
+            <p class="edu-meta">USP · 2021</p>
+          </div>
+        </div>
+        <div class="edu-card">
+          <div class="edu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 2.5 3 6 3s6-1.5 6-3v-5"/></svg></div>
+          <div>
+            <h3>Fundamentos de UX Design Google</h3>
+            <p class="edu-meta">Google · 2021–2023</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROJETOS ===== -->
+  <section id="projetos">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Projetos &amp; Cases</span>
+        <h2>Produtos que passaram pela minha mesa</h2>
+        <p class="sub">Uma seleção de estudos de caso da carreira — de UX/UI e acessibilidade digital a Design Ops e produtos mobile de logística.</p>
+      </div>
+
+      <div class="project-grid reveal-stagger">
+
+        <article class="project-card">
+          <div class="project-top">
+            <div class="project-motif">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg>
+            </div>
+          </div>
+          <div>
+            <h3>UX/UI Design — Enerzee</h3>
+            <p class="project-role">AVANTTI — UX Lead</p>
+          </div>
+          <p class="desc">Liderança do desenho de experiência e interface da plataforma Enerzee, da pesquisa aos fluxos de alta fidelidade, dentro da squad multi-cliente da AVANTTI.</p>
+          <p class="project-result"><strong>+35%</strong> de eficiência operacional e <strong>−40%</strong> de retrabalho entre as squads da AVANTTI.</p>
+          <div class="stack-row">
+            <span class="stack-badge">UX/UI Design</span>
+            <span class="stack-badge">Design System</span>
+            <span class="stack-badge">Figma</span>
+            <span class="stack-badge">Liderança</span>
+          </div>
+          <a class="project-link" href="https://www.behance.net/gallery/245684245/UX-UI-DESIGN-ENERZEE" target="_blank" rel="noopener">
+            Ver estudo de caso
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </a>
+        </article>
+
+        <article class="project-card">
+          <div class="project-top">
+            <div class="project-motif">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+          </div>
+          <div>
+            <h3>Estudo de Acessibilidade — CencoSud</h3>
+            <p class="project-role">Stefanini — UX Lead</p>
+          </div>
+          <p class="desc">Pesquisa e aplicação de diretrizes de acessibilidade visual, incluindo daltonismo, na interface do aplicativo CencoSud, elevando inclusão e qualidade de experiência.</p>
+          <p class="project-result"><strong>+300%</strong> nas avaliações do aplicativo após as melhorias de acessibilidade e usabilidade.</p>
+          <div class="stack-row">
+            <span class="stack-badge">Acessibilidade</span>
+            <span class="stack-badge">UX Research</span>
+            <span class="stack-badge">Testes A/B</span>
+            <span class="stack-badge">Figma</span>
+          </div>
+          <a class="project-link" href="https://www.behance.net/gallery/202492623/UX-Dautonismo" target="_blank" rel="noopener">
+            Ver estudo de caso
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </a>
+        </article>
+
+        <article class="project-card">
+          <div class="project-top">
+            <div class="project-motif">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3.5v6c0 5-3.4 8.6-8 10.5-4.6-1.9-8-5.5-8-10.5v-6L12 2z"/></svg>
+            </div>
+          </div>
+          <div>
+            <h3>Design Ops — Porto Seguro</h3>
+            <p class="project-role">Staff Product Design Ops</p>
+          </div>
+          <p class="desc">Estruturação de processos de Design Ops, padronização de componentes e rituais ágeis para escalar o time de design da Porto Seguro entre squads.</p>
+          <p class="project-result">Maior <strong>consistência</strong> entre squads e mais previsibilidade nas entregas de design.</p>
+          <div class="stack-row">
+            <span class="stack-badge">Design Ops</span>
+            <span class="stack-badge">Design System</span>
+            <span class="stack-badge">Scrum/Kanban</span>
+            <span class="stack-badge">Liderança</span>
+          </div>
+          <a class="project-link" href="https://www.behance.net/gallery/188021045/Design-OPS-Porto" target="_blank" rel="noopener">
+            Ver estudo de caso
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </a>
+        </article>
+
+        <article class="project-card">
+          <div class="project-top">
+            <div class="project-motif">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="7" width="14" height="10" rx="1.5"/><path d="M15 10h3l3 3v4h-6z"/><circle cx="6" cy="19" r="1.6"/><circle cx="17.5" cy="19" r="1.6"/></svg>
+            </div>
+          </div>
+          <div>
+            <h3>ICS Mobile — Total Express</h3>
+            <p class="project-role">Softtek — UX Lead</p>
+          </div>
+          <p class="desc">Desenho da experiência mobile do ICS — sistema de controle e rastreamento operacional — para a Total Express, do fluxo de campo à visão do gestor.</p>
+          <p class="project-result">Fluxos mobile mais <strong>simples</strong> e maior eficiência das equipes de campo.</p>
+          <div class="stack-row">
+            <span class="stack-badge">Mobile UX</span>
+            <span class="stack-badge">Arquitetura da Informação</span>
+            <span class="stack-badge">Prototipação</span>
+            <span class="stack-badge">Figma</span>
+          </div>
+          <a class="project-link" href="https://www.behance.net/gallery/155528257/Esdudo-de-UXUI-ICS-Mobile-Total-Express" target="_blank" rel="noopener">
+            Ver estudo de caso
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </a>
+        </article>
+
+        <article class="project-card featured">
+          <div class="project-motif">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 12h8M12 8v8"/></svg>
+          </div>
+          <h3>Todos os estudos de caso completos</h3>
+          <p class="desc">Wireframes, protótipos, telas de alta fidelidade e documentação de Design System de cada projeto estão organizados no meu portfólio visual.</p>
+          <a class="project-link" href="https://www.behance.net/brunoferreira15" target="_blank" rel="noopener">
+            Ver portfólio completo no Behance
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EXPERIENCIA ===== -->
+  <section id="experiencia">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Experiência Profissional</span>
+        <h2>Uma trajetória de 17 anos em design</h2>
+      </div>
+
+      <div class="timeline reveal">
+        <div class="tl-item">
+          <div class="tl-head"><h3>Staff Product Designer / Especialista</h3><span class="tl-period">Dez 2025 — Jul 2026</span></div>
+          <p class="tl-company">AVANTTI — Clientes: FGV, Ciclic, Susep, Enerzee</p>
+          <p class="tl-desc">Liderança de squad de 4 a 7 designers, estruturação de Design Ops e Design System, com implementação de rituais ágeis e testes A/B como prática sistemática.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-head"><h3>UI/UX Designer Sênior / Especialista</h3><span class="tl-period">Mai 2025 — Dez 2025</span></div>
+          <p class="tl-company">OPAH — Grupo Mirassol</p>
+          <p class="tl-desc">Discovery, mapeamento de jornadas e criação de Design System no Figma para plataformas desktop e mobile de logística.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-head"><h3>Product Designer Especialista</h3><span class="tl-period">Jun 2023 — Mai 2024</span></div>
+          <p class="tl-company">Môre — Cliente Porto Seguro</p>
+          <p class="tl-desc">Liderança de equipe UX/UI em e-commerce de grande escala na plataforma VTEX para marcas nacionais e internacionais.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-head"><h3>UI/UX Designer Sênior / Líder de UX</h3><span class="tl-period">Jun 2021 — Jun 2023</span></div>
+          <p class="tl-company">K2 Partnering Solutions — Americanas, Softtek, Estácio, Sara, Dr.Tis</p>
+          <p class="tl-desc">Arquitetura da informação, prototipação de alta fidelidade em VTEX e desenvolvimento do time de design.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-head"><h3>UI/UX Designer Sênior</h3><span class="tl-period">Dez 2019 — Jun 2021</span></div>
+          <p class="tl-company">SIS Soluções Integradas — Bradesco, GoApp, Salux</p>
+          <p class="tl-desc">Coordenação de atividades UX/UI, liderança de Design Ops e engenharia de produtos, com foco em Design Atômico.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-head"><h3>UI/UX Lead</h3><span class="tl-period">Nov 2018 — Nov 2019</span></div>
+          <p class="tl-company">Vector ITC — Volkswagen, Total Express, Banco Safra, Santander</p>
+          <p class="tl-desc">Coordenação da equipe de criação, pesquisas com usuários, testes A/B e desenvolvimento de Design System e Style Guide.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-head"><h3>Product Designer Sênior</h3><span class="tl-period">Abr 2017 — Nov 2018</span></div>
+          <p class="tl-company">Trocadilho Design — Nimage Group, Tagim</p>
+          <p class="tl-desc">Criação de interfaces, conceitos criativos e prototipação (Adobe XD, Sketch, Figma), com foco em redução de lead-time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTATO ===== -->
+  <section id="contato" class="contact">
+    <div class="wrap">
+      <div class="contact-card reveal">
+        <h2>Vamos conversar, me chama aqui</h2>
+        <p>Estou disponível para oportunidades remotas como UX/UI | Product Designer | Projetos de Inovação. Se meu perfil combina com o que você procura, entre em contato.</p>
+        <div class="contact-links">
+          <a class="btn btn-primary" href="https://wa.me/5511972846617?text=Ol%C3%A1%20Bruno%2C%20vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar%20sobre%20uma%20oportunidade%20remota." target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.02 2C6.5 2 2.02 6.48 2.02 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.96 9.96 0 0 0 12.02 22C17.55 22 22 17.52 22 12S17.55 2 12.02 2zm0 18.12c-1.6 0-3.1-.45-4.38-1.23l-.31-.19-3 .79.8-2.92-.2-.3a8.14 8.14 0 0 1-1.27-4.37c0-4.5 3.66-8.16 8.16-8.16 4.5 0 8.15 3.66 8.15 8.16 0 4.5-3.65 8.22-8.15 8.22zm4.47-6.12c-.24-.12-1.44-.71-1.66-.79-.22-.08-.39-.12-.55.12-.16.24-.63.79-.78.95-.14.16-.28.18-.53.06-.24-.12-1.02-.38-1.95-1.2-.72-.64-1.2-1.44-1.35-1.68-.14-.24-.02-.37.11-.49.11-.11.24-.28.37-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.32-.75-1.8-.2-.48-.4-.4-.55-.41-.14-.01-.3-.01-.46-.01-.16 0-.42.06-.64.3-.22.24-.85.83-.85 2.03 0 1.2.87 2.35.99 2.51.12.16 1.71 2.61 4.14 3.66.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.44-.59 1.64-1.16.2-.57.2-1.05.14-1.16-.06-.1-.22-.16-.46-.28z"/></svg>
+            WhatsApp
+          </a>
+          <a class="btn btn-ghost" href="mailto:bruno.trocadilho@gmail.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+            E-mail
+          </a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/brunoferreira-ux/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V23h-4V8zM8.5 8h3.83v2.05h.05c.53-1 1.84-2.05 3.79-2.05 4.05 0 4.8 2.67 4.8 6.14V23h-4v-7.5c0-1.79-.03-4.09-2.5-4.09-2.5 0-2.88 1.95-2.88 3.96V23h-4V8z"/></svg>
+            LinkedIn
+          </a>
+          <a class="btn btn-ghost" href="https://www.behance.net/brunoferreira15" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none"><text x="12" y="16.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="13" letter-spacing="-0.5" fill="currentColor">Be</text></svg>
+            Behance
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-row">
+      <div class="footer-brand">
+        <span class="mark" style="width:26px;height:26px;font-size:11px;">BF</span>
+        Bruno Ferreira — Lead Product Designer
+      </div>
+      <div class="footer-icons">
+        <a class="icon-btn" href="https://wa.me/5511972846617?text=Ol%C3%A1%20Bruno%2C%20vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar%20sobre%20uma%20oportunidade%20remota." target="_blank" rel="noopener" aria-label="WhatsApp">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.02 2C6.5 2 2.02 6.48 2.02 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.96 9.96 0 0 0 12.02 22C17.55 22 22 17.52 22 12S17.55 2 12.02 2zm0 18.12c-1.6 0-3.1-.45-4.38-1.23l-.31-.19-3 .79.8-2.92-.2-.3a8.14 8.14 0 0 1-1.27-4.37c0-4.5 3.66-8.16 8.16-8.16 4.5 0 8.15 3.66 8.15 8.16 0 4.5-3.65 8.22-8.15 8.22zm4.47-6.12c-.24-.12-1.44-.71-1.66-.79-.22-.08-.39-.12-.55.12-.16.24-.63.79-.78.95-.14.16-.28.18-.53.06-.24-.12-1.02-.38-1.95-1.2-.72-.64-1.2-1.44-1.35-1.68-.14-.24-.02-.37.11-.49.11-.11.24-.28.37-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.32-.75-1.8-.2-.48-.4-.4-.55-.41-.14-.01-.3-.01-.46-.01-.16 0-.42.06-.64.3-.22.24-.85.83-.85 2.03 0 1.2.87 2.35.99 2.51.12.16 1.71 2.61 4.14 3.66.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.44-.59 1.64-1.16.2-.57.2-1.05.14-1.16-.06-.1-.22-.16-.46-.28z"/></svg>
+        </a>
+        <a class="icon-btn" href="mailto:bruno.trocadilho@gmail.com" aria-label="E-mail">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+        </a>
+        <a class="icon-btn" href="https://www.linkedin.com/in/brunoferreira-ux/" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V23h-4V8zM8.5 8h3.83v2.05h.05c.53-1 1.84-2.05 3.79-2.05 4.05 0 4.8 2.67 4.8 6.14V23h-4v-7.5c0-1.79-.03-4.09-2.5-4.09-2.5 0-2.88 1.95-2.88 3.96V23h-4V8z"/></svg>
+        </a>
+        <a class="icon-btn" href="https://www.behance.net/brunoferreira15" target="_blank" rel="noopener" aria-label="Behance">
+          <svg viewBox="0 0 24 24" fill="none"><text x="12" y="16.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="13" letter-spacing="-0.5" fill="currentColor">Be</text></svg>
+        </a>
+      </div>
+    </div>
+    <p class="footer-note">© 2026 Bruno Ferreira. Feito com atenção aos detalhes — como todo bom produto deveria ser.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  // Navbar blur on scroll
+  var nav = document.getElementById('nav');
+  function onScroll(){
+    if(window.scrollY > 24){ nav.classList.add('scrolled'); }
+    else{ nav.classList.remove('scrolled'); }
+  }
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive:true });
+
+  // Mobile menu toggle
+  var toggle = document.getElementById('menuToggle');
+  var links = document.getElementById('navLinks');
+  var scrim = document.getElementById('scrim');
+  var menuPath = document.getElementById('menuPath');
+
+  function closeMenu(){
+    links.classList.remove('open');
+    scrim.classList.remove('open');
+    toggle.setAttribute('aria-expanded','false');
+    menuPath.setAttribute('d','M4 7h16M4 12h16M4 17h16');
+  }
+  function openMenu(){
+    links.classList.add('open');
+    scrim.classList.add('open');
+    toggle.setAttribute('aria-expanded','true');
+    menuPath.setAttribute('d','M6 6l12 12M18 6L6 18');
+  }
+  toggle.addEventListener('click', function(){
+    if(links.classList.contains('open')){ closeMenu(); } else { openMenu(); }
+  });
+  scrim.addEventListener('click', closeMenu);
+  document.querySelectorAll('[data-nav]').forEach(function(a){
+    a.addEventListener('click', closeMenu);
+  });
+
+  // Smooth scroll with navbar offset
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = a.getAttribute('href');
+      if(id.length < 2) return;
+      var target = document.querySelector(id);
+      if(!target) return;
+      e.preventDefault();
+      var offset = 78;
+      var top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+    });
+  });
+
+  // Reveal on scroll
+  var revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('is-visible'); });
+  }
+})();
+</script>
+
+</body>
+</html>
