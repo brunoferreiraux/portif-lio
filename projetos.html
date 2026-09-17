@@ -1,0 +1,1728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bruno Ferreira — Case Studies</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2064%2064%27%3E%3Crect%20width%3D%2764%27%20height%3D%2764%27%20rx%3D%2714%27%20fill%3D%27%23131420%27/%3E%3Crect%20x%3D%272%27%20y%3D%272%27%20width%3D%2760%27%20height%3D%2760%27%20rx%3D%2712%27%20fill%3D%27none%27%20stroke%3D%27%232dd4bf%27%20stroke-opacity%3D%270.55%27%20stroke-width%3D%272.4%27/%3E%3Ctext%20x%3D%2732%27%20y%3D%2742%27%20text-anchor%3D%27middle%27%20font-family%3D%27Arial%2C%20Helvetica%2C%20sans-serif%27%20font-weight%3D%27800%27%20font-size%3D%2725%27%20fill%3D%27%232dd4bf%27%3EBF%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2064%2064%27%3E%3Crect%20width%3D%2764%27%20height%3D%2764%27%20rx%3D%2714%27%20fill%3D%27%23131420%27/%3E%3Crect%20x%3D%272%27%20y%3D%272%27%20width%3D%2760%27%20height%3D%2760%27%20rx%3D%2712%27%20fill%3D%27none%27%20stroke%3D%27%232dd4bf%27%20stroke-opacity%3D%270.55%27%20stroke-width%3D%272.4%27/%3E%3Ctext%20x%3D%2732%27%20y%3D%2742%27%20text-anchor%3D%27middle%27%20font-family%3D%27Arial%2C%20Helvetica%2C%20sans-serif%27%20font-weight%3D%27800%27%20font-size%3D%2725%27%20fill%3D%27%232dd4bf%27%3EBF%3C/text%3E%3C/svg%3E">
+<meta name="description" content="Bruno Ferreira, Lead Product Designer — full case study library: UX/UI, Design Ops, Design Systems and Accessibility projects for Porto Seguro, Bradesco, CencoSud, Estácio, Total Express and more.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0a0f;
+    --bg-soft:#0d0e14;
+    --surface:#131420;
+    --surface-2:#171927;
+    --border:rgba(255,255,255,0.08);
+    --border-strong:rgba(255,255,255,0.14);
+    --text-1:#f3f4f7;
+    --text-2:#aab0c0;
+    --text-3:#6d7386;
+    --accent:#2dd4bf;
+    --accent-soft:rgba(45,212,191,0.12);
+    --accent-line:rgba(45,212,191,0.35);
+    --accent-glow:rgba(45,212,191,0.22);
+    --font-head:'Outfit', sans-serif;
+    --font-body:'Source Sans 3', sans-serif;
+    --maxw:1160px;
+    --radius-lg:20px;
+    --radius-md:14px;
+    --radius-sm:9px;
+    --ease:cubic-bezier(.16,.84,.44,1);
+  }
+
+  *,*::before,*::after{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  @media (prefers-reduced-motion:reduce){
+    html{ scroll-behavior:auto; }
+    *,*::before,*::after{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important; }
+  }
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text-1);
+    font-family:var(--font-body);
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+  }
+
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:0;
+    background:
+      radial-gradient(880px 480px at 82% -8%, rgba(45,212,191,0.09), transparent 60%),
+      radial-gradient(600px 420px at -10% 18%, rgba(45,212,191,0.05), transparent 55%);
+  }
+
+  h1,h2,h3,h4{ font-family:var(--font-head); font-weight:600; margin:0; color:var(--text-1); letter-spacing:-0.01em; }
+  p{ margin:0; }
+  a{ color:inherit; text-decoration:none; }
+  ul{ list-style:none; margin:0; padding:0; }
+  img,svg{ display:block; max-width:100%; }
+  button{ font-family:inherit; }
+
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 32px; }
+  @media (max-width:640px){ .wrap{ padding:0 20px; } }
+
+  .visually-hidden{
+    position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+    overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+  }
+
+  /* ---------- reveal-on-scroll ---------- */
+  .reveal{ opacity:0; transform:translateY(22px); transition:opacity .8s var(--ease), transform .8s var(--ease); }
+  .reveal.is-visible{ opacity:1; transform:translateY(0); }
+  .reveal-stagger > *{ opacity:0; transform:translateY(18px); transition:opacity .7s var(--ease), transform .7s var(--ease); }
+  .reveal-stagger.is-visible > *{ opacity:1; transform:translateY(0); }
+
+  /* ---------- navbar ---------- */
+  .nav{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    padding:18px 0;
+    border-bottom:1px solid transparent;
+    transition:background .4s var(--ease), border-color .4s var(--ease), padding .3s var(--ease), backdrop-filter .4s var(--ease);
+  }
+  .nav.scrolled{
+    background:rgba(10,10,15,0.72);
+    backdrop-filter:blur(14px) saturate(140%);
+    -webkit-backdrop-filter:blur(14px) saturate(140%);
+    border-bottom-color:var(--border);
+    padding:13px 0;
+  }
+  .nav .wrap{ display:flex; align-items:center; justify-content:space-between; gap:24px; }
+  .brand{ display:flex; align-items:center; gap:10px; font-family:var(--font-head); font-weight:700; font-size:17px; color:var(--text-1); }
+  .brand .mark{
+    width:30px; height:30px; border-radius:8px;
+    background:linear-gradient(155deg, var(--surface-2), var(--surface));
+    border:1px solid var(--border-strong);
+    display:flex; align-items:center; justify-content:center;
+    font-size:12.5px; color:var(--accent); font-weight:700;
+    position:relative;
+  }
+  .brand .mark::after{
+    content:""; position:absolute; inset:-1px; border-radius:9px;
+    border:1px solid var(--accent-line); opacity:.5;
+  }
+
+  .nav-links{ display:flex; align-items:center; gap:30px; }
+  .nav-links a{
+    font-size:14.5px; color:var(--text-2); font-weight:500;
+    position:relative; padding:4px 0; transition:color .25s var(--ease);
+  }
+  .nav-links a::after{
+    content:""; position:absolute; left:0; bottom:-2px; width:0; height:1px;
+    background:var(--accent); transition:width .3s var(--ease);
+  }
+  .nav-links a:hover{ color:var(--text-1); }
+  .nav-links a:hover::after{ width:100%; }
+  .nav-links a.active{ color:var(--accent); }
+  .nav-links a.active::after{ width:100%; }
+
+  .nav-actions{ display:flex; align-items:center; gap:10px; }
+  .icon-btn{
+    width:36px; height:36px; border-radius:9px;
+    border:1px solid var(--border); display:flex; align-items:center; justify-content:center;
+    color:var(--text-2); transition:border-color .25s var(--ease), color .25s var(--ease), transform .25s var(--ease), background .25s var(--ease);
+  }
+  .icon-btn:hover{ color:var(--accent); border-color:var(--accent-line); background:var(--accent-soft); transform:translateY(-2px); }
+  .icon-btn svg{ width:17px; height:17px; }
+
+  /* ---------- language switcher ---------- */
+  .lang-switch{ display:flex; align-items:center; gap:6px; margin-right:4px; position:relative; z-index:5; }
+  .flag-btn{
+    width:36px; height:30px; border-radius:8px; overflow:hidden;
+    border:1px solid var(--border); padding:0; cursor:pointer; background:var(--surface);
+    display:flex; align-items:center; justify-content:center; flex:none;
+    transition:border-color .25s var(--ease), transform .25s var(--ease), box-shadow .25s var(--ease);
+  }
+  .flag-btn svg{ width:100%; height:100%; display:block; }
+  .flag-btn:hover{ transform:translateY(-2px); border-color:var(--accent-line); }
+  .flag-btn.active{ border-color:var(--accent); box-shadow:0 0 0 2px var(--accent-soft); }
+  @media (max-width:860px){
+    .flag-btn{ width:30px; height:25px; }
+    .lang-switch{ gap:5px; }
+  }
+
+  .menu-toggle{
+    display:none; width:38px; height:38px; border-radius:9px; border:1px solid var(--border);
+    background:transparent; color:var(--text-1); align-items:center; justify-content:center; cursor:pointer;
+  }
+  .menu-toggle svg{ width:18px; height:18px; }
+
+  @media (max-width:860px){
+    .nav-links{
+      position:fixed; top:0; right:0; height:100vh; width:min(78vw,320px);
+      background:var(--bg-soft); border-left:1px solid var(--border);
+      flex-direction:column; align-items:flex-start; justify-content:center; gap:26px;
+      padding:32px; transform:translateX(100%); transition:transform .45s var(--ease);
+      z-index:120;
+    }
+    .nav-links.open{ transform:translateX(0); }
+    .nav-links a{ font-size:19px; }
+    .menu-toggle{ display:flex; z-index:130; }
+    .nav-actions .icon-btn:not(.menu-toggle){ display:none; }
+  }
+  .nav-scrim{
+    position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:110;
+    opacity:0; pointer-events:none; transition:opacity .35s var(--ease);
+  }
+  .nav-scrim.open{ opacity:1; pointer-events:auto; }
+
+  /* ---------- section shell ---------- */
+  section{ position:relative; padding:130px 0 100px; }
+  @media (max-width:860px){ section{ padding:120px 0 70px; } }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:12.5px; font-weight:600; letter-spacing:.09em; text-transform:uppercase;
+    color:var(--accent); margin-bottom:18px;
+  }
+  .eyebrow::before{ content:""; width:16px; height:1px; background:var(--accent); }
+  .section-head{ max-width:680px; margin-bottom:44px; }
+  .section-head h2{ font-size:clamp(28px,3.6vw,38px); }
+  .section-head .sub{ color:var(--text-2); font-size:17px; margin-top:14px; }
+
+  .btn{
+    display:inline-flex; align-items:center; gap:9px; padding:13px 22px; border-radius:11px;
+    font-size:14.5px; font-weight:600; font-family:var(--font-body);
+    border:1px solid transparent; cursor:pointer; transition:transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s var(--ease), background .3s var(--ease), color .3s var(--ease);
+  }
+  .btn svg{ width:15px; height:15px; }
+  .btn-primary{ background:var(--accent); color:#04201c; width:100%; justify-content:center; }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 14px 28px -12px var(--accent-glow); }
+  .btn-ghost{ background:var(--surface); color:var(--text-1); border-color:var(--border); }
+  .btn-ghost:hover{ border-color:var(--accent-line); color:var(--accent); transform:translateY(-2px); }
+
+  .project-link{
+    display:inline-flex; align-items:center; gap:7px; font-size:14px; font-weight:600; color:var(--text-1);
+    transition:color .25s var(--ease); margin-top:14px;
+  }
+  .project-link svg{ width:14px; height:14px; transition:transform .25s var(--ease); }
+  .project-link:hover{ color:var(--accent); }
+  .project-link:hover svg{ transform:translate(2px,-2px); }
+
+  /* ---------- page header ---------- */
+  .page-header{ padding:170px 0 20px; }
+  @media (max-width:860px){ .page-header{ padding:130px 0 10px; } }
+  .page-header .wrap{ max-width:760px; }
+  .page-header h1{ font-size:clamp(30px,4.4vw,46px); line-height:1.08; }
+  .page-header .sub{ color:var(--text-2); font-size:17.5px; margin-top:16px; max-width:620px; }
+  .page-header .back-link{
+    display:inline-flex; align-items:center; gap:7px; font-size:13.5px; color:var(--text-2);
+    margin-bottom:22px; transition:color .25s var(--ease);
+  }
+  .page-header .back-link:hover{ color:var(--accent); }
+  .page-header .back-link svg{ width:14px; height:14px; }
+
+  /* ---------- carousel ---------- */
+  .carousel-shell{ position:relative; }
+  .carousel-nav{ display:flex; gap:10px; }
+  .carousel-track{
+    display:flex; gap:20px; overflow-x:auto; scroll-snap-type:x mandatory;
+    padding:6px 2px 26px; margin:0 -2px; scrollbar-width:thin; scrollbar-color:var(--border-strong) transparent;
+  }
+  .carousel-track::-webkit-scrollbar{ height:6px; }
+  .carousel-track::-webkit-scrollbar-thumb{ background:var(--border-strong); border-radius:99px; }
+  .case-card{
+    flex:0 0 auto; width:min(320px,78vw); scroll-snap-align:start;
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-md);
+    overflow:hidden; display:flex; flex-direction:column;
+    transition:border-color .3s var(--ease), transform .3s var(--ease), box-shadow .3s var(--ease);
+  }
+  .case-card:hover{ border-color:var(--accent-line); transform:translateY(-5px); box-shadow:0 24px 46px -26px rgba(0,0,0,0.7); }
+  .case-thumb{ aspect-ratio:4/3; overflow:hidden; background:var(--surface-2); }
+  .case-thumb img{ width:100%; height:100%; object-fit:cover; display:block; transition:transform .5s var(--ease); }
+  .case-card:hover .case-thumb img{ transform:scale(1.05); }
+  .case-body{ padding:20px; display:flex; flex-direction:column; gap:10px; flex:1; }
+  .case-tag{ font-size:11.5px; font-weight:600; letter-spacing:.04em; color:var(--accent); text-transform:uppercase; }
+  .case-body h3{ font-size:17.5px; line-height:1.3; }
+  .case-blurb{ font-size:14px; color:var(--text-2); line-height:1.5; flex:1; }
+  .case-body .btn{ margin-top:6px; }
+
+  .carousel-arrow{
+    width:42px; height:42px; border-radius:11px; border:1px solid var(--border);
+    background:var(--surface); color:var(--text-1); display:flex; align-items:center; justify-content:center;
+    cursor:pointer; transition:border-color .25s var(--ease), color .25s var(--ease), background .25s var(--ease), transform .25s var(--ease);
+  }
+  .carousel-arrow:hover{ border-color:var(--accent-line); color:var(--accent); background:var(--accent-soft); transform:translateY(-2px); }
+  .carousel-arrow svg{ width:18px; height:18px; }
+
+  /* ---------- modal ---------- */
+  .case-modal{ position:fixed; inset:0; z-index:300; display:none; }
+  .case-modal.open{ display:block; }
+  .case-modal-scrim{ position:absolute; inset:0; background:rgba(4,4,8,0.78); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
+  .case-modal-panel{
+    position:relative; z-index:2; max-width:900px; width:min(92vw,900px);
+    margin:6vh auto; max-height:88vh; overflow-y:auto;
+    background:var(--surface); border:1px solid var(--border-strong); border-radius:var(--radius-lg);
+    box-shadow:0 40px 90px -30px rgba(0,0,0,0.8);
+  }
+  .case-modal-close{
+    position:absolute; top:16px; right:16px; z-index:3;
+    width:38px; height:38px; border-radius:10px; border:1px solid var(--border);
+    background:rgba(10,10,15,0.6); backdrop-filter:blur(6px); color:var(--text-1);
+    display:flex; align-items:center; justify-content:center; cursor:pointer;
+    transition:border-color .25s var(--ease), color .25s var(--ease), transform .25s var(--ease);
+  }
+  .case-modal-close:hover{ color:var(--accent); border-color:var(--accent-line); transform:rotate(90deg); }
+  .case-modal-close svg{ width:17px; height:17px; }
+
+  .case-panel{ display:none; }
+  .case-panel.active{ display:block; }
+  .case-panel-media{ aspect-ratio:16/9; overflow:hidden; background:var(--surface-2); border-radius:var(--radius-lg) var(--radius-lg) 0 0; }
+  .case-panel-media img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .case-panel-body{ padding:32px clamp(20px,4vw,40px) 40px; }
+  .case-panel-body h3{ font-size:clamp(22px,3vw,28px); margin-top:6px; }
+  .smart-label{
+    font-size:12.5px; font-weight:600; letter-spacing:.07em; text-transform:uppercase; color:var(--text-3);
+    margin-top:30px; padding-top:26px; border-top:1px solid var(--border);
+  }
+  .smart-grid{ display:flex; flex-direction:column; gap:18px; margin-top:18px; }
+  .smart-row{ display:flex; gap:16px; align-items:flex-start; }
+  .smart-letter{
+    flex:none; width:38px; height:38px; border-radius:10px; background:var(--accent-soft);
+    border:1px solid var(--accent-line); color:var(--accent); font-family:var(--font-head); font-weight:800;
+    font-size:16px; display:flex; align-items:center; justify-content:center;
+  }
+  .smart-text strong{ display:block; font-size:14px; color:var(--text-1); margin-bottom:3px; }
+  .smart-text p{ font-size:15px; color:var(--text-2); line-height:1.6; }
+
+  /* ---------- footer ---------- */
+  footer{ padding:60px 0 40px; border-top:1px solid var(--border); margin-top:40px; }
+  .footer-row{ display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:18px; }
+  .footer-brand{ display:flex; align-items:center; gap:10px; color:var(--text-2); font-size:13.5px; }
+  .footer-icons{ display:flex; gap:10px; }
+  .footer-note{ font-size:12.5px; color:var(--text-3); margin-top:22px; text-align:center; }
+</style>
+</head>
+<body>
+
+<div class="nav-scrim" id="scrim"></div>
+
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <a href="index.html#top" class="brand"><span class="mark">BF</span> Bruno Ferreira</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#sobre" data-nav data-i18n="nav.about">About</a></li>
+      <li><a href="index.html#formacao" data-nav data-i18n="nav.education">Education</a></li>
+      <li><a href="index.html#projetos" data-nav data-i18n="nav.projects">Projects</a></li>
+      <li><a href="projetos.html" data-nav class="active" data-i18n="nav.caseStudies">Case Studies</a></li>
+      <li><a href="index.html#experiencia" data-nav data-i18n="nav.experience">Experience</a></li>
+      <li><a href="index.html#contato" data-nav data-i18n="nav.contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="lang-switch" role="group" aria-label="Language selector">
+        <button class="flag-btn active" data-lang="en" aria-label="English" title="English">
+          <svg viewBox="0 0 24 16" preserveAspectRatio="none" aria-hidden="true">
+            <rect width="24" height="16" fill="#fff"/>
+            <g fill="#b22234">
+              <rect y="0" width="24" height="1.23"/><rect y="2.46" width="24" height="1.23"/>
+              <rect y="4.92" width="24" height="1.23"/><rect y="7.38" width="24" height="1.23"/>
+              <rect y="9.85" width="24" height="1.23"/><rect y="12.31" width="24" height="1.23"/>
+              <rect y="14.77" width="24" height="1.23"/>
+            </g>
+            <rect width="10" height="8.6" fill="#3c3b6e"/>
+          </svg>
+        </button>
+        <button class="flag-btn" data-lang="pt" aria-label="Português" title="Português">
+          <svg viewBox="0 0 24 16" preserveAspectRatio="none" aria-hidden="true">
+            <rect width="24" height="16" fill="#009c3b"/>
+            <polygon points="12,2 22,8 12,14 2,8" fill="#ffdf00"/>
+            <circle cx="12" cy="8" r="4" fill="#002776"/>
+          </svg>
+        </button>
+        <button class="flag-btn" data-lang="es" aria-label="Español" title="Español">
+          <svg viewBox="0 0 24 16" preserveAspectRatio="none" aria-hidden="true">
+            <rect width="24" height="16" fill="#c60b1e"/>
+            <rect y="4" width="24" height="8" fill="#ffc400"/>
+          </svg>
+        </button>
+      </div>
+      <a class="icon-btn" href="https://www.linkedin.com/in/brunoferreira-ux/" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V23h-4V8zM8.5 8h3.83v2.05h.05c.53-1 1.84-2.05 3.79-2.05 4.05 0 4.8 2.67 4.8 6.14V23h-4v-7.5c0-1.79-.03-4.09-2.5-4.09-2.5 0-2.88 1.95-2.88 3.96V23h-4V8z"/></svg>
+      </a>
+      <a class="icon-btn" href="https://www.behance.net/brunoferreira15" target="_blank" rel="noopener" aria-label="Behance">
+        <svg viewBox="0 0 24 24" fill="none"><text x="12" y="16.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="13" letter-spacing="-0.5" fill="currentColor">Be</text></svg>
+      </a>
+      <button class="icon-btn menu-toggle" id="menuToggle" data-i18n-attr="aria-label:nav.menuLabel" aria-label="Open menu" aria-expanded="false">
+        <svg id="menuIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path id="menuPath" d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<main id="top">
+
+  <!-- ===== PAGE HEADER ===== -->
+  <section class="page-header">
+    <div class="wrap">
+      <a class="back-link" href="index.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+        <span data-i18n="page.back">Back to home</span>
+      </a>
+      <span class="eyebrow" data-i18n="page.eyebrow">Full Case Study Library</span>
+      <h1 data-i18n="page.title">Every project, one method: research, decisions and results</h1>
+      <p class="sub" data-i18n="page.sub">All my UX/UI, Design Ops and Design System case studies from Behance, broken down with the SMART method — Specific, Measurable, Achievable, Relevant, Time-bound.</p>
+    </div>
+  </section>
+
+  <!-- ===== CAROUSEL ===== -->
+  <section id="cases">
+    <div class="wrap">
+      <div class="section-head reveal" style="display:flex; align-items:flex-end; justify-content:space-between; gap:20px; flex-wrap:wrap;">
+        <div>
+          <span class="eyebrow" data-i18n="cases.eyebrow">Case Studies</span>
+          <h2 data-i18n="cases.title">Browse the full portfolio</h2>
+          <p class="sub" data-i18n="cases.sub">Drag, scroll or use the arrows — then open any case to read the full SMART breakdown.</p>
+        </div>
+        <div class="carousel-nav">
+          <button type="button" class="carousel-arrow" id="prevBtn" aria-label="Previous">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button type="button" class="carousel-arrow" id="nextBtn" aria-label="Next">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="carousel-shell reveal">
+        <div class="carousel-track" id="caseTrack">
+
+        <article class="case-card">
+          <div class="case-thumb">
+            <img src="https://mir-s3-cdn-cf.behance.net/projects/404/3b0bb6245684245.Y3JvcCwxODU3LDE0NTMsMzIsMA.jpg" data-i18n-attr="alt:case1.title" alt="UX/UI Design — Enerzee" loading="lazy">
+          </div>
+          <div class="case-body">
+            <span class="case-tag">AVANTTI — UX Lead</span>
+            <h3 data-i18n="case1.title">UX/UI Design — Enerzee</h3>
+            <p class="case-blurb" data-i18n="case1.blurb">End-to-end UX/UI for Enerzee's digital product inside AVANTTI's multi-client squad.</p>
+            <button type="button" class="btn btn-primary case-open" data-case="1">
+              <span data-i18n="case.viewFull">See full case study</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+          </div>
+        </article>
+
+        <article class="case-card">
+          <div class="case-thumb">
+            <img src="https://mir-s3-cdn-cf.behance.net/projects/404/5a6c15202492623.Y3JvcCwxODU3LDE0NTMsMzIsMA.jpg" data-i18n-attr="alt:case2.title" alt="Accessibility Study — CencoSud" loading="lazy">
+          </div>
+          <div class="case-body">
+            <span class="case-tag">Stefanini — UX Lead</span>
+            <h3 data-i18n="case2.title">Accessibility Study — CencoSud</h3>
+            <p class="case-blurb" data-i18n="case2.blurb">Improving visual accessibility of the CencoSud shopping app for color blindness and low vision.</p>
+            <button type="button" class="btn btn-primary case-open" data-case="2">
+              <span data-i18n="case.viewFull">See full case study</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+          </div>
+        </article>
+
+        <article class="case-card">
+          <div class="case-thumb">
+            <img src="https://mir-s3-cdn-cf.behance.net/projects/404/992f5a188021045.Y3JvcCwxODU3LDE0NTMsMzIsMA.jpg" data-i18n-attr="alt:case3.title" alt="Design Ops — Porto Seguro" loading="lazy">
+          </div>
+          <div class="case-body">
+            <span class="case-tag">Môre — Staff Product Design Ops</span>
+            <h3 data-i18n="case3.title">Design Ops — Porto Seguro</h3>
+            <p class="case-blurb" data-i18n="case3.blurb">Structuring a Design Ops practice to scale Porto Seguro's design team across squads.</p>
+            <button type="button" class="btn btn-primary case-open" data-case="3">
+              <span data-i18n="case.viewFull">See full case study</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+          </div>
+        </article>
+
+        <article class="case-card">
+          <div class="case-thumb">
+            <img src="https://mir-s3-cdn-cf.behance.net/projects/404/2a36e0193351373.Y3JvcCwxODU3LDE0NTMsMzIsMA.jpg" data-i18n-attr="alt:case4.title" alt="UX/UI Study — Estácio" loading="lazy">
+          </div>
+          <div class="case-body">
+            <span class="case-tag">K2 Partnering Solutions — UX Lead</span>
+            <h3 data-i18n="case4.title">UX/UI Study — Estácio</h3>
+            <p class="case-blurb" data-i18n="case4.blurb">Redesigning key student-facing flows on Estácio's digital education platform.</p>
+            <button type="button" class="btn btn-primary case-open" data-case="4">
+              <span data-i18n="case.viewFull">See full case study</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+          </div>
+        </article>
+
+        <article class="case-card">
+          <div class="case-thumb">
+            <img src="https://mir-s3-cdn-cf.behance.net/projects/404/ba363b188013219.65961bb1aaa7e.png" data-i18n-attr="alt:case5.title" alt="UX/UI Study — CJ Fashion" loading="lazy">
+          </div>
+          <div class="case-body">
+            <span class="case-tag">Estudo de Caso — E-commerce de Moda</span>
+            <h3 data-i18n="case5.title">UX/UI Study — CJ Fashion</h3>
+            <p class="case-blurb" data-i18n="case5.blurb">Studying the shopping journey of a fashion e-commerce platform, from browsing to checkout.</p>
+            <button type="button" class="btn btn-primary case-open" data-case="5">
+              <span data-i18n="case.viewFull">See full case study</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+          </div>
+        </article>
+
+        <article class="case-card">
+          <div class="case-thumb">
+            <img src="https://mir-s3-cdn-cf.behance.net/projects/404/807f71188011651.Y3JvcCwxODU3LDE0NTMsMzIsMA.jpg" data-i18n-attr="alt:case6.title" alt="UI Study — Sara" loading="lazy">
+          </div>
+          <div class="case-body">
+            <span class="case-tag">K2 Partnering Solutions — UI</span>
+            <h3 data-i18n="case6.title">UI Study — Sara</h3>
+            <p class="case-blurb" data-i18n="case6.blurb">A clearer, more reassuring UI for Sara, a healthcare product focused on sensitive interactions.</p>
+            <button type="button" class="btn btn-primary case-open" data-case="6">
+              <span data-i18n="case.viewFull">See full case study</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+          </div>
+        </article>
+
+        <article class="case-card">
+          <div class="case-thumb">
+            <img src="https://mir-s3-cdn-cf.behance.net/projects/404/f25db8156094863.Y3JvcCwxODU3LDE0NTMsMzIsMA.jpg" data-i18n-attr="alt:case7.title" alt="Design Ops — Bradesco" loading="lazy">
+          </div>
+          <div class="case-body">
+            <span class="case-tag">SIS Soluções Integradas — Senior UI/UX</span>
+            <h3 data-i18n="case7.title">Design Ops — Bradesco</h3>
+            <p class="case-blurb" data-i18n="case7.blurb">Coordinating UX/UI activities and leading Design Ops for Bradesco's digital products.</p>
+            <button type="button" class="btn btn-primary case-open" data-case="7">
+              <span data-i18n="case.viewFull">See full case study</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+          </div>
+        </article>
+
+        <article class="case-card">
+          <div class="case-thumb">
+            <img src="https://mir-s3-cdn-cf.behance.net/projects/404/3ccf9a155793083.Y3JvcCwxODU3LDE0NTMsMzIsMA.jpg" data-i18n-attr="alt:case8.title" alt="Design System — Mandic" loading="lazy">
+          </div>
+          <div class="case-body">
+            <span class="case-tag">Design System — SaaS Cloud</span>
+            <h3 data-i18n="case8.title">Design System — Mandic</h3>
+            <p class="case-blurb" data-i18n="case8.blurb">Building a scalable Design System for Mandic's cloud platform to unify UI patterns.</p>
+            <button type="button" class="btn btn-primary case-open" data-case="8">
+              <span data-i18n="case.viewFull">See full case study</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+          </div>
+        </article>
+
+        <article class="case-card">
+          <div class="case-thumb">
+            <img src="https://mir-s3-cdn-cf.behance.net/projects/404/03fc60155548673.Y3JvcCwxODU3LDE0NTMsMzIsMA.jpg" data-i18n-attr="alt:case9.title" alt="Gamification UX/UI — Total Express" loading="lazy">
+          </div>
+          <div class="case-body">
+            <span class="case-tag">Vector ITC — UI/UX Lead</span>
+            <h3 data-i18n="case9.title">Gamification UX/UI — Total Express</h3>
+            <p class="case-blurb" data-i18n="case9.blurb">Gamified UX/UI mechanics for Total Express to boost engagement with operational processes.</p>
+            <button type="button" class="btn btn-primary case-open" data-case="9">
+              <span data-i18n="case.viewFull">See full case study</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+          </div>
+        </article>
+
+        <article class="case-card">
+          <div class="case-thumb">
+            <img src="https://mir-s3-cdn-cf.behance.net/projects/404/fffb66155528257.Y3JvcCwxODU3LDE0NTMsNTksMA.jpg" data-i18n-attr="alt:case10.title" alt="ICS Mobile — Total Express" loading="lazy">
+          </div>
+          <div class="case-body">
+            <span class="case-tag">Softtek — UX Lead</span>
+            <h3 data-i18n="case10.title">ICS Mobile — Total Express</h3>
+            <p class="case-blurb" data-i18n="case10.blurb">Mobile experience for ICS, an operational tracking system used by Total Express field teams.</p>
+            <button type="button" class="btn btn-primary case-open" data-case="10">
+              <span data-i18n="case.viewFull">See full case study</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+          </div>
+        </article>
+
+        <article class="case-card">
+          <div class="case-thumb">
+            <img src="https://mir-s3-cdn-cf.behance.net/projects/404/f17776155527535.Y3JvcCwxODU3LDE0NTMsMzIsMA.jpg" data-i18n-attr="alt:case11.title" alt="UX/UI Study — TechCargo" loading="lazy">
+          </div>
+          <div class="case-body">
+            <span class="case-tag">Estudo de Caso — Logística</span>
+            <h3 data-i18n="case11.title">UX/UI Study — TechCargo</h3>
+            <p class="case-blurb" data-i18n="case11.blurb">Simplifying freight tracking and management flows for a logistics platform.</p>
+            <button type="button" class="btn btn-primary case-open" data-case="11">
+              <span data-i18n="case.viewFull">See full case study</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+          </div>
+        </article>
+
+        <article class="case-card">
+          <div class="case-thumb">
+            <img src="https://mir-s3-cdn-cf.behance.net/projects/404/b8cb7f145454833.Y3JvcCwxODU3LDE0NTMsMTgsMA.jpg" data-i18n-attr="alt:case12.title" alt="UX Redesign Study — Booking.com" loading="lazy">
+          </div>
+          <div class="case-body">
+            <span class="case-tag">Estudo de Caso — Travel</span>
+            <h3 data-i18n="case12.title">UX Redesign Study — Booking.com</h3>
+            <p class="case-blurb" data-i18n="case12.blurb">An independent UX redesign study of Booking.com's search and booking flow.</p>
+            <button type="button" class="btn btn-primary case-open" data-case="12">
+              <span data-i18n="case.viewFull">See full case study</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+          </div>
+        </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== CASE MODAL ===== -->
+<div class="case-modal" id="caseModal" aria-hidden="true">
+  <div class="case-modal-scrim" data-close></div>
+  <div class="case-modal-panel" role="dialog" aria-modal="true" aria-label="Case study detail">
+    <button class="case-modal-close" data-close data-i18n-attr="aria-label:case.close" aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+
+        <div class="case-panel" data-case="1">
+          <div class="case-panel-media">
+            <img src="https://mir-s3-cdn-cf.behance.net/projects/404/3b0bb6245684245.Y3JvcCwxODU3LDE0NTMsMzIsMA.jpg" data-i18n-attr="alt:case1.title" alt="UX/UI Design — Enerzee" loading="lazy">
+          </div>
+          <div class="case-panel-body">
+            <span class="case-tag">AVANTTI — UX Lead</span>
+            <h3 data-i18n="case1.title">UX/UI Design — Enerzee</h3>
+            <a class="project-link" href="https://www.behance.net/gallery/245684245/UX-UI-DESIGN-ENERZEE" target="_blank" rel="noopener">
+              <span data-i18n="case.viewBehance">View full case on Behance</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+            </a>
+            <div class="smart-label" data-i18n="smart.title">UX case study — SMART method</div>
+            <div class="smart-grid">
+              <div class="smart-row">
+                <span class="smart-letter">S</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.specific">Specific</strong>
+                  <p data-i18n="case1.s">Design the end-to-end UX/UI for Enerzee's digital product, from onboarding flows to the core dashboard, inside AVANTTI's multi-client squad.</p>
+                </div>
+              </div>
+              <div class="smart-row">
+                <span class="smart-letter">M</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.measurable">Measurable</strong>
+                  <p data-i18n="case1.m">Success tracked through Design Ops metrics — squad delivery speed, rework rate and design-system component reuse.</p>
+                </div>
+              </div>
+              <div class="smart-row">
+                <span class="smart-letter">A</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.achievable">Achievable</strong>
+                  <p data-i18n="case1.a">Research, wireframes and high-fidelity Figma flows delivered in fast, structured sprints with A/B testing built into the process.</p>
+                </div>
+              </div>
+              <div class="smart-row">
+                <span class="smart-letter">R</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.relevant">Relevant</strong>
+                  <p data-i18n="case1.r">A consistent, scalable interface directly supports AVANTTI's ability to serve five simultaneous clients without losing quality.</p>
+                </div>
+              </div>
+              <div class="smart-row">
+                <span class="smart-letter">T</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.timebound">Time-bound</strong>
+                  <p data-i18n="case1.t">Delivered in agile sprints as part of the Dec 2025 – Present engagement.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-panel" data-case="2">
+          <div class="case-panel-media">
+            <img src="https://mir-s3-cdn-cf.behance.net/projects/404/5a6c15202492623.Y3JvcCwxODU3LDE0NTMsMzIsMA.jpg" data-i18n-attr="alt:case2.title" alt="Accessibility Study — CencoSud" loading="lazy">
+          </div>
+          <div class="case-panel-body">
+            <span class="case-tag">Stefanini — UX Lead</span>
+            <h3 data-i18n="case2.title">Accessibility Study — CencoSud</h3>
+            <a class="project-link" href="https://www.behance.net/gallery/202492623/UX-Dautonismo" target="_blank" rel="noopener">
+              <span data-i18n="case.viewBehance">View full case on Behance</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+            </a>
+            <div class="smart-label" data-i18n="smart.title">UX case study — SMART method</div>
+            <div class="smart-grid">
+              <div class="smart-row">
+                <span class="smart-letter">S</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.specific">Specific</strong>
+                  <p data-i18n="case2.s">Improve visual accessibility of the CencoSud shopping app for users with color blindness and low vision.</p>
+                </div>
+              </div>
+              <div class="smart-row">
+                <span class="smart-letter">M</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.measurable">Measurable</strong>
+                  <p data-i18n="case2.m">Evaluated through WCAG contrast compliance, usability testing scores and post-launch app store ratings.</p>
+                </div>
+              </div>
+              <div class="smart-row">
+                <span class="smart-letter">A</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.achievable">Achievable</strong>
+                  <p data-i18n="case2.a">Conducted an accessibility audit, redesigned color palettes and icon systems, and validated changes with real users through A/B testing.</p>
+                </div>
+              </div>
+              <div class="smart-row">
+                <span class="smart-letter">R</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.relevant">Relevant</strong>
+                  <p data-i18n="case2.r">A more inclusive interface expands the addressable audience and reduces friction for every shopper, not just users with visual impairments.</p>
+                </div>
+              </div>
+              <div class="smart-row">
+                <span class="smart-letter">T</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.timebound">Time-bound</strong>
+                  <p data-i18n="case2.t">Delivered as a focused sprint-based initiative during the Môre engagement with Porto Seguro/CencoSud (Jun 2023 – May 2024).</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-panel" data-case="3">
+          <div class="case-panel-media">
+            <img src="https://mir-s3-cdn-cf.behance.net/projects/404/992f5a188021045.Y3JvcCwxODU3LDE0NTMsMzIsMA.jpg" data-i18n-attr="alt:case3.title" alt="Design Ops — Porto Seguro" loading="lazy">
+          </div>
+          <div class="case-panel-body">
+            <span class="case-tag">Môre — Staff Product Design Ops</span>
+            <h3 data-i18n="case3.title">Design Ops — Porto Seguro</h3>
+            <a class="project-link" href="https://www.behance.net/gallery/188021045/Design-OPS-Porto" target="_blank" rel="noopener">
+              <span data-i18n="case.viewBehance">View full case on Behance</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+            </a>
+            <div class="smart-label" data-i18n="smart.title">UX case study — SMART method</div>
+            <div class="smart-grid">
+              <div class="smart-row">
+                <span class="smart-letter">S</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.specific">Specific</strong>
+                  <p data-i18n="case3.s">Structure a Design Ops practice to scale Porto Seguro's design team across multiple e-commerce squads on VTEX.</p>
+                </div>
+              </div>
+              <div class="smart-row">
+                <span class="smart-letter">M</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.measurable">Measurable</strong>
+                  <p data-i18n="case3.m">Tracked via delivery predictability, component reuse rate and reduction of visual/UX inconsistencies across squads.</p>
+                </div>
+              </div>
+              <div class="smart-row">
+                <span class="smart-letter">A</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.achievable">Achievable</strong>
+                  <p data-i18n="case3.a">Standardized components, ran co-creation workshops and implemented structured feedback cycles between design, product and engineering.</p>
+                </div>
+              </div>
+              <div class="smart-row">
+                <span class="smart-letter">R</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.relevant">Relevant</strong>
+                  <p data-i18n="case3.r">A shared operating model lets a growing design team ship consistent, high-quality experiences without slowing down delivery.</p>
+                </div>
+              </div>
+              <div class="smart-row">
+                <span class="smart-letter">T</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.timebound">Time-bound</strong>
+                  <p data-i18n="case3.t">Rolled out progressively over the Jun 2023 – May 2024 engagement.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-panel" data-case="4">
+          <div class="case-panel-media">
+            <img src="https://mir-s3-cdn-cf.behance.net/projects/404/2a36e0193351373.Y3JvcCwxODU3LDE0NTMsMzIsMA.jpg" data-i18n-attr="alt:case4.title" alt="UX/UI Study — Estácio" loading="lazy">
+          </div>
+          <div class="case-panel-body">
+            <span class="case-tag">K2 Partnering Solutions — UX Lead</span>
+            <h3 data-i18n="case4.title">UX/UI Study — Estácio</h3>
+            <a class="project-link" href="https://www.behance.net/gallery/193351373/Estudo-UX-UI-Estacio" target="_blank" rel="noopener">
+              <span data-i18n="case.viewBehance">View full case on Behance</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+            </a>
+            <div class="smart-label" data-i18n="smart.title">UX case study — SMART method</div>
+            <div class="smart-grid">
+              <div class="smart-row">
+                <span class="smart-letter">S</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.specific">Specific</strong>
+                  <p data-i18n="case4.s">Study and redesign key student-facing flows on Estácio's digital education platform to reduce friction in everyday tasks.</p>
+                </div>
+              </div>
+              <div class="smart-row">
+                <span class="smart-letter">M</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.measurable">Measurable</strong>
+                  <p data-i18n="case4.m">Assessed through usability testing, task-completion rates and qualitative feedback from students and faculty.</p>
+                </div>
+              </div>
+              <div class="smart-row">
+                <span class="smart-letter">A</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.achievable">Achievable</strong>
+                  <p data-i18n="case4.a">Mapped information architecture, ran heuristic evaluations and prototyped high-fidelity flows validated with real users.</p>
+                </div>
+              </div>
+              <div class="smart-row">
+                <span class="smart-letter">R</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.relevant">Relevant</strong>
+                  <p data-i18n="case4.r">A clearer, faster platform experience matters directly to student retention and satisfaction in a competitive education market.</p>
+                </div>
+              </div>
+              <div class="smart-row">
+                <span class="smart-letter">T</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.timebound">Time-bound</strong>
+                  <p data-i18n="case4.t">Delivered during the K2 Partnering Solutions engagement (Jun 2021 – Jun 2023).</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-panel" data-case="5">
+          <div class="case-panel-media">
+            <img src="https://mir-s3-cdn-cf.behance.net/projects/404/ba363b188013219.65961bb1aaa7e.png" data-i18n-attr="alt:case5.title" alt="UX/UI Study — CJ Fashion" loading="lazy">
+          </div>
+          <div class="case-panel-body">
+            <span class="case-tag">Estudo de Caso — E-commerce de Moda</span>
+            <h3 data-i18n="case5.title">UX/UI Study — CJ Fashion</h3>
+            <a class="project-link" href="https://www.behance.net/gallery/188013219/Estudo-de-UXUI-CJ-Fashion" target="_blank" rel="noopener">
+              <span data-i18n="case.viewBehance">View full case on Behance</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+            </a>
+            <div class="smart-label" data-i18n="smart.title">UX case study — SMART method</div>
+            <div class="smart-grid">
+              <div class="smart-row">
+                <span class="smart-letter">S</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.specific">Specific</strong>
+                  <p data-i18n="case5.s">Study the shopping journey of a fashion e-commerce platform to identify friction points from browsing to checkout.</p>
+                </div>
+              </div>
+              <div class="smart-row">
+                <span class="smart-letter">M</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.measurable">Measurable</strong>
+                  <p data-i18n="case5.m">Measured against navigation clarity, product discovery flow and checkout-step simplification.</p>
+                </div>
+              </div>
+              <div class="smart-row">
+                <span class="smart-letter">A</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.achievable">Achievable</strong>
+                  <p data-i18n="case5.a">Conducted UX research, competitive benchmarking and high-fidelity UI prototyping aligned to fashion retail patterns.</p>
+                </div>
+              </div>
+              <div class="smart-row">
+                <span class="smart-letter">R</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.relevant">Relevant</strong>
+                  <p data-i18n="case5.r">A smoother shopping experience directly affects conversion and repeat purchases in a highly visual, competitive category.</p>
+                </div>
+              </div>
+              <div class="smart-row">
+                <span class="smart-letter">T</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.timebound">Time-bound</strong>
+                  <p data-i18n="case5.t">Completed as a self-directed case study to deepen expertise in fashion e-commerce UX.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-panel" data-case="6">
+          <div class="case-panel-media">
+            <img src="https://mir-s3-cdn-cf.behance.net/projects/404/807f71188011651.Y3JvcCwxODU3LDE0NTMsMzIsMA.jpg" data-i18n-attr="alt:case6.title" alt="UI Study — Sara" loading="lazy">
+          </div>
+          <div class="case-panel-body">
+            <span class="case-tag">K2 Partnering Solutions — UI</span>
+            <h3 data-i18n="case6.title">UI Study — Sara</h3>
+            <a class="project-link" href="https://www.behance.net/gallery/188011651/Estudo-de-UI-Sara" target="_blank" rel="noopener">
+              <span data-i18n="case.viewBehance">View full case on Behance</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+            </a>
+            <div class="smart-label" data-i18n="smart.title">UX case study — SMART method</div>
+            <div class="smart-grid">
+              <div class="smart-row">
+                <span class="smart-letter">S</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.specific">Specific</strong>
+                  <p data-i18n="case6.s">Design a clearer, more reassuring UI for Sara, a healthcare product, focused on sensitive patient interactions.</p>
+                </div>
+              </div>
+              <div class="smart-row">
+                <span class="smart-letter">M</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.measurable">Measurable</strong>
+                  <p data-i18n="case6.m">Evaluated through clarity of medical information, task success rate and perceived trust in usability sessions.</p>
+                </div>
+              </div>
+              <div class="smart-row">
+                <span class="smart-letter">A</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.achievable">Achievable</strong>
+                  <p data-i18n="case6.a">Applied UX writing, accessible typography and a calm visual system tailored to a healthcare audience.</p>
+                </div>
+              </div>
+              <div class="smart-row">
+                <span class="smart-letter">R</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.relevant">Relevant</strong>
+                  <p data-i18n="case6.r">In health products, interface clarity and trust directly affect whether patients complete critical actions.</p>
+                </div>
+              </div>
+              <div class="smart-row">
+                <span class="smart-letter">T</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.timebound">Time-bound</strong>
+                  <p data-i18n="case6.t">Delivered during the K2 Partnering Solutions engagement (Jun 2021 – Jun 2023).</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-panel" data-case="7">
+          <div class="case-panel-media">
+            <img src="https://mir-s3-cdn-cf.behance.net/projects/404/f25db8156094863.Y3JvcCwxODU3LDE0NTMsMzIsMA.jpg" data-i18n-attr="alt:case7.title" alt="Design Ops — Bradesco" loading="lazy">
+          </div>
+          <div class="case-panel-body">
+            <span class="case-tag">SIS Soluções Integradas — Senior UI/UX</span>
+            <h3 data-i18n="case7.title">Design Ops — Bradesco</h3>
+            <a class="project-link" href="https://www.behance.net/gallery/156094863/Design-Ops-Bradesco" target="_blank" rel="noopener">
+              <span data-i18n="case.viewBehance">View full case on Behance</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+            </a>
+            <div class="smart-label" data-i18n="smart.title">UX case study — SMART method</div>
+            <div class="smart-grid">
+              <div class="smart-row">
+                <span class="smart-letter">S</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.specific">Specific</strong>
+                  <p data-i18n="case7.s">Coordinate UX/UI activities and lead Design Ops for Bradesco's digital products, standardizing design practices.</p>
+                </div>
+              </div>
+              <div class="smart-row">
+                <span class="smart-letter">M</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.measurable">Measurable</strong>
+                  <p data-i18n="case7.m">Tracked through component consistency, delivery predictability and reduction of design debt across teams.</p>
+                </div>
+              </div>
+              <div class="smart-row">
+                <span class="smart-letter">A</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.achievable">Achievable</strong>
+                  <p data-i18n="case7.a">Led Atomic Design implementation, structured a style guide and embedded Scrum/Kanban rituals into the design workflow.</p>
+                </div>
+              </div>
+              <div class="smart-row">
+                <span class="smart-letter">R</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.relevant">Relevant</strong>
+                  <p data-i18n="case7.r">In a heavily regulated banking environment, consistent, well-governed design reduces risk and speeds up delivery.</p>
+                </div>
+              </div>
+              <div class="smart-row">
+                <span class="smart-letter">T</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.timebound">Time-bound</strong>
+                  <p data-i18n="case7.t">Delivered over the SIS engagement (Dec 2019 – Jun 2021).</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-panel" data-case="8">
+          <div class="case-panel-media">
+            <img src="https://mir-s3-cdn-cf.behance.net/projects/404/3ccf9a155793083.Y3JvcCwxODU3LDE0NTMsMzIsMA.jpg" data-i18n-attr="alt:case8.title" alt="Design System — Mandic" loading="lazy">
+          </div>
+          <div class="case-panel-body">
+            <span class="case-tag">Design System — SaaS Cloud</span>
+            <h3 data-i18n="case8.title">Design System — Mandic</h3>
+            <a class="project-link" href="https://www.behance.net/gallery/155793083/Design-System-Mandic" target="_blank" rel="noopener">
+              <span data-i18n="case.viewBehance">View full case on Behance</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+            </a>
+            <div class="smart-label" data-i18n="smart.title">UX case study — SMART method</div>
+            <div class="smart-grid">
+              <div class="smart-row">
+                <span class="smart-letter">S</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.specific">Specific</strong>
+                  <p data-i18n="case8.s">Build a scalable Design System for Mandic's cloud platform to unify UI patterns across products.</p>
+                </div>
+              </div>
+              <div class="smart-row">
+                <span class="smart-letter">M</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.measurable">Measurable</strong>
+                  <p data-i18n="case8.m">Measured through component adoption rate across squads and reduction of duplicated UI patterns.</p>
+                </div>
+              </div>
+              <div class="smart-row">
+                <span class="smart-letter">A</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.achievable">Achievable</strong>
+                  <p data-i18n="case8.a">Documented tokens, components and usage guidelines in Figma, validated with the engineering team for a smooth handoff.</p>
+                </div>
+              </div>
+              <div class="smart-row">
+                <span class="smart-letter">R</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.relevant">Relevant</strong>
+                  <p data-i18n="case8.r">A shared design language cuts development time and keeps a fast-growing cloud product visually and functionally consistent.</p>
+                </div>
+              </div>
+              <div class="smart-row">
+                <span class="smart-letter">T</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.timebound">Time-bound</strong>
+                  <p data-i18n="case8.t">Delivered as a structured Design System initiative.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-panel" data-case="9">
+          <div class="case-panel-media">
+            <img src="https://mir-s3-cdn-cf.behance.net/projects/404/03fc60155548673.Y3JvcCwxODU3LDE0NTMsMzIsMA.jpg" data-i18n-attr="alt:case9.title" alt="Gamification UX/UI — Total Express" loading="lazy">
+          </div>
+          <div class="case-panel-body">
+            <span class="case-tag">Vector ITC — UI/UX Lead</span>
+            <h3 data-i18n="case9.title">Gamification UX/UI — Total Express</h3>
+            <a class="project-link" href="https://www.behance.net/gallery/155548673/Gamificacao-UXUI-Total-Express" target="_blank" rel="noopener">
+              <span data-i18n="case.viewBehance">View full case on Behance</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+            </a>
+            <div class="smart-label" data-i18n="smart.title">UX case study — SMART method</div>
+            <div class="smart-grid">
+              <div class="smart-row">
+                <span class="smart-letter">S</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.specific">Specific</strong>
+                  <p data-i18n="case9.s">Design gamified UX/UI mechanics for Total Express to increase engagement and adherence to operational processes.</p>
+                </div>
+              </div>
+              <div class="smart-row">
+                <span class="smart-letter">M</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.measurable">Measurable</strong>
+                  <p data-i18n="case9.m">Evaluated through engagement rate with gamified features and adherence to targeted operational behaviors.</p>
+                </div>
+              </div>
+              <div class="smart-row">
+                <span class="smart-letter">A</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.achievable">Achievable</strong>
+                  <p data-i18n="case9.a">Prototyped reward mechanics, progress indicators and feedback loops validated with field users through usability testing.</p>
+                </div>
+              </div>
+              <div class="smart-row">
+                <span class="smart-letter">R</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.relevant">Relevant</strong>
+                  <p data-i18n="case9.r">In logistics operations, small engagement gains translate directly into better process compliance and performance.</p>
+                </div>
+              </div>
+              <div class="smart-row">
+                <span class="smart-letter">T</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.timebound">Time-bound</strong>
+                  <p data-i18n="case9.t">Delivered during the Vector ITC engagement (Nov 2018 – Nov 2019).</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-panel" data-case="10">
+          <div class="case-panel-media">
+            <img src="https://mir-s3-cdn-cf.behance.net/projects/404/fffb66155528257.Y3JvcCwxODU3LDE0NTMsNTksMA.jpg" data-i18n-attr="alt:case10.title" alt="ICS Mobile — Total Express" loading="lazy">
+          </div>
+          <div class="case-panel-body">
+            <span class="case-tag">Softtek — UX Lead</span>
+            <h3 data-i18n="case10.title">ICS Mobile — Total Express</h3>
+            <a class="project-link" href="https://www.behance.net/gallery/155528257/Esdudo-de-UXUI-ICS-Mobile-Total-Express" target="_blank" rel="noopener">
+              <span data-i18n="case.viewBehance">View full case on Behance</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+            </a>
+            <div class="smart-label" data-i18n="smart.title">UX case study — SMART method</div>
+            <div class="smart-grid">
+              <div class="smart-row">
+                <span class="smart-letter">S</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.specific">Specific</strong>
+                  <p data-i18n="case10.s">Design the mobile experience for ICS, an operational tracking and control system used by Total Express field teams.</p>
+                </div>
+              </div>
+              <div class="smart-row">
+                <span class="smart-letter">M</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.measurable">Measurable</strong>
+                  <p data-i18n="case10.m">Assessed through task completion speed for field agents and reduction of input errors during operational logging.</p>
+                </div>
+              </div>
+              <div class="smart-row">
+                <span class="smart-letter">A</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.achievable">Achievable</strong>
+                  <p data-i18n="case10.a">Mapped field-to-manager information flows and prototyped a simplified mobile UI validated directly with field operators.</p>
+                </div>
+              </div>
+              <div class="smart-row">
+                <span class="smart-letter">R</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.relevant">Relevant</strong>
+                  <p data-i18n="case10.r">A faster, error-resistant mobile tool directly improves logistics accuracy and operational efficiency at scale.</p>
+                </div>
+              </div>
+              <div class="smart-row">
+                <span class="smart-letter">T</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.timebound">Time-bound</strong>
+                  <p data-i18n="case10.t">Delivered during the Softtek engagement (Jun 2021 – Jun 2023).</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-panel" data-case="11">
+          <div class="case-panel-media">
+            <img src="https://mir-s3-cdn-cf.behance.net/projects/404/f17776155527535.Y3JvcCwxODU3LDE0NTMsMzIsMA.jpg" data-i18n-attr="alt:case11.title" alt="UX/UI Study — TechCargo" loading="lazy">
+          </div>
+          <div class="case-panel-body">
+            <span class="case-tag">Estudo de Caso — Logística</span>
+            <h3 data-i18n="case11.title">UX/UI Study — TechCargo</h3>
+            <a class="project-link" href="https://www.behance.net/gallery/155527535/Estudo-de-UXUI-TechCargo" target="_blank" rel="noopener">
+              <span data-i18n="case.viewBehance">View full case on Behance</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+            </a>
+            <div class="smart-label" data-i18n="smart.title">UX case study — SMART method</div>
+            <div class="smart-grid">
+              <div class="smart-row">
+                <span class="smart-letter">S</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.specific">Specific</strong>
+                  <p data-i18n="case11.s">Study and redesign core UX/UI flows for TechCargo, a logistics platform, to simplify freight tracking and management tasks.</p>
+                </div>
+              </div>
+              <div class="smart-row">
+                <span class="smart-letter">M</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.measurable">Measurable</strong>
+                  <p data-i18n="case11.m">Measured through task-completion time and clarity of shipment status information for operators.</p>
+                </div>
+              </div>
+              <div class="smart-row">
+                <span class="smart-letter">A</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.achievable">Achievable</strong>
+                  <p data-i18n="case11.a">Ran user interviews with logistics operators, mapped flows and delivered high-fidelity prototypes tested against real scenarios.</p>
+                </div>
+              </div>
+              <div class="smart-row">
+                <span class="smart-letter">R</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.relevant">Relevant</strong>
+                  <p data-i18n="case11.r">In logistics, simpler tracking interfaces reduce operational errors and speed up daily decision-making.</p>
+                </div>
+              </div>
+              <div class="smart-row">
+                <span class="smart-letter">T</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.timebound">Time-bound</strong>
+                  <p data-i18n="case11.t">Completed as an independent UX/UI case study focused on logistics products.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-panel" data-case="12">
+          <div class="case-panel-media">
+            <img src="https://mir-s3-cdn-cf.behance.net/projects/404/b8cb7f145454833.Y3JvcCwxODU3LDE0NTMsMTgsMA.jpg" data-i18n-attr="alt:case12.title" alt="UX Redesign Study — Booking.com" loading="lazy">
+          </div>
+          <div class="case-panel-body">
+            <span class="case-tag">Estudo de Caso — Travel</span>
+            <h3 data-i18n="case12.title">UX Redesign Study — Booking.com</h3>
+            <a class="project-link" href="https://www.behance.net/gallery/145454833/Redesign-Estudo-de-UX-Bookingcom" target="_blank" rel="noopener">
+              <span data-i18n="case.viewBehance">View full case on Behance</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+            </a>
+            <div class="smart-label" data-i18n="smart.title">UX case study — SMART method</div>
+            <div class="smart-grid">
+              <div class="smart-row">
+                <span class="smart-letter">S</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.specific">Specific</strong>
+                  <p data-i18n="case12.s">Conduct an independent UX redesign study of Booking.com's search and booking flow to explore usability improvements.</p>
+                </div>
+              </div>
+              <div class="smart-row">
+                <span class="smart-letter">M</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.measurable">Measurable</strong>
+                  <p data-i18n="case12.m">Evaluated through heuristic analysis, information hierarchy clarity and reduction of steps to complete a booking.</p>
+                </div>
+              </div>
+              <div class="smart-row">
+                <span class="smart-letter">A</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.achievable">Achievable</strong>
+                  <p data-i18n="case12.a">Applied competitive benchmarking, wireframing and high-fidelity UI redesign grounded in UX best practices.</p>
+                </div>
+              </div>
+              <div class="smart-row">
+                <span class="smart-letter">R</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.relevant">Relevant</strong>
+                  <p data-i18n="case12.r">Streamlined booking flows are directly tied to conversion in high-intent travel products — a benchmark for any transactional interface.</p>
+                </div>
+              </div>
+              <div class="smart-row">
+                <span class="smart-letter">T</span>
+                <div class="smart-text">
+                  <strong data-i18n="smart.timebound">Time-bound</strong>
+                  <p data-i18n="case12.t">Completed as a self-directed UX study to explore redesign opportunities in a leading travel product.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-row">
+      <div class="footer-brand">
+        <span class="mark" style="width:26px;height:26px;font-size:11px;">BF</span>
+        Bruno Ferreira — Lead Product Designer
+      </div>
+      <div class="footer-icons">
+        <a class="icon-btn" data-i18n-attr="href:contact.waHref" href="https://wa.me/5511972846617?text=Hi%20Bruno%2C%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20talk%20about%20a%20remote%20opportunity." target="_blank" rel="noopener" aria-label="WhatsApp">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.02 2C6.5 2 2.02 6.48 2.02 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.96 9.96 0 0 0 12.02 22C17.55 22 22 17.52 22 12S17.55 2 12.02 2zm0 18.12c-1.6 0-3.1-.45-4.38-1.23l-.31-.19-3 .79.8-2.92-.2-.3a8.14 8.14 0 0 1-1.27-4.37c0-4.5 3.66-8.16 8.16-8.16 4.5 0 8.15 3.66 8.15 8.16 0 4.5-3.65 8.22-8.15 8.22zm4.47-6.12c-.24-.12-1.44-.71-1.66-.79-.22-.08-.39-.12-.55.12-.16.24-.63.79-.78.95-.14.16-.28.18-.53.06-.24-.12-1.02-.38-1.95-1.2-.72-.64-1.2-1.44-1.35-1.68-.14-.24-.02-.37.11-.49.11-.11.24-.28.37-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.32-.75-1.8-.2-.48-.4-.4-.55-.41-.14-.01-.3-.01-.46-.01-.16 0-.42.06-.64.3-.22.24-.85.83-.85 2.03 0 1.2.87 2.35.99 2.51.12.16 1.71 2.61 4.14 3.66.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.44-.59 1.64-1.16.2-.57.2-1.05.14-1.16-.06-.1-.22-.16-.46-.28z"/></svg>
+        </a>
+        <a class="icon-btn" href="mailto:bruno.trocadilho@gmail.com" aria-label="E-mail">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+        </a>
+        <a class="icon-btn" href="https://www.linkedin.com/in/brunoferreira-ux/" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V23h-4V8zM8.5 8h3.83v2.05h.05c.53-1 1.84-2.05 3.79-2.05 4.05 0 4.8 2.67 4.8 6.14V23h-4v-7.5c0-1.79-.03-4.09-2.5-4.09-2.5 0-2.88 1.95-2.88 3.96V23h-4V8z"/></svg>
+        </a>
+        <a class="icon-btn" href="https://www.behance.net/brunoferreira15" target="_blank" rel="noopener" aria-label="Behance">
+          <svg viewBox="0 0 24 24" fill="none"><text x="12" y="16.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="13" letter-spacing="-0.5" fill="currentColor">Be</text></svg>
+        </a>
+      </div>
+    </div>
+    <p class="footer-note" data-i18n="footer.note">© 2026 Bruno Ferreira. Made with attention to detail — the way every good product should be.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var HTML_LANG = { en:'en', pt:'pt-BR', es:'es' };
+
+  var I18N = {
+    en: {
+      "nav.about":"About",
+      "nav.education":"Education",
+      "nav.projects":"Projects",
+      "nav.caseStudies":"Case Studies",
+      "nav.experience":"Experience",
+      "nav.contact":"Contact",
+      "nav.menuLabel":"Open menu",
+      "page.back":"Back to home",
+      "page.eyebrow":"Full Case Study Library",
+      "page.title":"Every project, one method: research, decisions and results",
+      "page.sub":"All my UX/UI, Design Ops and Design System case studies from Behance, broken down with the SMART method — Specific, Measurable, Achievable, Relevant, Time-bound.",
+      "cases.eyebrow":"Case Studies",
+      "cases.title":"Browse the full portfolio",
+      "cases.sub":"Drag, scroll or use the arrows — then open any case to read the full SMART breakdown.",
+      "case.viewFull":"See full case study",
+      "case.viewBehance":"View full case on Behance",
+      "case.close":"Close",
+      "smart.title":"UX case study — SMART method",
+      "smart.specific":"Specific",
+      "smart.measurable":"Measurable",
+      "smart.achievable":"Achievable",
+      "smart.relevant":"Relevant",
+      "smart.timebound":"Time-bound",
+      "case1.title":"UX/UI Design — Enerzee",
+      "case1.blurb":"End-to-end UX/UI for Enerzee's digital product inside AVANTTI's multi-client squad.",
+      "case1.specific":"Design the end-to-end UX/UI for Enerzee's digital product, from onboarding flows to the core dashboard, inside AVANTTI's multi-client squad.",
+      "case1.measurable":"Success tracked through Design Ops metrics — squad delivery speed, rework rate and design-system component reuse.",
+      "case1.achievable":"Research, wireframes and high-fidelity Figma flows delivered in fast, structured sprints with A/B testing built into the process.",
+      "case1.relevant":"A consistent, scalable interface directly supports AVANTTI's ability to serve five simultaneous clients without losing quality.",
+      "case1.timebound":"Delivered in agile sprints as part of the Dec 2025 – Present engagement.",
+      "case2.title":"Accessibility Study — CencoSud",
+      "case2.blurb":"Improving visual accessibility of the CencoSud shopping app for color blindness and low vision.",
+      "case2.specific":"Improve visual accessibility of the CencoSud shopping app for users with color blindness and low vision.",
+      "case2.measurable":"Evaluated through WCAG contrast compliance, usability testing scores and post-launch app store ratings.",
+      "case2.achievable":"Conducted an accessibility audit, redesigned color palettes and icon systems, and validated changes with real users through A/B testing.",
+      "case2.relevant":"A more inclusive interface expands the addressable audience and reduces friction for every shopper, not just users with visual impairments.",
+      "case2.timebound":"Delivered as a focused sprint-based initiative during the Môre engagement with Porto Seguro/CencoSud (Jun 2023 – May 2024).",
+      "case3.title":"Design Ops — Porto Seguro",
+      "case3.blurb":"Structuring a Design Ops practice to scale Porto Seguro's design team across squads.",
+      "case3.specific":"Structure a Design Ops practice to scale Porto Seguro's design team across multiple e-commerce squads on VTEX.",
+      "case3.measurable":"Tracked via delivery predictability, component reuse rate and reduction of visual/UX inconsistencies across squads.",
+      "case3.achievable":"Standardized components, ran co-creation workshops and implemented structured feedback cycles between design, product and engineering.",
+      "case3.relevant":"A shared operating model lets a growing design team ship consistent, high-quality experiences without slowing down delivery.",
+      "case3.timebound":"Rolled out progressively over the Jun 2023 – May 2024 engagement.",
+      "case4.title":"UX/UI Study — Estácio",
+      "case4.blurb":"Redesigning key student-facing flows on Estácio's digital education platform.",
+      "case4.specific":"Study and redesign key student-facing flows on Estácio's digital education platform to reduce friction in everyday tasks.",
+      "case4.measurable":"Assessed through usability testing, task-completion rates and qualitative feedback from students and faculty.",
+      "case4.achievable":"Mapped information architecture, ran heuristic evaluations and prototyped high-fidelity flows validated with real users.",
+      "case4.relevant":"A clearer, faster platform experience matters directly to student retention and satisfaction in a competitive education market.",
+      "case4.timebound":"Delivered during the K2 Partnering Solutions engagement (Jun 2021 – Jun 2023).",
+      "case5.title":"UX/UI Study — CJ Fashion",
+      "case5.blurb":"Studying the shopping journey of a fashion e-commerce platform, from browsing to checkout.",
+      "case5.specific":"Study the shopping journey of a fashion e-commerce platform to identify friction points from browsing to checkout.",
+      "case5.measurable":"Measured against navigation clarity, product discovery flow and checkout-step simplification.",
+      "case5.achievable":"Conducted UX research, competitive benchmarking and high-fidelity UI prototyping aligned to fashion retail patterns.",
+      "case5.relevant":"A smoother shopping experience directly affects conversion and repeat purchases in a highly visual, competitive category.",
+      "case5.timebound":"Completed as a self-directed case study to deepen expertise in fashion e-commerce UX.",
+      "case6.title":"UI Study — Sara",
+      "case6.blurb":"A clearer, more reassuring UI for Sara, a healthcare product focused on sensitive interactions.",
+      "case6.specific":"Design a clearer, more reassuring UI for Sara, a healthcare product, focused on sensitive patient interactions.",
+      "case6.measurable":"Evaluated through clarity of medical information, task success rate and perceived trust in usability sessions.",
+      "case6.achievable":"Applied UX writing, accessible typography and a calm visual system tailored to a healthcare audience.",
+      "case6.relevant":"In health products, interface clarity and trust directly affect whether patients complete critical actions.",
+      "case6.timebound":"Delivered during the K2 Partnering Solutions engagement (Jun 2021 – Jun 2023).",
+      "case7.title":"Design Ops — Bradesco",
+      "case7.blurb":"Coordinating UX/UI activities and leading Design Ops for Bradesco's digital products.",
+      "case7.specific":"Coordinate UX/UI activities and lead Design Ops for Bradesco's digital products, standardizing design practices.",
+      "case7.measurable":"Tracked through component consistency, delivery predictability and reduction of design debt across teams.",
+      "case7.achievable":"Led Atomic Design implementation, structured a style guide and embedded Scrum/Kanban rituals into the design workflow.",
+      "case7.relevant":"In a heavily regulated banking environment, consistent, well-governed design reduces risk and speeds up delivery.",
+      "case7.timebound":"Delivered over the SIS engagement (Dec 2019 – Jun 2021).",
+      "case8.title":"Design System — Mandic",
+      "case8.blurb":"Building a scalable Design System for Mandic's cloud platform to unify UI patterns.",
+      "case8.specific":"Build a scalable Design System for Mandic's cloud platform to unify UI patterns across products.",
+      "case8.measurable":"Measured through component adoption rate across squads and reduction of duplicated UI patterns.",
+      "case8.achievable":"Documented tokens, components and usage guidelines in Figma, validated with the engineering team for a smooth handoff.",
+      "case8.relevant":"A shared design language cuts development time and keeps a fast-growing cloud product visually and functionally consistent.",
+      "case8.timebound":"Delivered as a structured Design System initiative.",
+      "case9.title":"Gamification UX/UI — Total Express",
+      "case9.blurb":"Gamified UX/UI mechanics for Total Express to boost engagement with operational processes.",
+      "case9.specific":"Design gamified UX/UI mechanics for Total Express to increase engagement and adherence to operational processes.",
+      "case9.measurable":"Evaluated through engagement rate with gamified features and adherence to targeted operational behaviors.",
+      "case9.achievable":"Prototyped reward mechanics, progress indicators and feedback loops validated with field users through usability testing.",
+      "case9.relevant":"In logistics operations, small engagement gains translate directly into better process compliance and performance.",
+      "case9.timebound":"Delivered during the Vector ITC engagement (Nov 2018 – Nov 2019).",
+      "case10.title":"ICS Mobile — Total Express",
+      "case10.blurb":"Mobile experience for ICS, an operational tracking system used by Total Express field teams.",
+      "case10.specific":"Design the mobile experience for ICS, an operational tracking and control system used by Total Express field teams.",
+      "case10.measurable":"Assessed through task completion speed for field agents and reduction of input errors during operational logging.",
+      "case10.achievable":"Mapped field-to-manager information flows and prototyped a simplified mobile UI validated directly with field operators.",
+      "case10.relevant":"A faster, error-resistant mobile tool directly improves logistics accuracy and operational efficiency at scale.",
+      "case10.timebound":"Delivered during the Softtek engagement (Jun 2021 – Jun 2023).",
+      "case11.title":"UX/UI Study — TechCargo",
+      "case11.blurb":"Simplifying freight tracking and management flows for a logistics platform.",
+      "case11.specific":"Study and redesign core UX/UI flows for TechCargo, a logistics platform, to simplify freight tracking and management tasks.",
+      "case11.measurable":"Measured through task-completion time and clarity of shipment status information for operators.",
+      "case11.achievable":"Ran user interviews with logistics operators, mapped flows and delivered high-fidelity prototypes tested against real scenarios.",
+      "case11.relevant":"In logistics, simpler tracking interfaces reduce operational errors and speed up daily decision-making.",
+      "case11.timebound":"Completed as an independent UX/UI case study focused on logistics products.",
+      "case12.title":"UX Redesign Study — Booking.com",
+      "case12.blurb":"An independent UX redesign study of Booking.com's search and booking flow.",
+      "case12.specific":"Conduct an independent UX redesign study of Booking.com's search and booking flow to explore usability improvements.",
+      "case12.measurable":"Evaluated through heuristic analysis, information hierarchy clarity and reduction of steps to complete a booking.",
+      "case12.achievable":"Applied competitive benchmarking, wireframing and high-fidelity UI redesign grounded in UX best practices.",
+      "case12.relevant":"Streamlined booking flows are directly tied to conversion in high-intent travel products — a benchmark for any transactional interface.",
+      "case12.timebound":"Completed as a self-directed UX study to explore redesign opportunities in a leading travel product.",
+      "contact.waHref":"https://wa.me/5511972846617?text=Hi%20Bruno%2C%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20talk%20about%20a%20remote%20opportunity.",
+      "footer.note":"© 2026 Bruno Ferreira. Made with attention to detail — the way every good product should be."
+    },
+    pt: {
+      "nav.about":"Sobre",
+      "nav.education":"Formação",
+      "nav.projects":"Projetos",
+      "nav.caseStudies":"Cases",
+      "nav.experience":"Experiência",
+      "nav.contact":"Contato",
+      "nav.menuLabel":"Abrir menu",
+      "page.back":"Voltar para a home",
+      "page.eyebrow":"Biblioteca Completa de Cases",
+      "page.title":"Cada projeto, um método: pesquisa, decisões e resultados",
+      "page.sub":"Todos os meus cases de UX/UI, Design Ops e Design System do Behance, detalhados com o método SMART — Específico, Mensurável, Alcançável, Relevante e com Prazo definido.",
+      "cases.eyebrow":"Cases",
+      "cases.title":"Navegue por todo o portfólio",
+      "cases.sub":"Arraste, role ou use as setas — depois abra qualquer case para ler o detalhamento completo em SMART.",
+      "case.viewFull":"Ver o case completo",
+      "case.viewBehance":"Ver o case completo no Behance",
+      "case.close":"Fechar",
+      "smart.title":"Estudo de caso de UX — método SMART",
+      "smart.specific":"Específico",
+      "smart.measurable":"Mensurável",
+      "smart.achievable":"Alcançável",
+      "smart.relevant":"Relevante",
+      "smart.timebound":"Prazo",
+      "case1.title":"UX/UI Design — Enerzee",
+      "case1.blurb":"UX/UI ponta a ponta do produto digital da Enerzee dentro do squad multi-cliente da AVANTTI.",
+      "case1.specific":"Desenhar a experiência de UX/UI ponta a ponta do produto digital da Enerzee, dos fluxos de onboarding ao dashboard principal, dentro do squad multi-cliente da AVANTTI.",
+      "case1.measurable":"Sucesso acompanhado por métricas de Design Ops — velocidade de entrega do squad, taxa de retrabalho e reaproveitamento de componentes do design system.",
+      "case1.achievable":"Pesquisa, wireframes e fluxos de alta fidelidade no Figma entregues em sprints ágeis e estruturados, com testes A/B incorporados ao processo.",
+      "case1.relevant":"Uma interface consistente e escalável sustenta diretamente a capacidade da AVANTTI de atender cinco clientes simultâneos sem perder qualidade.",
+      "case1.timebound":"Entregue em sprints ágeis dentro do contrato de dez/2025 – atual.",
+      "case2.title":"Estudo de Acessibilidade — CencoSud",
+      "case2.blurb":"Melhoria da acessibilidade visual do app da CencoSud para daltonismo e baixa visão.",
+      "case2.specific":"Melhorar a acessibilidade visual do app de compras da CencoSud para usuários com daltonismo e baixa visão.",
+      "case2.measurable":"Avaliado por conformidade de contraste WCAG, notas em testes de usabilidade e avaliações na loja de apps após o lançamento.",
+      "case2.achievable":"Conduzi uma auditoria de acessibilidade, redesenhei paletas de cores e sistema de ícones, e validei as mudanças com usuários reais por meio de testes A/B.",
+      "case2.relevant":"Uma interface mais inclusiva amplia o público-alvo e reduz atrito para todos os compradores, não só para quem tem deficiência visual.",
+      "case2.timebound":"Entregue em sprints focados durante o período na Môre com a CencoSud/Porto Seguro (jun/2023 – mai/2024).",
+      "case3.title":"Design Ops — Porto Seguro",
+      "case3.blurb":"Estruturação de uma prática de Design Ops para escalar o time de design da Porto Seguro.",
+      "case3.specific":"Estruturar uma prática de Design Ops para escalar o time de design da Porto Seguro em múltiplos squads de e-commerce na VTEX.",
+      "case3.measurable":"Acompanhado pela previsibilidade das entregas, taxa de reaproveitamento de componentes e redução de inconsistências visuais/UX entre squads.",
+      "case3.achievable":"Padronizei componentes, conduzi workshops de co-criação e implementei ciclos estruturados de feedback entre design, produto e engenharia.",
+      "case3.relevant":"Um modelo operacional compartilhado permite que um time de design em crescimento entregue experiências consistentes e de alta qualidade sem perder velocidade.",
+      "case3.timebound":"Implantado progressivamente ao longo do período de jun/2023 – mai/2024.",
+      "case4.title":"Estudo de UX/UI — Estácio",
+      "case4.blurb":"Redesign de fluxos-chave voltados ao estudante na plataforma digital de ensino da Estácio.",
+      "case4.specific":"Estudar e redesenhar fluxos-chave voltados ao estudante na plataforma digital de ensino da Estácio, reduzindo o atrito em tarefas do dia a dia.",
+      "case4.measurable":"Avaliado por testes de usabilidade, taxas de conclusão de tarefas e feedback qualitativo de alunos e docentes.",
+      "case4.achievable":"Mapeei a arquitetura da informação, conduzi avaliações heurísticas e prototipei fluxos de alta fidelidade validados com usuários reais.",
+      "case4.relevant":"Uma experiência de plataforma mais clara e rápida impacta diretamente a retenção e a satisfação dos alunos em um mercado educacional competitivo.",
+      "case4.timebound":"Entregue durante o período na K2 Partnering Solutions (jun/2021 – jun/2023).",
+      "case5.title":"Estudo de UX/UI — CJ Fashion",
+      "case5.blurb":"Estudo da jornada de compra de uma plataforma de e-commerce de moda, da navegação ao checkout.",
+      "case5.specific":"Estudar a jornada de compra de uma plataforma de e-commerce de moda para identificar pontos de atrito da navegação ao checkout.",
+      "case5.measurable":"Medido pela clareza da navegação, fluidez na descoberta de produtos e simplificação das etapas de checkout.",
+      "case5.achievable":"Conduzi pesquisa de UX, benchmark competitivo e prototipação de UI em alta fidelidade alinhada aos padrões do varejo de moda.",
+      "case5.relevant":"Uma experiência de compra mais fluida impacta diretamente a conversão e a recompra em uma categoria altamente visual e competitiva.",
+      "case5.timebound":"Concluído como estudo de caso autoral para aprofundar expertise em UX de e-commerce de moda.",
+      "case6.title":"Estudo de UI — Sara",
+      "case6.blurb":"Uma UI mais clara e acolhedora para a Sara, produto de saúde com interações sensíveis.",
+      "case6.specific":"Desenhar uma UI mais clara e acolhedora para a Sara, um produto de saúde, com foco em interações sensíveis com o paciente.",
+      "case6.measurable":"Avaliado pela clareza das informações médicas, taxa de sucesso nas tarefas e percepção de confiança em sessões de usabilidade.",
+      "case6.achievable":"Apliquei UX writing, tipografia acessível e um sistema visual calmo, pensado para o público de saúde.",
+      "case6.relevant":"Em produtos de saúde, a clareza da interface e a confiança impactam diretamente se o paciente conclui ações críticas.",
+      "case6.timebound":"Entregue durante o período na K2 Partnering Solutions (jun/2021 – jun/2023).",
+      "case7.title":"Design Ops — Bradesco",
+      "case7.blurb":"Coordenação de atividades de UX/UI e liderança do Design Ops dos produtos digitais do Bradesco.",
+      "case7.specific":"Coordenar atividades de UX/UI e liderar o Design Ops dos produtos digitais do Bradesco, padronizando práticas de design.",
+      "case7.measurable":"Acompanhado pela consistência de componentes, previsibilidade de entregas e redução de dívida de design entre times.",
+      "case7.achievable":"Liderei a implementação de Atomic Design, estruturei um style guide e incorporei rituais de Scrum/Kanban ao fluxo de design.",
+      "case7.relevant":"Em um ambiente bancário fortemente regulado, um design consistente e bem governado reduz risco e acelera entregas.",
+      "case7.timebound":"Entregue ao longo do período na SIS (dez/2019 – jun/2021).",
+      "case8.title":"Design System — Mandic",
+      "case8.blurb":"Construção de um Design System escalável para a plataforma cloud da Mandic.",
+      "case8.specific":"Construir um Design System escalável para a plataforma cloud da Mandic, unificando padrões de interface entre produtos.",
+      "case8.measurable":"Medido pela taxa de adoção dos componentes entre squads e redução de padrões de UI duplicados.",
+      "case8.achievable":"Documentei tokens, componentes e diretrizes de uso no Figma, validados com o time de engenharia para um handoff fluido.",
+      "case8.relevant":"Uma linguagem de design compartilhada reduz o tempo de desenvolvimento e mantém um produto cloud em rápido crescimento consistente visual e funcionalmente.",
+      "case8.timebound":"Entregue como uma iniciativa estruturada de Design System.",
+      "case9.title":"Gamificação UX/UI — Total Express",
+      "case9.blurb":"Mecânicas de UX/UI gamificadas para a Total Express, aumentando engajamento com processos operacionais.",
+      "case9.specific":"Desenhar mecânicas de UX/UI gamificadas para a Total Express, aumentando engajamento e aderência a processos operacionais.",
+      "case9.measurable":"Avaliado pela taxa de engajamento com as funcionalidades gamificadas e pela aderência aos comportamentos operacionais desejados.",
+      "case9.achievable":"Prototipei mecânicas de recompensa, indicadores de progresso e loops de feedback validados com usuários de campo por meio de testes de usabilidade.",
+      "case9.relevant":"Em operações logísticas, pequenos ganhos de engajamento se traduzem diretamente em melhor aderência a processos e desempenho.",
+      "case9.timebound":"Entregue durante o período na Vector ITC (nov/2018 – nov/2019).",
+      "case10.title":"ICS Mobile — Total Express",
+      "case10.blurb":"Experiência mobile do ICS, sistema de rastreamento operacional usado por equipes de campo da Total Express.",
+      "case10.specific":"Desenhar a experiência mobile do ICS, um sistema de rastreamento e controle operacional usado pelas equipes de campo da Total Express.",
+      "case10.measurable":"Avaliado pela velocidade de conclusão de tarefas dos agentes de campo e redução de erros de input durante o registro operacional.",
+      "case10.achievable":"Mapeei os fluxos de informação entre campo e gestão e prototipei uma UI mobile simplificada, validada diretamente com operadores de campo.",
+      "case10.relevant":"Uma ferramenta mobile mais rápida e resistente a erros melhora diretamente a precisão logística e a eficiência operacional em escala.",
+      "case10.timebound":"Entregue durante o período na Softtek (jun/2021 – jun/2023).",
+      "case11.title":"Estudo de UX/UI — TechCargo",
+      "case11.blurb":"Simplificação do rastreamento e da gestão de cargas em uma plataforma de logística.",
+      "case11.specific":"Estudar e redesenhar fluxos centrais de UX/UI da TechCargo, uma plataforma de logística, simplificando o rastreamento e a gestão de cargas.",
+      "case11.measurable":"Medido pelo tempo de conclusão de tarefas e pela clareza das informações de status de envio para os operadores.",
+      "case11.achievable":"Conduzi entrevistas com operadores de logística, mapeei fluxos e entreguei protótipos de alta fidelidade testados em cenários reais.",
+      "case11.relevant":"Em logística, interfaces de rastreamento mais simples reduzem erros operacionais e agilizam a tomada de decisão no dia a dia.",
+      "case11.timebound":"Concluído como estudo de caso independente de UX/UI focado em produtos de logística.",
+      "case12.title":"Estudo de Redesign de UX — Booking.com",
+      "case12.blurb":"Estudo independente de redesign do fluxo de busca e reserva do Booking.com.",
+      "case12.specific":"Conduzir um estudo independente de redesign de UX do fluxo de busca e reserva do Booking.com, explorando melhorias de usabilidade.",
+      "case12.measurable":"Avaliado por análise heurística, clareza na hierarquia da informação e redução de etapas para concluir uma reserva.",
+      "case12.achievable":"Apliquei benchmark competitivo, wireframes e redesign de UI em alta fidelidade fundamentado em boas práticas de UX.",
+      "case12.relevant":"Fluxos de reserva mais enxutos estão diretamente ligados à conversão em produtos de viagem de alta intenção — uma referência para qualquer interface transacional.",
+      "case12.timebound":"Concluído como estudo autoral de UX para explorar oportunidades de redesign em um produto de viagens líder de mercado.",
+      "contact.waHref":"https://wa.me/5511972846617?text=Ol%C3%A1%20Bruno%2C%20vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20falar%20sobre%20uma%20oportunidade%20remota.",
+      "footer.note":"© 2026 Bruno Ferreira. Feito com atenção aos detalhes — como todo bom produto deveria ser."
+    },
+    es: {
+      "nav.about":"Sobre mí",
+      "nav.education":"Formación",
+      "nav.projects":"Proyectos",
+      "nav.caseStudies":"Casos",
+      "nav.experience":"Experiencia",
+      "nav.contact":"Contacto",
+      "nav.menuLabel":"Abrir menú",
+      "page.back":"Volver al inicio",
+      "page.eyebrow":"Biblioteca Completa de Casos",
+      "page.title":"Cada proyecto, un método: investigación, decisiones y resultados",
+      "page.sub":"Todos mis casos de UX/UI, Design Ops y Design System de Behance, desglosados con el método SMART — Específico, Medible, Alcanzable, Relevante y con Plazo definido.",
+      "cases.eyebrow":"Casos",
+      "cases.title":"Explora todo el portafolio",
+      "cases.sub":"Arrastra, desplaza o usa las flechas — luego abre cualquier caso para leer el desglose completo en SMART.",
+      "case.viewFull":"Ver el caso completo",
+      "case.viewBehance":"Ver el caso completo en Behance",
+      "case.close":"Cerrar",
+      "smart.title":"Estudio de caso de UX — método SMART",
+      "smart.specific":"Específico",
+      "smart.measurable":"Medible",
+      "smart.achievable":"Alcanzable",
+      "smart.relevant":"Relevante",
+      "smart.timebound":"Plazo",
+      "case1.title":"UX/UI Design — Enerzee",
+      "case1.blurb":"UX/UI de punta a punta del producto digital de Enerzee dentro del squad multicliente de AVANTTI.",
+      "case1.specific":"Diseñar la experiencia de UX/UI de punta a punta del producto digital de Enerzee, desde los flujos de onboarding hasta el dashboard principal, dentro del squad multicliente de AVANTTI.",
+      "case1.measurable":"El éxito se midió con métricas de Design Ops — velocidad de entrega del squad, tasa de retrabajo y reutilización de componentes del design system.",
+      "case1.achievable":"Investigación, wireframes y flujos de alta fidelidad en Figma entregados en sprints ágiles y estructurados, con pruebas A/B integradas al proceso.",
+      "case1.relevant":"Una interfaz consistente y escalable sostiene directamente la capacidad de AVANTTI para atender cinco clientes simultáneos sin perder calidad.",
+      "case1.timebound":"Entregado en sprints ágiles dentro del contrato de dic/2025 – actualidad.",
+      "case2.title":"Estudio de Accesibilidad — CencoSud",
+      "case2.blurb":"Mejora de la accesibilidad visual de la app de CencoSud para daltonismo y baja visión.",
+      "case2.specific":"Mejorar la accesibilidad visual de la app de compras de CencoSud para usuarios con daltonismo y baja visión.",
+      "case2.measurable":"Evaluado mediante el cumplimiento de contraste WCAG, puntuaciones en pruebas de usabilidad y calificaciones en la tienda de apps tras el lanzamiento.",
+      "case2.achievable":"Realicé una auditoría de accesibilidad, rediseñé paletas de color y el sistema de íconos, y validé los cambios con usuarios reales mediante pruebas A/B.",
+      "case2.relevant":"Una interfaz más inclusiva amplía el público objetivo y reduce la fricción para todos los compradores, no solo para quienes tienen discapacidad visual.",
+      "case2.timebound":"Entregado en sprints enfocados durante el período en Môre con CencoSud/Porto Seguro (jun/2023 – may/2024).",
+      "case3.title":"Design Ops — Porto Seguro",
+      "case3.blurb":"Estructuración de una práctica de Design Ops para escalar el equipo de diseño de Porto Seguro.",
+      "case3.specific":"Estructurar una práctica de Design Ops para escalar el equipo de diseño de Porto Seguro en múltiples squads de e-commerce en VTEX.",
+      "case3.measurable":"Medido por la previsibilidad de las entregas, la tasa de reutilización de componentes y la reducción de inconsistencias visuales/UX entre squads.",
+      "case3.achievable":"Estandaricé componentes, facilité talleres de co-creación e implementé ciclos estructurados de feedback entre diseño, producto e ingeniería.",
+      "case3.relevant":"Un modelo operativo compartido permite que un equipo de diseño en crecimiento entregue experiencias consistentes y de alta calidad sin perder velocidad.",
+      "case3.timebound":"Implementado progresivamente durante el período de jun/2023 – may/2024.",
+      "case4.title":"Estudio de UX/UI — Estácio",
+      "case4.blurb":"Rediseño de flujos clave orientados al estudiante en la plataforma educativa de Estácio.",
+      "case4.specific":"Estudiar y rediseñar flujos clave orientados al estudiante en la plataforma digital educativa de Estácio, reduciendo la fricción en tareas cotidianas.",
+      "case4.measurable":"Evaluado mediante pruebas de usabilidad, tasas de finalización de tareas y feedback cualitativo de estudiantes y docentes.",
+      "case4.achievable":"Mapeé la arquitectura de información, realicé evaluaciones heurísticas y prototipé flujos de alta fidelidad validados con usuarios reales.",
+      "case4.relevant":"Una experiencia de plataforma más clara y rápida impacta directamente en la retención y satisfacción de los estudiantes en un mercado educativo competitivo.",
+      "case4.timebound":"Entregado durante el período en K2 Partnering Solutions (jun/2021 – jun/2023).",
+      "case5.title":"Estudio de UX/UI — CJ Fashion",
+      "case5.blurb":"Estudio del recorrido de compra de una plataforma de e-commerce de moda, de la navegación al checkout.",
+      "case5.specific":"Estudiar el recorrido de compra de una plataforma de e-commerce de moda para identificar puntos de fricción desde la navegación hasta el checkout.",
+      "case5.measurable":"Medido por la claridad de navegación, la fluidez en el descubrimiento de productos y la simplificación de los pasos de checkout.",
+      "case5.achievable":"Realicé investigación de UX, benchmark competitivo y prototipado de UI de alta fidelidad alineado a los patrones del retail de moda.",
+      "case5.relevant":"Una experiencia de compra más fluida impacta directamente en la conversión y en la recompra en una categoría altamente visual y competitiva.",
+      "case5.timebound":"Completado como estudio de caso propio para profundizar experiencia en UX de e-commerce de moda.",
+      "case6.title":"Estudio de UI — Sara",
+      "case6.blurb":"Una UI más clara y acogedora para Sara, producto de salud con interacciones sensibles.",
+      "case6.specific":"Diseñar una UI más clara y acogedora para Sara, un producto de salud, enfocada en interacciones sensibles con el paciente.",
+      "case6.measurable":"Evaluado por la claridad de la información médica, la tasa de éxito en las tareas y la percepción de confianza en sesiones de usabilidad.",
+      "case6.achievable":"Apliqué UX writing, tipografía accesible y un sistema visual sereno, pensado para el público de salud.",
+      "case6.relevant":"En productos de salud, la claridad de la interfaz y la confianza impactan directamente si el paciente completa acciones críticas.",
+      "case6.timebound":"Entregado durante el período en K2 Partnering Solutions (jun/2021 – jun/2023).",
+      "case7.title":"Design Ops — Bradesco",
+      "case7.blurb":"Coordinación de actividades de UX/UI y liderazgo del Design Ops de los productos digitales de Bradesco.",
+      "case7.specific":"Coordinar actividades de UX/UI y liderar el Design Ops de los productos digitales de Bradesco, estandarizando prácticas de diseño.",
+      "case7.measurable":"Medido por la consistencia de componentes, la previsibilidad de las entregas y la reducción de deuda de diseño entre equipos.",
+      "case7.achievable":"Lideré la implementación de Atomic Design, estructuré una guía de estilo e incorporé rituales de Scrum/Kanban al flujo de diseño.",
+      "case7.relevant":"En un entorno bancario fuertemente regulado, un diseño consistente y bien gobernado reduce el riesgo y acelera las entregas.",
+      "case7.timebound":"Entregado durante el período en SIS (dic/2019 – jun/2021).",
+      "case8.title":"Design System — Mandic",
+      "case8.blurb":"Construcción de un Design System escalable para la plataforma cloud de Mandic.",
+      "case8.specific":"Construir un Design System escalable para la plataforma cloud de Mandic, unificando patrones de interfaz entre productos.",
+      "case8.measurable":"Medido por la tasa de adopción de componentes entre squads y la reducción de patrones de UI duplicados.",
+      "case8.achievable":"Documenté tokens, componentes y guías de uso en Figma, validados con el equipo de ingeniería para un traspaso fluido.",
+      "case8.relevant":"Un lenguaje de diseño compartido reduce el tiempo de desarrollo y mantiene un producto cloud en rápido crecimiento consistente visual y funcionalmente.",
+      "case8.timebound":"Entregado como una iniciativa estructurada de Design System.",
+      "case9.title":"Gamificación UX/UI — Total Express",
+      "case9.blurb":"Mecánicas de UX/UI gamificadas para Total Express, aumentando el compromiso con procesos operativos.",
+      "case9.specific":"Diseñar mecánicas de UX/UI gamificadas para Total Express, aumentando el compromiso y la adherencia a procesos operativos.",
+      "case9.measurable":"Evaluado por la tasa de compromiso con las funcionalidades gamificadas y la adherencia a los comportamientos operativos deseados.",
+      "case9.achievable":"Prototipé mecánicas de recompensa, indicadores de progreso y ciclos de feedback validados con usuarios de campo mediante pruebas de usabilidad.",
+      "case9.relevant":"En operaciones logísticas, pequeñas ganancias de compromiso se traducen directamente en mejor adherencia a procesos y desempeño.",
+      "case9.timebound":"Entregado durante el período en Vector ITC (nov/2018 – nov/2019).",
+      "case10.title":"ICS Mobile — Total Express",
+      "case10.blurb":"Experiencia móvil de ICS, sistema de rastreo operativo usado por equipos de campo de Total Express.",
+      "case10.specific":"Diseñar la experiencia móvil de ICS, un sistema de rastreo y control operativo usado por los equipos de campo de Total Express.",
+      "case10.measurable":"Evaluado por la velocidad de finalización de tareas de los agentes de campo y la reducción de errores de entrada durante el registro operativo.",
+      "case10.achievable":"Mapeé los flujos de información entre campo y gestión y prototipé una UI móvil simplificada, validada directamente con operadores de campo.",
+      "case10.relevant":"Una herramienta móvil más rápida y resistente a errores mejora directamente la precisión logística y la eficiencia operativa a escala.",
+      "case10.timebound":"Entregado durante el período en Softtek (jun/2021 – jun/2023).",
+      "case11.title":"Estudio de UX/UI — TechCargo",
+      "case11.blurb":"Simplificación del seguimiento y la gestión de cargas en una plataforma de logística.",
+      "case11.specific":"Estudiar y rediseñar flujos centrales de UX/UI de TechCargo, una plataforma de logística, simplificando el seguimiento y la gestión de cargas.",
+      "case11.measurable":"Medido por el tiempo de finalización de tareas y la claridad de la información de estado de envío para los operadores.",
+      "case11.achievable":"Realicé entrevistas con operadores de logística, mapeé flujos y entregué prototipos de alta fidelidad probados en escenarios reales.",
+      "case11.relevant":"En logística, interfaces de seguimiento más simples reducen errores operativos y agilizan la toma de decisiones diaria.",
+      "case11.timebound":"Completado como estudio de caso independiente de UX/UI enfocado en productos de logística.",
+      "case12.title":"Estudio de Rediseño de UX — Booking.com",
+      "case12.blurb":"Estudio independiente de rediseño del flujo de búsqueda y reserva de Booking.com.",
+      "case12.specific":"Realizar un estudio independiente de rediseño de UX del flujo de búsqueda y reserva de Booking.com, explorando mejoras de usabilidad.",
+      "case12.measurable":"Evaluado mediante análisis heurístico, claridad en la jerarquía de la información y reducción de pasos para completar una reserva.",
+      "case12.achievable":"Apliqué benchmark competitivo, wireframes y rediseño de UI de alta fidelidad basado en buenas prácticas de UX.",
+      "case12.relevant":"Flujos de reserva más simples están directamente ligados a la conversión en productos de viaje de alta intención — una referencia para cualquier interfaz transaccional.",
+      "case12.timebound":"Completado como estudio propio de UX para explorar oportunidades de rediseño en un producto de viajes líder del mercado.",
+      "contact.waHref":"https://wa.me/5511972846617?text=Hola%20Bruno%2C%20vi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20hablar%20sobre%20una%20oportunidad%20remota.",
+      "footer.note":"© 2026 Bruno Ferreira. Hecho con atención al detalle — como todo buen producto debería ser."
+    }
+  };
+
+  function applyLang(lang){
+    var dict = I18N[lang];
+    if(!dict) return;
+    document.documentElement.setAttribute('lang', HTML_LANG[lang] || lang);
+
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var key = el.getAttribute('data-i18n');
+      if(dict[key] !== undefined){ el.innerHTML = dict[key]; }
+    });
+
+    document.querySelectorAll('[data-i18n-attr]').forEach(function(el){
+      var spec = el.getAttribute('data-i18n-attr');
+      spec.split(';').forEach(function(pair){
+        var parts = pair.split(':');
+        var attr = parts[0], key = parts[1];
+        if(dict[key] !== undefined){ el.setAttribute(attr, dict[key]); }
+      });
+    });
+
+    document.querySelectorAll('.flag-btn').forEach(function(btn){
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+    });
+  }
+
+  document.querySelectorAll('.flag-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      applyLang(btn.getAttribute('data-lang'));
+    });
+  });
+
+  // Navbar blur on scroll
+  var nav = document.getElementById('nav');
+  function onScroll(){
+    if(window.scrollY > 24){ nav.classList.add('scrolled'); }
+    else{ nav.classList.remove('scrolled'); }
+  }
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive:true });
+
+  // Mobile menu toggle
+  var toggle = document.getElementById('menuToggle');
+  var links = document.getElementById('navLinks');
+  var scrim = document.getElementById('scrim');
+  var menuPath = document.getElementById('menuPath');
+
+  function closeMenu(){
+    links.classList.remove('open');
+    scrim.classList.remove('open');
+    toggle.setAttribute('aria-expanded','false');
+    menuPath.setAttribute('d','M4 7h16M4 12h16M4 17h16');
+  }
+  function openMenu(){
+    links.classList.add('open');
+    scrim.classList.add('open');
+    toggle.setAttribute('aria-expanded','true');
+    menuPath.setAttribute('d','M6 6l12 12M18 6L6 18');
+  }
+  toggle.addEventListener('click', function(){
+    if(links.classList.contains('open')){ closeMenu(); } else { openMenu(); }
+  });
+  scrim.addEventListener('click', closeMenu);
+  document.querySelectorAll('[data-nav]').forEach(function(a){
+    a.addEventListener('click', closeMenu);
+  });
+
+  // Smooth scroll with navbar offset (only for in-page anchors)
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = a.getAttribute('href');
+      if(id.length < 2) return;
+      var target = document.querySelector(id);
+      if(!target) return;
+      e.preventDefault();
+      var offset = 78;
+      var top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+    });
+  });
+
+  // Reveal on scroll
+  var revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('is-visible'); });
+  }
+
+  // ---- Carousel ----
+  var track = document.getElementById('caseTrack');
+  var prevBtn = document.getElementById('prevBtn');
+  var nextBtn = document.getElementById('nextBtn');
+  function scrollByCard(dir){
+    var card = track.querySelector('.case-card');
+    if(!card) return;
+    var style = window.getComputedStyle(track);
+    var gap = parseFloat(style.columnGap || style.gap || 20) || 20;
+    var w = card.getBoundingClientRect().width + gap;
+    track.scrollBy({ left: dir * w * 2, behavior: 'smooth' });
+  }
+  prevBtn.addEventListener('click', function(){ scrollByCard(-1); });
+  nextBtn.addEventListener('click', function(){ scrollByCard(1); });
+
+  // ---- Case modal ----
+  var modal = document.getElementById('caseModal');
+  function openCase(id){
+    document.querySelectorAll('.case-panel').forEach(function(p){
+      p.classList.toggle('active', p.getAttribute('data-case') === id);
+    });
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+    modal.querySelector('.case-modal-panel').scrollTop = 0;
+  }
+  function closeCase(){
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+  }
+  document.querySelectorAll('.case-open').forEach(function(btn){
+    btn.addEventListener('click', function(){ openCase(btn.getAttribute('data-case')); });
+  });
+  document.querySelectorAll('[data-close]').forEach(function(el){
+    el.addEventListener('click', closeCase);
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape'){ closeCase(); }
+  });
+
+  // Initialize default language (English)
+  applyLang('en');
+})();
+</script>
+
+</body>
+</html>
