@@ -276,6 +276,16 @@
   .case-modal-close:hover{ color:var(--accent); border-color:var(--accent-line); transform:rotate(90deg); }
   .case-modal-close svg{ width:17px; height:17px; }
 
+  .case-modal-lang{
+    position:absolute; top:16px; left:16px; z-index:3;
+    background:rgba(10,10,15,0.6); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+    padding:5px; border-radius:11px; border:1px solid var(--border); margin-right:0;
+  }
+  .case-modal-lang .flag-btn{ background:var(--surface); }
+
+  .case-behance-btn{ margin-top:18px; border-color:var(--accent-line); }
+  .case-behance-btn:hover{ background:var(--accent-soft); }
+
   .case-panel{ display:none; }
   .case-panel.active{ display:block; }
   .case-panel-media{ aspect-ratio:16/9; overflow:hidden; background:var(--surface-2); border-radius:var(--radius-lg) var(--radius-lg) 0 0; }
@@ -591,6 +601,34 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
     </button>
 
+    <div class="case-modal-lang lang-switch" role="group" aria-label="Language selector">
+      <button class="flag-btn active" data-lang="en" aria-label="English" title="English">
+        <svg viewBox="0 0 24 16" preserveAspectRatio="none" aria-hidden="true">
+          <rect width="24" height="16" fill="#fff"/>
+          <g fill="#b22234">
+            <rect y="0" width="24" height="1.23"/><rect y="2.46" width="24" height="1.23"/>
+            <rect y="4.92" width="24" height="1.23"/><rect y="7.38" width="24" height="1.23"/>
+            <rect y="9.85" width="24" height="1.23"/><rect y="12.31" width="24" height="1.23"/>
+            <rect y="14.77" width="24" height="1.23"/>
+          </g>
+          <rect width="10" height="8.6" fill="#3c3b6e"/>
+        </svg>
+      </button>
+      <button class="flag-btn" data-lang="pt" aria-label="Português" title="Português">
+        <svg viewBox="0 0 24 16" preserveAspectRatio="none" aria-hidden="true">
+          <rect width="24" height="16" fill="#009c3b"/>
+          <polygon points="12,2 22,8 12,14 2,8" fill="#ffdf00"/>
+          <circle cx="12" cy="8" r="4" fill="#002776"/>
+        </svg>
+      </button>
+      <button class="flag-btn" data-lang="es" aria-label="Español" title="Español">
+        <svg viewBox="0 0 24 16" preserveAspectRatio="none" aria-hidden="true">
+          <rect width="24" height="16" fill="#c60b1e"/>
+          <rect y="4" width="24" height="8" fill="#ffc400"/>
+        </svg>
+      </button>
+    </div>
+
         <div class="case-panel" data-case="1">
           <div class="case-panel-media">
             <img src="https://mir-s3-cdn-cf.behance.net/projects/404/3b0bb6245684245.Y3JvcCwxODU3LDE0NTMsMzIsMA.jpg" data-i18n-attr="alt:case1.title" alt="UX/UI Design — Enerzee" loading="lazy">
@@ -598,7 +636,7 @@
           <div class="case-panel-body">
             <span class="case-tag">AVANTTI — UX Lead</span>
             <h3 data-i18n="case1.title">UX/UI Design — Enerzee</h3>
-            <a class="project-link" href="https://www.behance.net/gallery/245684245/UX-UI-DESIGN-ENERZEE" target="_blank" rel="noopener">
+            <a class="btn btn-ghost case-behance-btn" href="https://www.behance.net/gallery/245684245/UX-UI-DESIGN-ENERZEE" target="_blank" rel="noopener">
               <span data-i18n="case.viewBehance">View full case on Behance</span>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
             </a>
@@ -608,35 +646,35 @@
                 <span class="smart-letter">S</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.specific">Specific</strong>
-                  <p data-i18n="case1.s">Design the end-to-end UX/UI for Enerzee's digital product, from onboarding flows to the core dashboard, inside AVANTTI's multi-client squad.</p>
+                  <p data-i18n="case1.specific">Design the end-to-end UX/UI for Enerzee's digital product, from onboarding flows to the core dashboard, inside AVANTTI's multi-client squad.</p>
                 </div>
               </div>
               <div class="smart-row">
                 <span class="smart-letter">M</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.measurable">Measurable</strong>
-                  <p data-i18n="case1.m">Success tracked through Design Ops metrics — squad delivery speed, rework rate and design-system component reuse.</p>
+                  <p data-i18n="case1.measurable">Success tracked through Design Ops metrics — squad delivery speed, rework rate and design-system component reuse.</p>
                 </div>
               </div>
               <div class="smart-row">
                 <span class="smart-letter">A</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.achievable">Achievable</strong>
-                  <p data-i18n="case1.a">Research, wireframes and high-fidelity Figma flows delivered in fast, structured sprints with A/B testing built into the process.</p>
+                  <p data-i18n="case1.achievable">Research, wireframes and high-fidelity Figma flows delivered in fast, structured sprints with A/B testing built into the process.</p>
                 </div>
               </div>
               <div class="smart-row">
                 <span class="smart-letter">R</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.relevant">Relevant</strong>
-                  <p data-i18n="case1.r">A consistent, scalable interface directly supports AVANTTI's ability to serve five simultaneous clients without losing quality.</p>
+                  <p data-i18n="case1.relevant">A consistent, scalable interface directly supports AVANTTI's ability to serve five simultaneous clients without losing quality.</p>
                 </div>
               </div>
               <div class="smart-row">
                 <span class="smart-letter">T</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.timebound">Time-bound</strong>
-                  <p data-i18n="case1.t">Delivered in agile sprints as part of the Dec 2025 – Present engagement.</p>
+                  <p data-i18n="case1.timebound">Delivered in agile sprints as part of the Dec 2025 – Present engagement.</p>
                 </div>
               </div>
             </div>
@@ -650,7 +688,7 @@
           <div class="case-panel-body">
             <span class="case-tag">Stefanini — UX Lead</span>
             <h3 data-i18n="case2.title">Accessibility Study — CencoSud</h3>
-            <a class="project-link" href="https://www.behance.net/gallery/202492623/UX-Dautonismo" target="_blank" rel="noopener">
+            <a class="btn btn-ghost case-behance-btn" href="https://www.behance.net/gallery/202492623/UX-Dautonismo" target="_blank" rel="noopener">
               <span data-i18n="case.viewBehance">View full case on Behance</span>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
             </a>
@@ -660,35 +698,35 @@
                 <span class="smart-letter">S</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.specific">Specific</strong>
-                  <p data-i18n="case2.s">Improve visual accessibility of the CencoSud shopping app for users with color blindness and low vision.</p>
+                  <p data-i18n="case2.specific">Improve visual accessibility of the CencoSud shopping app for users with color blindness and low vision.</p>
                 </div>
               </div>
               <div class="smart-row">
                 <span class="smart-letter">M</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.measurable">Measurable</strong>
-                  <p data-i18n="case2.m">Evaluated through WCAG contrast compliance, usability testing scores and post-launch app store ratings.</p>
+                  <p data-i18n="case2.measurable">Evaluated through WCAG contrast compliance, usability testing scores and post-launch app store ratings.</p>
                 </div>
               </div>
               <div class="smart-row">
                 <span class="smart-letter">A</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.achievable">Achievable</strong>
-                  <p data-i18n="case2.a">Conducted an accessibility audit, redesigned color palettes and icon systems, and validated changes with real users through A/B testing.</p>
+                  <p data-i18n="case2.achievable">Conducted an accessibility audit, redesigned color palettes and icon systems, and validated changes with real users through A/B testing.</p>
                 </div>
               </div>
               <div class="smart-row">
                 <span class="smart-letter">R</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.relevant">Relevant</strong>
-                  <p data-i18n="case2.r">A more inclusive interface expands the addressable audience and reduces friction for every shopper, not just users with visual impairments.</p>
+                  <p data-i18n="case2.relevant">A more inclusive interface expands the addressable audience and reduces friction for every shopper, not just users with visual impairments.</p>
                 </div>
               </div>
               <div class="smart-row">
                 <span class="smart-letter">T</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.timebound">Time-bound</strong>
-                  <p data-i18n="case2.t">Delivered as a focused sprint-based initiative during the Môre engagement with Porto Seguro/CencoSud (Jun 2023 – May 2024).</p>
+                  <p data-i18n="case2.timebound">Delivered as a focused sprint-based initiative during the Môre engagement with Porto Seguro/CencoSud (Jun 2023 – May 2024).</p>
                 </div>
               </div>
             </div>
@@ -702,7 +740,7 @@
           <div class="case-panel-body">
             <span class="case-tag">Môre — Staff Product Design Ops</span>
             <h3 data-i18n="case3.title">Design Ops — Porto Seguro</h3>
-            <a class="project-link" href="https://www.behance.net/gallery/188021045/Design-OPS-Porto" target="_blank" rel="noopener">
+            <a class="btn btn-ghost case-behance-btn" href="https://www.behance.net/gallery/188021045/Design-OPS-Porto" target="_blank" rel="noopener">
               <span data-i18n="case.viewBehance">View full case on Behance</span>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
             </a>
@@ -712,35 +750,35 @@
                 <span class="smart-letter">S</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.specific">Specific</strong>
-                  <p data-i18n="case3.s">Structure a Design Ops practice to scale Porto Seguro's design team across multiple e-commerce squads on VTEX.</p>
+                  <p data-i18n="case3.specific">Structure a Design Ops practice to scale Porto Seguro's design team across multiple e-commerce squads on VTEX.</p>
                 </div>
               </div>
               <div class="smart-row">
                 <span class="smart-letter">M</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.measurable">Measurable</strong>
-                  <p data-i18n="case3.m">Tracked via delivery predictability, component reuse rate and reduction of visual/UX inconsistencies across squads.</p>
+                  <p data-i18n="case3.measurable">Tracked via delivery predictability, component reuse rate and reduction of visual/UX inconsistencies across squads.</p>
                 </div>
               </div>
               <div class="smart-row">
                 <span class="smart-letter">A</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.achievable">Achievable</strong>
-                  <p data-i18n="case3.a">Standardized components, ran co-creation workshops and implemented structured feedback cycles between design, product and engineering.</p>
+                  <p data-i18n="case3.achievable">Standardized components, ran co-creation workshops and implemented structured feedback cycles between design, product and engineering.</p>
                 </div>
               </div>
               <div class="smart-row">
                 <span class="smart-letter">R</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.relevant">Relevant</strong>
-                  <p data-i18n="case3.r">A shared operating model lets a growing design team ship consistent, high-quality experiences without slowing down delivery.</p>
+                  <p data-i18n="case3.relevant">A shared operating model lets a growing design team ship consistent, high-quality experiences without slowing down delivery.</p>
                 </div>
               </div>
               <div class="smart-row">
                 <span class="smart-letter">T</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.timebound">Time-bound</strong>
-                  <p data-i18n="case3.t">Rolled out progressively over the Jun 2023 – May 2024 engagement.</p>
+                  <p data-i18n="case3.timebound">Rolled out progressively over the Jun 2023 – May 2024 engagement.</p>
                 </div>
               </div>
             </div>
@@ -754,7 +792,7 @@
           <div class="case-panel-body">
             <span class="case-tag">K2 Partnering Solutions — UX Lead</span>
             <h3 data-i18n="case4.title">UX/UI Study — Estácio</h3>
-            <a class="project-link" href="https://www.behance.net/gallery/193351373/Estudo-UX-UI-Estacio" target="_blank" rel="noopener">
+            <a class="btn btn-ghost case-behance-btn" href="https://www.behance.net/gallery/193351373/Estudo-UX-UI-Estacio" target="_blank" rel="noopener">
               <span data-i18n="case.viewBehance">View full case on Behance</span>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
             </a>
@@ -764,35 +802,35 @@
                 <span class="smart-letter">S</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.specific">Specific</strong>
-                  <p data-i18n="case4.s">Study and redesign key student-facing flows on Estácio's digital education platform to reduce friction in everyday tasks.</p>
+                  <p data-i18n="case4.specific">Study and redesign key student-facing flows on Estácio's digital education platform to reduce friction in everyday tasks.</p>
                 </div>
               </div>
               <div class="smart-row">
                 <span class="smart-letter">M</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.measurable">Measurable</strong>
-                  <p data-i18n="case4.m">Assessed through usability testing, task-completion rates and qualitative feedback from students and faculty.</p>
+                  <p data-i18n="case4.measurable">Assessed through usability testing, task-completion rates and qualitative feedback from students and faculty.</p>
                 </div>
               </div>
               <div class="smart-row">
                 <span class="smart-letter">A</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.achievable">Achievable</strong>
-                  <p data-i18n="case4.a">Mapped information architecture, ran heuristic evaluations and prototyped high-fidelity flows validated with real users.</p>
+                  <p data-i18n="case4.achievable">Mapped information architecture, ran heuristic evaluations and prototyped high-fidelity flows validated with real users.</p>
                 </div>
               </div>
               <div class="smart-row">
                 <span class="smart-letter">R</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.relevant">Relevant</strong>
-                  <p data-i18n="case4.r">A clearer, faster platform experience matters directly to student retention and satisfaction in a competitive education market.</p>
+                  <p data-i18n="case4.relevant">A clearer, faster platform experience matters directly to student retention and satisfaction in a competitive education market.</p>
                 </div>
               </div>
               <div class="smart-row">
                 <span class="smart-letter">T</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.timebound">Time-bound</strong>
-                  <p data-i18n="case4.t">Delivered during the K2 Partnering Solutions engagement (Jun 2021 – Jun 2023).</p>
+                  <p data-i18n="case4.timebound">Delivered during the K2 Partnering Solutions engagement (Jun 2021 – Jun 2023).</p>
                 </div>
               </div>
             </div>
@@ -806,7 +844,7 @@
           <div class="case-panel-body">
             <span class="case-tag">Estudo de Caso — E-commerce de Moda</span>
             <h3 data-i18n="case5.title">UX/UI Study — CJ Fashion</h3>
-            <a class="project-link" href="https://www.behance.net/gallery/188013219/Estudo-de-UXUI-CJ-Fashion" target="_blank" rel="noopener">
+            <a class="btn btn-ghost case-behance-btn" href="https://www.behance.net/gallery/188013219/Estudo-de-UXUI-CJ-Fashion" target="_blank" rel="noopener">
               <span data-i18n="case.viewBehance">View full case on Behance</span>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
             </a>
@@ -816,35 +854,35 @@
                 <span class="smart-letter">S</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.specific">Specific</strong>
-                  <p data-i18n="case5.s">Study the shopping journey of a fashion e-commerce platform to identify friction points from browsing to checkout.</p>
+                  <p data-i18n="case5.specific">Study the shopping journey of a fashion e-commerce platform to identify friction points from browsing to checkout.</p>
                 </div>
               </div>
               <div class="smart-row">
                 <span class="smart-letter">M</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.measurable">Measurable</strong>
-                  <p data-i18n="case5.m">Measured against navigation clarity, product discovery flow and checkout-step simplification.</p>
+                  <p data-i18n="case5.measurable">Measured against navigation clarity, product discovery flow and checkout-step simplification.</p>
                 </div>
               </div>
               <div class="smart-row">
                 <span class="smart-letter">A</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.achievable">Achievable</strong>
-                  <p data-i18n="case5.a">Conducted UX research, competitive benchmarking and high-fidelity UI prototyping aligned to fashion retail patterns.</p>
+                  <p data-i18n="case5.achievable">Conducted UX research, competitive benchmarking and high-fidelity UI prototyping aligned to fashion retail patterns.</p>
                 </div>
               </div>
               <div class="smart-row">
                 <span class="smart-letter">R</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.relevant">Relevant</strong>
-                  <p data-i18n="case5.r">A smoother shopping experience directly affects conversion and repeat purchases in a highly visual, competitive category.</p>
+                  <p data-i18n="case5.relevant">A smoother shopping experience directly affects conversion and repeat purchases in a highly visual, competitive category.</p>
                 </div>
               </div>
               <div class="smart-row">
                 <span class="smart-letter">T</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.timebound">Time-bound</strong>
-                  <p data-i18n="case5.t">Completed as a self-directed case study to deepen expertise in fashion e-commerce UX.</p>
+                  <p data-i18n="case5.timebound">Completed as a self-directed case study to deepen expertise in fashion e-commerce UX.</p>
                 </div>
               </div>
             </div>
@@ -858,7 +896,7 @@
           <div class="case-panel-body">
             <span class="case-tag">K2 Partnering Solutions — UI</span>
             <h3 data-i18n="case6.title">UI Study — Sara</h3>
-            <a class="project-link" href="https://www.behance.net/gallery/188011651/Estudo-de-UI-Sara" target="_blank" rel="noopener">
+            <a class="btn btn-ghost case-behance-btn" href="https://www.behance.net/gallery/188011651/Estudo-de-UI-Sara" target="_blank" rel="noopener">
               <span data-i18n="case.viewBehance">View full case on Behance</span>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
             </a>
@@ -868,35 +906,35 @@
                 <span class="smart-letter">S</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.specific">Specific</strong>
-                  <p data-i18n="case6.s">Design a clearer, more reassuring UI for Sara, a healthcare product, focused on sensitive patient interactions.</p>
+                  <p data-i18n="case6.specific">Design a clearer, more reassuring UI for Sara, a healthcare product, focused on sensitive patient interactions.</p>
                 </div>
               </div>
               <div class="smart-row">
                 <span class="smart-letter">M</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.measurable">Measurable</strong>
-                  <p data-i18n="case6.m">Evaluated through clarity of medical information, task success rate and perceived trust in usability sessions.</p>
+                  <p data-i18n="case6.measurable">Evaluated through clarity of medical information, task success rate and perceived trust in usability sessions.</p>
                 </div>
               </div>
               <div class="smart-row">
                 <span class="smart-letter">A</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.achievable">Achievable</strong>
-                  <p data-i18n="case6.a">Applied UX writing, accessible typography and a calm visual system tailored to a healthcare audience.</p>
+                  <p data-i18n="case6.achievable">Applied UX writing, accessible typography and a calm visual system tailored to a healthcare audience.</p>
                 </div>
               </div>
               <div class="smart-row">
                 <span class="smart-letter">R</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.relevant">Relevant</strong>
-                  <p data-i18n="case6.r">In health products, interface clarity and trust directly affect whether patients complete critical actions.</p>
+                  <p data-i18n="case6.relevant">In health products, interface clarity and trust directly affect whether patients complete critical actions.</p>
                 </div>
               </div>
               <div class="smart-row">
                 <span class="smart-letter">T</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.timebound">Time-bound</strong>
-                  <p data-i18n="case6.t">Delivered during the K2 Partnering Solutions engagement (Jun 2021 – Jun 2023).</p>
+                  <p data-i18n="case6.timebound">Delivered during the K2 Partnering Solutions engagement (Jun 2021 – Jun 2023).</p>
                 </div>
               </div>
             </div>
@@ -910,7 +948,7 @@
           <div class="case-panel-body">
             <span class="case-tag">SIS Soluções Integradas — Senior UI/UX</span>
             <h3 data-i18n="case7.title">Design Ops — Bradesco</h3>
-            <a class="project-link" href="https://www.behance.net/gallery/156094863/Design-Ops-Bradesco" target="_blank" rel="noopener">
+            <a class="btn btn-ghost case-behance-btn" href="https://www.behance.net/gallery/156094863/Design-Ops-Bradesco" target="_blank" rel="noopener">
               <span data-i18n="case.viewBehance">View full case on Behance</span>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
             </a>
@@ -920,35 +958,35 @@
                 <span class="smart-letter">S</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.specific">Specific</strong>
-                  <p data-i18n="case7.s">Coordinate UX/UI activities and lead Design Ops for Bradesco's digital products, standardizing design practices.</p>
+                  <p data-i18n="case7.specific">Coordinate UX/UI activities and lead Design Ops for Bradesco's digital products, standardizing design practices.</p>
                 </div>
               </div>
               <div class="smart-row">
                 <span class="smart-letter">M</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.measurable">Measurable</strong>
-                  <p data-i18n="case7.m">Tracked through component consistency, delivery predictability and reduction of design debt across teams.</p>
+                  <p data-i18n="case7.measurable">Tracked through component consistency, delivery predictability and reduction of design debt across teams.</p>
                 </div>
               </div>
               <div class="smart-row">
                 <span class="smart-letter">A</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.achievable">Achievable</strong>
-                  <p data-i18n="case7.a">Led Atomic Design implementation, structured a style guide and embedded Scrum/Kanban rituals into the design workflow.</p>
+                  <p data-i18n="case7.achievable">Led Atomic Design implementation, structured a style guide and embedded Scrum/Kanban rituals into the design workflow.</p>
                 </div>
               </div>
               <div class="smart-row">
                 <span class="smart-letter">R</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.relevant">Relevant</strong>
-                  <p data-i18n="case7.r">In a heavily regulated banking environment, consistent, well-governed design reduces risk and speeds up delivery.</p>
+                  <p data-i18n="case7.relevant">In a heavily regulated banking environment, consistent, well-governed design reduces risk and speeds up delivery.</p>
                 </div>
               </div>
               <div class="smart-row">
                 <span class="smart-letter">T</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.timebound">Time-bound</strong>
-                  <p data-i18n="case7.t">Delivered over the SIS engagement (Dec 2019 – Jun 2021).</p>
+                  <p data-i18n="case7.timebound">Delivered over the SIS engagement (Dec 2019 – Jun 2021).</p>
                 </div>
               </div>
             </div>
@@ -962,7 +1000,7 @@
           <div class="case-panel-body">
             <span class="case-tag">Design System — SaaS Cloud</span>
             <h3 data-i18n="case8.title">Design System — Mandic</h3>
-            <a class="project-link" href="https://www.behance.net/gallery/155793083/Design-System-Mandic" target="_blank" rel="noopener">
+            <a class="btn btn-ghost case-behance-btn" href="https://www.behance.net/gallery/155793083/Design-System-Mandic" target="_blank" rel="noopener">
               <span data-i18n="case.viewBehance">View full case on Behance</span>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
             </a>
@@ -972,35 +1010,35 @@
                 <span class="smart-letter">S</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.specific">Specific</strong>
-                  <p data-i18n="case8.s">Build a scalable Design System for Mandic's cloud platform to unify UI patterns across products.</p>
+                  <p data-i18n="case8.specific">Build a scalable Design System for Mandic's cloud platform to unify UI patterns across products.</p>
                 </div>
               </div>
               <div class="smart-row">
                 <span class="smart-letter">M</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.measurable">Measurable</strong>
-                  <p data-i18n="case8.m">Measured through component adoption rate across squads and reduction of duplicated UI patterns.</p>
+                  <p data-i18n="case8.measurable">Measured through component adoption rate across squads and reduction of duplicated UI patterns.</p>
                 </div>
               </div>
               <div class="smart-row">
                 <span class="smart-letter">A</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.achievable">Achievable</strong>
-                  <p data-i18n="case8.a">Documented tokens, components and usage guidelines in Figma, validated with the engineering team for a smooth handoff.</p>
+                  <p data-i18n="case8.achievable">Documented tokens, components and usage guidelines in Figma, validated with the engineering team for a smooth handoff.</p>
                 </div>
               </div>
               <div class="smart-row">
                 <span class="smart-letter">R</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.relevant">Relevant</strong>
-                  <p data-i18n="case8.r">A shared design language cuts development time and keeps a fast-growing cloud product visually and functionally consistent.</p>
+                  <p data-i18n="case8.relevant">A shared design language cuts development time and keeps a fast-growing cloud product visually and functionally consistent.</p>
                 </div>
               </div>
               <div class="smart-row">
                 <span class="smart-letter">T</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.timebound">Time-bound</strong>
-                  <p data-i18n="case8.t">Delivered as a structured Design System initiative.</p>
+                  <p data-i18n="case8.timebound">Delivered as a structured Design System initiative.</p>
                 </div>
               </div>
             </div>
@@ -1014,7 +1052,7 @@
           <div class="case-panel-body">
             <span class="case-tag">Vector ITC — UI/UX Lead</span>
             <h3 data-i18n="case9.title">Gamification UX/UI — Total Express</h3>
-            <a class="project-link" href="https://www.behance.net/gallery/155548673/Gamificacao-UXUI-Total-Express" target="_blank" rel="noopener">
+            <a class="btn btn-ghost case-behance-btn" href="https://www.behance.net/gallery/155548673/Gamificacao-UXUI-Total-Express" target="_blank" rel="noopener">
               <span data-i18n="case.viewBehance">View full case on Behance</span>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
             </a>
@@ -1024,35 +1062,35 @@
                 <span class="smart-letter">S</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.specific">Specific</strong>
-                  <p data-i18n="case9.s">Design gamified UX/UI mechanics for Total Express to increase engagement and adherence to operational processes.</p>
+                  <p data-i18n="case9.specific">Design gamified UX/UI mechanics for Total Express to increase engagement and adherence to operational processes.</p>
                 </div>
               </div>
               <div class="smart-row">
                 <span class="smart-letter">M</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.measurable">Measurable</strong>
-                  <p data-i18n="case9.m">Evaluated through engagement rate with gamified features and adherence to targeted operational behaviors.</p>
+                  <p data-i18n="case9.measurable">Evaluated through engagement rate with gamified features and adherence to targeted operational behaviors.</p>
                 </div>
               </div>
               <div class="smart-row">
                 <span class="smart-letter">A</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.achievable">Achievable</strong>
-                  <p data-i18n="case9.a">Prototyped reward mechanics, progress indicators and feedback loops validated with field users through usability testing.</p>
+                  <p data-i18n="case9.achievable">Prototyped reward mechanics, progress indicators and feedback loops validated with field users through usability testing.</p>
                 </div>
               </div>
               <div class="smart-row">
                 <span class="smart-letter">R</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.relevant">Relevant</strong>
-                  <p data-i18n="case9.r">In logistics operations, small engagement gains translate directly into better process compliance and performance.</p>
+                  <p data-i18n="case9.relevant">In logistics operations, small engagement gains translate directly into better process compliance and performance.</p>
                 </div>
               </div>
               <div class="smart-row">
                 <span class="smart-letter">T</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.timebound">Time-bound</strong>
-                  <p data-i18n="case9.t">Delivered during the Vector ITC engagement (Nov 2018 – Nov 2019).</p>
+                  <p data-i18n="case9.timebound">Delivered during the Vector ITC engagement (Nov 2018 – Nov 2019).</p>
                 </div>
               </div>
             </div>
@@ -1066,7 +1104,7 @@
           <div class="case-panel-body">
             <span class="case-tag">Softtek — UX Lead</span>
             <h3 data-i18n="case10.title">ICS Mobile — Total Express</h3>
-            <a class="project-link" href="https://www.behance.net/gallery/155528257/Esdudo-de-UXUI-ICS-Mobile-Total-Express" target="_blank" rel="noopener">
+            <a class="btn btn-ghost case-behance-btn" href="https://www.behance.net/gallery/155528257/Esdudo-de-UXUI-ICS-Mobile-Total-Express" target="_blank" rel="noopener">
               <span data-i18n="case.viewBehance">View full case on Behance</span>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
             </a>
@@ -1076,35 +1114,35 @@
                 <span class="smart-letter">S</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.specific">Specific</strong>
-                  <p data-i18n="case10.s">Design the mobile experience for ICS, an operational tracking and control system used by Total Express field teams.</p>
+                  <p data-i18n="case10.specific">Design the mobile experience for ICS, an operational tracking and control system used by Total Express field teams.</p>
                 </div>
               </div>
               <div class="smart-row">
                 <span class="smart-letter">M</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.measurable">Measurable</strong>
-                  <p data-i18n="case10.m">Assessed through task completion speed for field agents and reduction of input errors during operational logging.</p>
+                  <p data-i18n="case10.measurable">Assessed through task completion speed for field agents and reduction of input errors during operational logging.</p>
                 </div>
               </div>
               <div class="smart-row">
                 <span class="smart-letter">A</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.achievable">Achievable</strong>
-                  <p data-i18n="case10.a">Mapped field-to-manager information flows and prototyped a simplified mobile UI validated directly with field operators.</p>
+                  <p data-i18n="case10.achievable">Mapped field-to-manager information flows and prototyped a simplified mobile UI validated directly with field operators.</p>
                 </div>
               </div>
               <div class="smart-row">
                 <span class="smart-letter">R</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.relevant">Relevant</strong>
-                  <p data-i18n="case10.r">A faster, error-resistant mobile tool directly improves logistics accuracy and operational efficiency at scale.</p>
+                  <p data-i18n="case10.relevant">A faster, error-resistant mobile tool directly improves logistics accuracy and operational efficiency at scale.</p>
                 </div>
               </div>
               <div class="smart-row">
                 <span class="smart-letter">T</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.timebound">Time-bound</strong>
-                  <p data-i18n="case10.t">Delivered during the Softtek engagement (Jun 2021 – Jun 2023).</p>
+                  <p data-i18n="case10.timebound">Delivered during the Softtek engagement (Jun 2021 – Jun 2023).</p>
                 </div>
               </div>
             </div>
@@ -1118,7 +1156,7 @@
           <div class="case-panel-body">
             <span class="case-tag">Estudo de Caso — Logística</span>
             <h3 data-i18n="case11.title">UX/UI Study — TechCargo</h3>
-            <a class="project-link" href="https://www.behance.net/gallery/155527535/Estudo-de-UXUI-TechCargo" target="_blank" rel="noopener">
+            <a class="btn btn-ghost case-behance-btn" href="https://www.behance.net/gallery/155527535/Estudo-de-UXUI-TechCargo" target="_blank" rel="noopener">
               <span data-i18n="case.viewBehance">View full case on Behance</span>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
             </a>
@@ -1128,35 +1166,35 @@
                 <span class="smart-letter">S</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.specific">Specific</strong>
-                  <p data-i18n="case11.s">Study and redesign core UX/UI flows for TechCargo, a logistics platform, to simplify freight tracking and management tasks.</p>
+                  <p data-i18n="case11.specific">Study and redesign core UX/UI flows for TechCargo, a logistics platform, to simplify freight tracking and management tasks.</p>
                 </div>
               </div>
               <div class="smart-row">
                 <span class="smart-letter">M</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.measurable">Measurable</strong>
-                  <p data-i18n="case11.m">Measured through task-completion time and clarity of shipment status information for operators.</p>
+                  <p data-i18n="case11.measurable">Measured through task-completion time and clarity of shipment status information for operators.</p>
                 </div>
               </div>
               <div class="smart-row">
                 <span class="smart-letter">A</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.achievable">Achievable</strong>
-                  <p data-i18n="case11.a">Ran user interviews with logistics operators, mapped flows and delivered high-fidelity prototypes tested against real scenarios.</p>
+                  <p data-i18n="case11.achievable">Ran user interviews with logistics operators, mapped flows and delivered high-fidelity prototypes tested against real scenarios.</p>
                 </div>
               </div>
               <div class="smart-row">
                 <span class="smart-letter">R</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.relevant">Relevant</strong>
-                  <p data-i18n="case11.r">In logistics, simpler tracking interfaces reduce operational errors and speed up daily decision-making.</p>
+                  <p data-i18n="case11.relevant">In logistics, simpler tracking interfaces reduce operational errors and speed up daily decision-making.</p>
                 </div>
               </div>
               <div class="smart-row">
                 <span class="smart-letter">T</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.timebound">Time-bound</strong>
-                  <p data-i18n="case11.t">Completed as an independent UX/UI case study focused on logistics products.</p>
+                  <p data-i18n="case11.timebound">Completed as an independent UX/UI case study focused on logistics products.</p>
                 </div>
               </div>
             </div>
@@ -1170,7 +1208,7 @@
           <div class="case-panel-body">
             <span class="case-tag">Estudo de Caso — Travel</span>
             <h3 data-i18n="case12.title">UX Redesign Study — Booking.com</h3>
-            <a class="project-link" href="https://www.behance.net/gallery/145454833/Redesign-Estudo-de-UX-Bookingcom" target="_blank" rel="noopener">
+            <a class="btn btn-ghost case-behance-btn" href="https://www.behance.net/gallery/145454833/Redesign-Estudo-de-UX-Bookingcom" target="_blank" rel="noopener">
               <span data-i18n="case.viewBehance">View full case on Behance</span>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
             </a>
@@ -1180,35 +1218,35 @@
                 <span class="smart-letter">S</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.specific">Specific</strong>
-                  <p data-i18n="case12.s">Conduct an independent UX redesign study of Booking.com's search and booking flow to explore usability improvements.</p>
+                  <p data-i18n="case12.specific">Conduct an independent UX redesign study of Booking.com's search and booking flow to explore usability improvements.</p>
                 </div>
               </div>
               <div class="smart-row">
                 <span class="smart-letter">M</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.measurable">Measurable</strong>
-                  <p data-i18n="case12.m">Evaluated through heuristic analysis, information hierarchy clarity and reduction of steps to complete a booking.</p>
+                  <p data-i18n="case12.measurable">Evaluated through heuristic analysis, information hierarchy clarity and reduction of steps to complete a booking.</p>
                 </div>
               </div>
               <div class="smart-row">
                 <span class="smart-letter">A</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.achievable">Achievable</strong>
-                  <p data-i18n="case12.a">Applied competitive benchmarking, wireframing and high-fidelity UI redesign grounded in UX best practices.</p>
+                  <p data-i18n="case12.achievable">Applied competitive benchmarking, wireframing and high-fidelity UI redesign grounded in UX best practices.</p>
                 </div>
               </div>
               <div class="smart-row">
                 <span class="smart-letter">R</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.relevant">Relevant</strong>
-                  <p data-i18n="case12.r">Streamlined booking flows are directly tied to conversion in high-intent travel products — a benchmark for any transactional interface.</p>
+                  <p data-i18n="case12.relevant">Streamlined booking flows are directly tied to conversion in high-intent travel products — a benchmark for any transactional interface.</p>
                 </div>
               </div>
               <div class="smart-row">
                 <span class="smart-letter">T</span>
                 <div class="smart-text">
                   <strong data-i18n="smart.timebound">Time-bound</strong>
-                  <p data-i18n="case12.t">Completed as a self-directed UX study to explore redesign opportunities in a leading travel product.</p>
+                  <p data-i18n="case12.timebound">Completed as a self-directed UX study to explore redesign opportunities in a leading travel product.</p>
                 </div>
               </div>
             </div>
