@@ -125,6 +125,41 @@
   @keyframes marquee-scroll{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
   @media (max-width:640px){ .marquee-item{ width:180px; height:122px; } }
 
+  /* ---------- energy divider (mouse-reactive animated bolts) ---------- */
+  .energy-divider{
+    position:relative; width:100%; height:230px; overflow:hidden;
+    background:radial-gradient(60% 100% at 50% 50%, rgba(45,212,191,0.05), transparent 70%);
+  }
+  .energy-divider canvas{ position:absolute; inset:0; width:100%; height:100%; display:block; }
+  .energy-words{
+    position:absolute; inset:0; z-index:2; pointer-events:none;
+    display:flex; align-items:center; justify-content:space-evenly; flex-wrap:wrap;
+    padding:0 4%; gap:8px 18px;
+  }
+  .energy-words span{
+    font-family:var(--font-head); font-weight:600; text-transform:uppercase;
+    letter-spacing:.06em; font-size:clamp(13px, 2vw, 20px); color:#dffaf5;
+    text-shadow:0 0 14px rgba(45,212,191,0.85), 0 0 34px rgba(45,212,191,0.35);
+    opacity:.88; animation:energy-float 5.5s ease-in-out infinite;
+  }
+  .energy-words span:nth-child(1){ animation-duration:5.2s; animation-delay:0s; }
+  .energy-words span:nth-child(2){ animation-duration:6.4s; animation-delay:.5s; color:#ffe2b0; text-shadow:0 0 14px rgba(255,183,77,0.7), 0 0 30px rgba(255,183,77,0.3); }
+  .energy-words span:nth-child(3){ animation-duration:5.8s; animation-delay:1.1s; }
+  .energy-words span:nth-child(4){ animation-duration:7s; animation-delay:.3s; }
+  .energy-words span:nth-child(5){ animation-duration:6.1s; animation-delay:1.5s; color:#ffe2b0; text-shadow:0 0 14px rgba(255,183,77,0.7), 0 0 30px rgba(255,183,77,0.3); }
+  .energy-words span:nth-child(6){ animation-duration:6.7s; animation-delay:.8s; }
+  @keyframes energy-float{
+    0%,100%{ transform:translateY(0); opacity:.7; }
+    50%{ transform:translateY(-10px); opacity:1; }
+  }
+  .energy-divider.static{
+    background:linear-gradient(90deg, transparent, rgba(45,212,191,0.4) 50%, transparent);
+    height:1px; margin:94px 0;
+  }
+  .energy-divider.static .energy-words{ display:none; }
+  @media (max-width:860px){ .energy-divider{ height:170px; } .energy-words{ gap:6px 12px; } }
+  @media (prefers-reduced-motion:reduce){ .energy-divider{ height:1px; background:linear-gradient(90deg, transparent, rgba(45,212,191,0.4) 50%, transparent); margin:94px 0; } .energy-divider canvas{ display:none; } .energy-words{ display:none; } }
+
   #more-cases{ padding:80px 0 110px; }
   @media (max-width:860px){ #more-cases{ padding:50px 0 80px; } }
   #more-cases .section-head{ margin-bottom:38px; }
@@ -569,6 +604,123 @@
     </div>
   </section>
 
+  <!-- ===== ENERGY DIVIDER (mouse-reactive animated bolts) ===== -->
+  <div class="energy-divider" id="energyDivider" aria-hidden="true">
+    <canvas id="energyCanvas"></canvas>
+    <div class="energy-words">
+      <span>UX</span>
+      <span>UI</span>
+      <span>Design</span>
+      <span>Research</span>
+      <span>Ops</span>
+      <span data-i18n="energy.ai">AI</span>
+    </div>
+  </div>
+  <script>
+  (function(){
+    var wrap = document.getElementById('energyDivider');
+    var canvas = document.getElementById('energyCanvas');
+    if(!wrap || !canvas || !canvas.getContext) return;
+
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduced){ wrap.classList.add('static'); return; }
+
+    var ctx = canvas.getContext('2d');
+    var W = 0, H = 0, DPR = Math.min(window.devicePixelRatio || 1, 2);
+    var mouseX = null, mouseY = null;
+    var running = false, rafId = null, t = 0;
+    var seedA = Math.random() * 1000, seedB = Math.random() * 1000;
+
+    function resize(){
+      var rect = wrap.getBoundingClientRect();
+      W = rect.width; H = rect.height;
+      canvas.width = Math.max(1, W * DPR);
+      canvas.height = Math.max(1, H * DPR);
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    wrap.addEventListener('mousemove', function(e){
+      var r = wrap.getBoundingClientRect();
+      mouseX = e.clientX - r.left;
+      mouseY = e.clientY - r.top;
+    });
+    wrap.addEventListener('mouseleave', function(){ mouseX = null; mouseY = null; });
+
+    function generateBolt(y0, segments, amp, influence, speed, phase){
+      var pts = [];
+      for(var i = 0; i <= segments; i++){
+        var x = (W / segments) * i;
+        var wave = Math.sin(t * speed + i * 0.85 + phase) * amp * 0.55
+                 + Math.sin(t * speed * 0.55 + i * 1.6 + phase * 1.4) * amp * 0.35;
+        var y = y0 + wave;
+        if(mouseX !== null){
+          var dist = Math.abs(x - mouseX);
+          var pull = Math.max(0, 1 - dist / (W * 0.32));
+          y += (mouseY - y0) * pull * influence;
+        }
+        pts.push([x, y]);
+      }
+      return pts;
+    }
+
+    function drawBolt(pts, color, width, blur){
+      ctx.beginPath();
+      ctx.moveTo(pts[0][0], pts[0][1]);
+      for(var i = 1; i < pts.length; i++){
+        var xc = (pts[i][0] + pts[i - 1][0]) / 2;
+        var yc = (pts[i][1] + pts[i - 1][1]) / 2;
+        ctx.quadraticCurveTo(pts[i - 1][0], pts[i - 1][1], xc, yc);
+      }
+      ctx.strokeStyle = color;
+      ctx.lineWidth = width;
+      ctx.shadowColor = color;
+      ctx.shadowBlur = blur;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.stroke();
+    }
+
+    function draw(){
+      if(!running) return;
+      ctx.clearRect(0, 0, W, H);
+      var midY = H * 0.5;
+
+      var mainPts = generateBolt(midY, 11, H * 0.24, 0.55, 0.014, seedA);
+      drawBolt(mainPts, 'rgba(45,212,191,0.35)', 7, 26);
+      drawBolt(mainPts, 'rgba(45,212,191,0.75)', 3, 16);
+      drawBolt(mainPts, 'rgba(224,255,250,0.95)', 1.2, 8);
+
+      if(Math.sin(t * 0.01 + seedA) > 0.05){
+        var warmPts = generateBolt(midY + H * 0.14, 8, H * 0.16, 0.35, 0.011, seedB);
+        drawBolt(warmPts, 'rgba(255,183,77,0.45)', 1.4, 14);
+      }
+      if(Math.sin(t * 0.008 + seedB) > 0.3){
+        var thinPts = generateBolt(midY - H * 0.26, 7, H * 0.1, 0.25, 0.009, seedA * 1.7);
+        drawBolt(thinPts, 'rgba(45,212,191,0.28)', 1, 8);
+      }
+
+      t += 0.4;
+      rafId = requestAnimationFrame(draw);
+    }
+
+    function start(){ if(!running){ running = true; draw(); } }
+    function stop(){ running = false; if(rafId){ cancelAnimationFrame(rafId); rafId = null; } }
+
+    if('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){ start(); } else { stop(); }
+        });
+      }, { threshold: 0 });
+      io.observe(wrap);
+    } else {
+      start();
+    }
+  })();
+  </script>
+
   <!-- ===== SOBRE ===== -->
   <section id="sobre">
     <div class="wrap">
@@ -1003,6 +1155,7 @@
       "marquee.eyebrow":"Full Case Study Library",
       "marquee.title":"Even more UX/UI, Design Ops &amp; Design System work",
       "marquee.cta":"See the full case study library",
+      "energy.ai":"AI",
       "exp.eyebrow":"Professional Experience",
       "exp.title":"A 17-year journey in design",
       "exp.i1.title":"Staff Product Designer / Specialist","exp.i1.period":"Dec 2025 — Present","exp.i1.company":"AVANTTI — Clients: FGV, Ciclic, Susep, Enerzee, Smart Juris",
@@ -1065,6 +1218,7 @@
       "marquee.eyebrow":"Biblioteca Completa de Cases",
       "marquee.title":"Ainda mais projetos de UX/UI, Design Ops &amp; Design System",
       "marquee.cta":"Ver a biblioteca completa de cases",
+      "energy.ai":"IA",
       "exp.eyebrow":"Experiência Profissional",
       "exp.title":"Uma trajetória de 17 anos em design",
       "exp.i1.title":"Staff Product Designer / Especialista","exp.i1.period":"Dez 2025 — Atual","exp.i1.company":"AVANTTI — Clientes: FGV, Ciclic, Susep, Enerzee, Smart Juris",
@@ -1127,6 +1281,7 @@
       "marquee.eyebrow":"Biblioteca Completa de Casos",
       "marquee.title":"Aún más proyectos de UX/UI, Design Ops &amp; Design System",
       "marquee.cta":"Ver la biblioteca completa de casos",
+      "energy.ai":"IA",
       "exp.eyebrow":"Experiencia Profesional",
       "exp.title":"Una trayectoria de 17 años en diseño",
       "exp.i1.title":"Staff Product Designer / Especialista","exp.i1.period":"Dic 2025 — Actualidad","exp.i1.company":"AVANTTI — Clientes: FGV, Ciclic, Susep, Enerzee, Smart Juris",
